@@ -9,7 +9,6 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="674.0" prefWidth="1046.0" style="-fx-background-color: #d3d3d3;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <left>
       <VBox alignment="CENTER" prefHeight="409.0" prefWidth="166.0" style="-fx-background-color: #a73e32;" BorderPane.alignment="CENTER">
@@ -40,8 +39,9 @@
             </Button>
             <MenuButton alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #a73e32;" text="Settings" textFill="WHITE">
               <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-                <MenuItem mnemonicParsing="false" text="Action 2" />
+                <MenuItem mnemonicParsing="false" text="Profile" />
+                <MenuItem mnemonicParsing="false" text="About" />
+                  <MenuItem mnemonicParsing="false" text="Log Out" />
               </items>
                <VBox.margin>
                   <Insets />
