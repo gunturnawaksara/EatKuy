@@ -67,5 +67,20 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Hyperlink>
+      <ImageView fitHeight="33.0" fitWidth="31.0" layoutX="8.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../pics/icon_user.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="33.0" fitWidth="31.0" layoutX="8.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../pics/Key_icon.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="33.0" fitWidth="31.0" layoutX="8.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../pics/Email_icon.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>
