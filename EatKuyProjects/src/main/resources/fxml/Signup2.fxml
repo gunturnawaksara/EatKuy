@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="674.0" prefWidth="1046.0" style="-fx-background-color: #d3d3d3;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <HBox opacity="0.7" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #fa8072;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="80.0" fitWidth="85.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../pics/logo.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="35.0" top="10.0" />
+               </HBox.margin>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </ImageView>
+         </children>
+      </HBox>
+   </top>
+   <left>
+      <VBox alignment="CENTER" opacity="0.7" prefHeight="409.0" prefWidth="166.0" style="-fx-background-color: #a73e32;" BorderPane.alignment="CENTER">
+         <children>
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #a73e32;" text="Breakfast" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Segoe UI Bold" size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Button>
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #a73e32;" text="Lunch" textFill="WHITE">
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Segoe UI Bold" size="18.0" />
+               </font>
+            </Button>
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #a73e32;" text="Dinner" textFill="WHITE">
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Segoe UI Bold" size="18.0" />
+               </font>
+            </Button>
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #a73e32;" text="Settings" textFill="WHITE">
+               <font>
+                  <Font name="Segoe UI Bold" size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="134.0" layoutY="40.0" text="Jenis Kelamin     :">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="134.0" layoutY="87.0" text="Usia                    :">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="134.0" layoutY="140.0" text="Berat Badan        :">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="134.0" layoutY="194.0" text="Tinggi Badan      :">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="134.0" layoutY="250.0" text="Tingkat Aktifitas :">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <TextField layoutX="328.0" layoutY="38.0" promptText="Laki-laki/Perempuan" />
+            <TextField layoutX="328.0" layoutY="85.0" promptText="Thn" />
+            <TextField layoutX="328.0" layoutY="138.0" promptText="(Kg)" />
+            <TextField layoutX="328.0" layoutY="192.0" promptText="(cm)" />
+            <RadioButton layoutX="328.0" layoutY="254.0" mnemonicParsing="false" text="Sangat jarang olahraga" />
+            <RadioButton layoutX="328.0" layoutY="294.0" mnemonicParsing="false" text="Jarang olahraga (1-3 hari/ minggu)" />
+            <RadioButton layoutX="328.0" layoutY="329.0" mnemonicParsing="false" text="Normal olahraga (3-5 hari/ minggu)" />
+            <RadioButton layoutX="328.0" layoutY="369.0" mnemonicParsing="false" text="Sering olahraga (6-7 hari/ minggu)" />
+            <RadioButton layoutX="328.0" layoutY="407.0" mnemonicParsing="false" text="Sangat sering olahraga" />
+            <Button fx:id="doneButton" layoutX="559.0" layoutY="467.0" mnemonicParsing="false" onAction="#doneActivity" style="-fx-background-color: #32AE3F;" text="Done" />
+         </children>
+      </Pane>
+   </center>
+</BorderPane>
