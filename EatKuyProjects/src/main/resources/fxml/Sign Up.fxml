@@ -20,9 +20,39 @@
             <Font name="System Bold" size="36.0" />
          </font>
       </Label>
-      <TextField fx:id="usernameSignup" layoutX="45.0" layoutY="84.0" prefHeight="30.0" prefWidth="224.0" promptText="Username" />
-      <TextField fx:id="emailSignup" layoutX="46.0" layoutY="130.0" prefHeight="30.0" prefWidth="224.0" promptText="Email" />
-      <PasswordField fx:id="passwordSignup" layoutX="46.0" layoutY="176.0" prefHeight="31.0" prefWidth="224.0" promptText="Password" />
+      <TextField fx:id="usernameSignup" layoutX="45.0" layoutY="84.0" prefHeight="30.0" prefWidth="224.0" promptText="Username" style="-fx-background-color: transparant; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;">
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect></TextField>
+      <TextField fx:id="emailSignup" layoutX="46.0" layoutY="130.0" prefHeight="30.0" prefWidth="224.0" promptText="Email" style="-fx-background-color: transparant; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;">
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect></TextField>
+      <PasswordField fx:id="passwordSignup" layoutX="46.0" layoutY="176.0" prefHeight="31.0" prefWidth="224.0" promptText="Password" style="-fx-background-color: transparant; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;">
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect></PasswordField>
       <Button fx:id="signupButton" layoutX="46.0" layoutY="238.0" mnemonicParsing="false" onAction="#signupActivity" prefHeight="39.0" prefWidth="224.0" style="-fx-background-color: #32AE3F;" text="Sign Up">
          <font>
             <Font name="System Bold" size="18.0" />
