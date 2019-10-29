@@ -63,7 +63,7 @@ public class SignupController implements Initializable {
                  alert.setContentText("Username / Email already used !");
                  alert.showAndWait();
         }else{
-            s = new Session(usernameSignup, passwordSignup);
+            s = new Session(username, pass);
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fxml/Main.fxml"));
             Parent Main = loader.load();
