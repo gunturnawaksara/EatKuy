@@ -6,9 +6,11 @@
 package fxml;
 
 import com.mycompany.eatkuyprojects.AkunDB;
+import com.mycompany.eatkuyprojects.AkunQuery;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -73,6 +75,12 @@ public class AkunDBController implements Initializable{
         col_tb.setCellValueFactory(new PropertyValueFactory("tinggibadan"));
         col_ta.setCellValueFactory(new PropertyValueFactory("tingkatAktiitas"));
         col_status.setCellValueFactory(new PropertyValueFactory("status"));
+        
+        //ambil data dari db dan masukkan ke TableView
+        ObservableList<AkunDB> data;
+        try{
+            data = AkunQuery.
+        }
     }
     
     
