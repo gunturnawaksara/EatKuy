@@ -64,6 +64,7 @@ public class SignupController implements Initializable {
                  alert.showAndWait();
         }else{
             s = new Session(username, pass);
+            db.InsertAkun(email, username, pass);
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fxml/Main.fxml"));
             Parent Main = loader.load();
