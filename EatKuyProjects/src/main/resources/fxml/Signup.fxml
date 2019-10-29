@@ -7,29 +7,28 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="366.0" prefWidth="647.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="366.0" prefWidth="647.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.SignupController">
    <center>
       <Pane prefHeight="377.0" prefWidth="671.0" BorderPane.alignment="CENTER">
          <children>
             <ImageView fitHeight="386.0" fitWidth="669.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@RPL/Project/EatKuy/EatKuyProjects/src/main/resources/pics/background_template.jpg" />
+                  <Image url="@../pics/background_template.jpg" />
                </image>
             </ImageView>
             <ImageView fitHeight="33.0" fitWidth="31.0" layoutX="16.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@RPL/Project/EatKuy/EatKuyProjects/src/main/resources/pics/Email_icon.png" />
+                  <Image url="@../pics/Email_icon.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="33.0" fitWidth="31.0" layoutX="16.0" layoutY="193.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@RPL/Project/EatKuy/EatKuyProjects/src/main/resources/pics/Key_icon.png" />
+                  <Image url="@../pics/Key_icon.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="33.0" fitWidth="31.0" layoutX="16.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@RPL/Project/EatKuy/EatKuyProjects/src/main/resources/pics/icon_user.png" />
+                  <Image url="@../pics/icon_user.png" />
                </image>
             </ImageView>
             <Hyperlink fx:id="loginHyperlink" layoutX="219.0" layoutY="309.0" onAction="#loginFrame" text="Login">
