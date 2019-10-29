@@ -1,74 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.shape.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="343.0" prefWidth="604.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.LoginController">
-   <children>
-      <ImageView fitHeight="344.0" fitWidth="610.0" layoutX="-5.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../pics/background_template.jpg" />
-         </image>
-      </ImageView>
-      <Label layoutX="99.0" layoutY="25.0" text="Login">
-         <font>
-            <Font name="System Bold" size="36.0" />
-         </font>
-      </Label>
-      <TextField fx:id="usernameLogin" layoutX="53.0" layoutY="108.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Username" style="-fx-background-color: transparant; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;">
-         <effect>
-            <Lighting>
-               <bumpInput>
-                  <Shadow />
-               </bumpInput>
-               <light>
-                  <Light.Distant />
-               </light>
-            </Lighting>
-         </effect></TextField>
-      <PasswordField fx:id="passwordLogin" layoutX="53.0" layoutY="152.0" promptText="Password" style="-fx-background-color: transparant; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;">
-         <effect>
-            <Lighting>
-               <bumpInput>
-                  <Shadow />
-               </bumpInput>
-               <light>
-                  <Light.Distant />
-               </light>
-            </Lighting>
-         </effect></PasswordField>
-      <Button fx:id="loginButton" layoutX="53.0" layoutY="229.0" mnemonicParsing="false" onAction="#loginActivity" prefHeight="39.0" prefWidth="224.0" style="-fx-background-color: #32AE3F;" text="Login">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></Button>
-      <Label layoutX="28.0" layoutY="285.0" prefHeight="27.0" prefWidth="176.0" text="Don't  have an account?">
-         <font>
-            <Font name="System Bold Italic" size="14.0" />
-         </font>
-      </Label>
-      <Hyperlink fx:id="signupHyperlink" layoutX="207.0" layoutY="282.0" onAction="#signupFrame" text="Sign Up">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-      </Hyperlink>
-      <ImageView fitHeight="33.0" fitWidth="31.0" layoutX="12.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../pics/icon_user.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="33.0" fitWidth="31.0" layoutX="12.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../pics/Key_icon.png" />
-         </image>
-      </ImageView>
-   </children>
-</Pane>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="366.0" prefWidth="647.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.LoginController">
+   <center>
+      <Pane prefHeight="377.0" prefWidth="671.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="386.0" fitWidth="669.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../pics/background_template.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="33.0" fitWidth="31.0" layoutX="23.0" layoutY="189.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../pics/Key_icon.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="33.0" fitWidth="31.0" layoutX="23.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../pics/icon_user.png" />
+               </image>
+            </ImageView>
+            <Hyperlink fx:id="signupHyperlink" layoutX="216.0" layoutY="311.0" onAction="#signupFrame" text="Sign Up">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Hyperlink>
+            <Button fx:id="loginButton" layoutX="69.0" layoutY="258.0" mnemonicParsing="false" onAction="#loginActivity" prefHeight="39.0" prefWidth="224.0" style="-fx-background-color: #32AE3F;" text="Login">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
+            <PasswordField fx:id="passwordLogin" layoutX="69.0" layoutY="185.0" promptText="Password" style="-fx-background-color: transparant; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;">
+               <effect>
+                  <Lighting>
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
+            </PasswordField>
+            <TextField fx:id="usernameLogin" layoutX="69.0" layoutY="123.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Username" style="-fx-background-color: transparant; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;">
+               <effect>
+                  <Lighting>
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
+            </TextField>
+            <Label layoutX="24.0" layoutY="314.0" prefHeight="27.0" prefWidth="176.0" text="Don't  have an account?">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="112.0" layoutY="31.0" text="Login">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </center>
+</BorderPane>

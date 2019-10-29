@@ -32,7 +32,7 @@ public class QueryDb extends ConnectDb{
             }
             con = DriverManager.getConnection("jdbc:sqlite:EatKuyDB.db");
             st = con.createStatement();
-            System.out.println("connect jing");
+            System.out.println("connect");
         }catch (SQLException e) {
             e.printStackTrace();
         }

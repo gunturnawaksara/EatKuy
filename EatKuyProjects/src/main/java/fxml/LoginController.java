@@ -12,9 +12,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
-import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -32,23 +32,22 @@ import javafx.stage.Stage;
 public class LoginController implements Initializable {
 
     private QueryDb db;
-    
-    @FXML
-    private TextField loginUsername;
-
-    @FXML
-    private Button loginButton;
-
-    @FXML
-    private PasswordField loginPassword;
-
     @FXML
     private Hyperlink signupHyperlink;
+    @FXML
+    private Button loginButton;
+    @FXML
+    private PasswordField passwordLogin;
+    @FXML
+    private TextField usernameLogin;
 
+    /**
+     * Initializes the controller class.
+     */
     @FXML
     void loginActivity(ActionEvent event) throws SQLException, IOException {
-        String username = loginUsername.getText();
-        String pass = loginPassword.getText();
+        String username = usernameLogin.getText();
+        String pass = passwordLogin.getText();
         ResultSet rs = db.logquery(username, pass);
         if(rs.next()){
             int level = rs.getInt(10);
@@ -96,6 +95,6 @@ public class LoginController implements Initializable {
         // TODO
         db = new QueryDb();
         db.connect();
-    }    
+    }  
     
 }
