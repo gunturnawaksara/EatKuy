@@ -6,6 +6,7 @@
 package fxml;
 
 import com.mycompany.eatkuyprojects.QueryDb;
+import com.mycompany.eatkuyprojects.Session;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -33,6 +34,7 @@ import javafx.stage.Stage;
 public class LoginController implements Initializable {
 
     private QueryDb db;
+    private Session s;
     @FXML
     private Button loginButton;
     @FXML
@@ -60,6 +62,7 @@ public class LoginController implements Initializable {
                 Primarystage.show();
                 rs.close();
             }else{
+                s = new Session(username, pass);
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("/fxml/Main.fxml"));
                 Parent Main = loader.load();

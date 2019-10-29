@@ -6,6 +6,7 @@
 package fxml;
 
 import com.mycompany.eatkuyprojects.QueryDb;
+import com.mycompany.eatkuyprojects.Session;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -35,6 +36,7 @@ import javafx.stage.Stage;
 public class MainController implements Initializable {
         
     private QueryDb db;
+    private Session s;
     @FXML
     private BorderPane borderPane;
     @FXML
@@ -72,8 +74,9 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //TODO
+        
     }
-    
+//    username.setText(s.getUsername());
     private void loadUI(String title){
         Parent root =  null;
         try {
@@ -102,6 +105,7 @@ public class MainController implements Initializable {
         Primarystage.setResizable(false);
         Primarystage.setScene(scene);
         Primarystage.show();
+        username.setText(s.getUsername());
     }
     
 }

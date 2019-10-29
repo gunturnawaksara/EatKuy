@@ -6,6 +6,7 @@
 package fxml;
 
 import com.mycompany.eatkuyprojects.QueryDb;
+import com.mycompany.eatkuyprojects.Session;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -33,6 +34,7 @@ import javafx.stage.Stage;
 public class SignupController implements Initializable {
 
     private QueryDb db;
+    private Session s;
     @FXML
     private TextField emailSignup;
 
@@ -78,6 +80,7 @@ public class SignupController implements Initializable {
                 }
             }else{                        
                 db.InsertAkun(email, username, pass);
+                s = new Session(username, pass);
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("/fxml/Signup2.fxml"));
                 Parent Main = loader.load();
