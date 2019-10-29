@@ -5,10 +5,19 @@
  */
 package fxml;
 
+import com.mycompany.eatkuyprojects.QueryDb;
+import com.mycompany.eatkuyprojects.Session;
+import java.io.IOException;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
@@ -20,7 +29,9 @@ import javafx.scene.layout.BorderPane;
  * @author ASUS
  */
 public class MainController implements Initializable {
-
+        
+    Session s;
+    private QueryDb db;
     @FXML
     private BorderPane borderPane;
     @FXML
@@ -48,6 +59,25 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+        ResultSet rs = db.isEmpty(s.getUsername());
+        try {
+            if(rs.next()){
+                int bb = rs.getInt(5);
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void loadUI(String title){
+        Parent root =  null;
+        try {
+            root = FXMLLoader.load(getClass().getResource(title+".fxml"));
+        } catch (IOException ex) {
+            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+        }   
+        borderPane.setCenter(root);
+    }
     
 }

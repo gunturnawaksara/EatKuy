@@ -60,9 +60,34 @@ public class QueryDb extends ConnectDb{
     public ResultSet logquery(String username, String password){
         try{
             String query = "SELECT * from Akun WHERE Username=? AND Password=?";
-            ps=con.prepareStatement(query);
+            ps = con.prepareStatement(query);
             ps.setString(1, username);
             ps.setString(2, password);
+            rs = ps.executeQuery();
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "FAILED log");
+        }
+        return rs;
+    }
+    
+    public ResultSet isExist(String username, String email){
+        try{
+            String query = "SELECT * from Akun WHERE Username=? OR Email=?";
+            ps = con.prepareStatement(query);
+            ps.setString(1, username);
+            ps.setString(2, email);
+            rs = ps.executeQuery();
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "FAILED log");
+        }
+        return rs;
+    }
+    
+    public ResultSet isEmpty(String username){
+        try{
+            String query = "SELECT * from Akun WHERE Username=?";
+            ps = con.prepareStatement(query);
+            ps.setString(1, username);
             rs = ps.executeQuery();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null, "FAILED log");

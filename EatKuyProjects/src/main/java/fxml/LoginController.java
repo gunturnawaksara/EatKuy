@@ -51,7 +51,7 @@ public class LoginController implements Initializable {
         ResultSet rs = db.logquery(username, pass);
         if(rs.next()){
             int level = rs.getInt(10);
-            if(level==1){
+            if(level == 1){
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("/fxml/Admin.fxml"));
                 Parent Main = loader.load();
@@ -60,8 +60,7 @@ public class LoginController implements Initializable {
                 Primarystage.setResizable(false);
                 Primarystage.setScene(scene);
                 Primarystage.show();
-            }
-            else{
+            }else{
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("/fxml/Main.fxml"));
                 Parent Main = loader.load();
