@@ -5,6 +5,7 @@
  */
 package fxml;
 
+import com.mycompany.eatkuyprojects.QueryDb;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,6 +17,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -25,7 +27,11 @@ import javafx.stage.Stage;
  * @author ASUS
  */
 public class Signup2Controller implements Initializable {
+    
+    private QueryDb db;
 
+    @FXML
+    private Label username;
     @FXML
     private TextField jeniskelamin;
     @FXML
@@ -42,11 +48,17 @@ public class Signup2Controller implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        db = new QueryDb();
+        db.connect();
     }    
 
     @FXML
     private void doneActivity(ActionEvent event) throws IOException {
+        String Jeniskelamin = jeniskelamin.getText();
+        String Usia = usia.getText();
+        int Beratbadan = Integer.parseInt(bb.getText());
+        int Tinggibadan = Integer.parseInt(tb.getText());
+        db.UpdateAkun(Jeniskelamin, Usia, Beratbadan, Tinggibadan);
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/fxml/Main.fxml"));
         Parent Main = loader.load();
@@ -56,5 +68,7 @@ public class Signup2Controller implements Initializable {
         Primarystage.setScene(scene);
         Primarystage.show();
     }
+    
+    
     
 }
