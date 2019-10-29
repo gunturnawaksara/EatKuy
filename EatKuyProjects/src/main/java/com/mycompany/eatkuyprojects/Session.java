@@ -10,8 +10,8 @@ package com.mycompany.eatkuyprojects;
  * @author ASUS
  */
 public class Session {
-    private String username;
-    private String password;
+    private String username="";
+    private String password="";
 
     public Session(String username, String password) {
         this.username=username;

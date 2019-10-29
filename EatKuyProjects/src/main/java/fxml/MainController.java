@@ -89,10 +89,10 @@ public class MainController implements Initializable {
     
     @FXML
     void logoutButton(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Login.fxml"));
-        Node node = (Node) event.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
-        stage.setScene(new Scene(root));
+//        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Login.fxml"));
+//        Node node = (Node) event.getSource();
+//        Stage stage = (Stage) node.getScene().getWindow();
+//        stage.setScene(new Scene(root));
     }
 
     @FXML
@@ -105,7 +105,6 @@ public class MainController implements Initializable {
         Primarystage.setResizable(false);
         Primarystage.setScene(scene);
         Primarystage.show();
-        username.setText(s.getUsername());
     }
     
 }
