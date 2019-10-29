@@ -63,7 +63,9 @@ public class MainController implements Initializable {
         try {
             if(rs.next()){
                 int bb = rs.getInt(5);
-                
+                if(bb == 0){
+                    loadUI("Signup2");
+                }
             }
         } catch (SQLException ex) {
             Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
