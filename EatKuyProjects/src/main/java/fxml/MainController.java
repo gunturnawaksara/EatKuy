@@ -58,18 +58,18 @@ public class MainController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-//        ResultSet rs = db.isEmpty(s.getUsername());
-//        try {
-//            if(rs.next()){
-//                int bb = rs.getInt(7);
-//                if(bb == 0){
+        //TODO
+        ResultSet rs = db.isEmpty(s.getUsername());
+        try {
+            if(rs.next()){
+                int bb = rs.getInt(7);
+                if(bb == 0){
           loadUI("Signup2");
-//                }
-//            }
-//        } catch (SQLException ex) {
-//            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     private void loadUI(String title){

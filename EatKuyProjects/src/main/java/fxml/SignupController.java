@@ -9,6 +9,7 @@ import com.mycompany.eatkuyprojects.QueryDb;
 import com.mycompany.eatkuyprojects.Session;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -18,6 +19,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
@@ -50,18 +52,18 @@ public class SignupController implements Initializable {
 
     @FXML
     void signupActivity(ActionEvent event) throws SQLException, IOException {
-//        String username = usernameSignup.getText();
-//        String email = emailSignup.getText();
-//        String pass = passwordSignup.getText();
-//        ResultSet rs = db.isExist(username, email);
-//        if(rs.next()){
-//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//                 alert.setTitle("SIGN UP FAILED");
-//                 alert.setHeaderText("SIGN UP FAILED !");
-//                 alert.setContentText("Username / Email already used !");
-//                 alert.showAndWait();
-//        }else{
-         //   s = new Session(usernameSignup, passwordSignup);
+        String username = usernameSignup.getText();
+        String email = emailSignup.getText();
+        String pass = passwordSignup.getText();
+        ResultSet rs = db.isExist(username, email);
+        if(rs.next()){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                 alert.setTitle("SIGN UP FAILED");
+                 alert.setHeaderText("SIGN UP FAILED !");
+                 alert.setContentText("Username / Email already used !");
+                 alert.showAndWait();
+        }else{
+            s = new Session(usernameSignup, passwordSignup);
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fxml/Main.fxml"));
             Parent Main = loader.load();
@@ -70,7 +72,7 @@ public class SignupController implements Initializable {
             Primarystage.setResizable(false);
             Primarystage.setScene(scene);
             Primarystage.show();
-//        }
+        }
     }
 
     @FXML

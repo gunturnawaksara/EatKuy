@@ -32,23 +32,19 @@ import javafx.stage.Stage;
 public class LoginController implements Initializable {
 
     private QueryDb db;
-    
-    @FXML
-    private TextField loginUsername;
-
     @FXML
     private Button loginButton;
-
-    @FXML
-    private PasswordField loginPassword;
-
     @FXML
     private Hyperlink signupHyperlink;
+    @FXML
+    private PasswordField passwordLogin;
+    @FXML
+    private TextField usernameLogin;
 
     @FXML
     void loginActivity(ActionEvent event) throws SQLException, IOException {
-        String username = loginUsername.getText();
-        String pass = loginPassword.getText();
+        String username = usernameLogin.getText();
+        String pass = passwordLogin.getText();
         ResultSet rs = db.logquery(username, pass);
         if(rs.next()){
             int level = rs.getInt(10);
