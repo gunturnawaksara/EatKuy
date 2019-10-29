@@ -5,7 +5,6 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-
 <Pane prefHeight="388.0" prefWidth="770.0" style="-fx-background-color: #d3d3d3;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.Signup2Controller">
    <children>
       <Button fx:id="doneButton" layoutX="678.0" layoutY="335.0" mnemonicParsing="false" onAction="#doneActivity" style="-fx-background-color: #32AE3F;" text="Done" />

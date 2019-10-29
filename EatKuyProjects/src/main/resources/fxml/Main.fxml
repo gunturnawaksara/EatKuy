@@ -41,7 +41,7 @@
               <items>
                 <MenuItem fx:id="profile" mnemonicParsing="false" text="Profile" />
                 <MenuItem fx:id="about" mnemonicParsing="false" text="About" />
-                  <MenuItem fx:id="logout" mnemonicParsing="false" text="Log Out" />
+                  <MenuItem fx:id="logout" mnemonicParsing="false" onAction="#logoutButton" text="Log Out" />
               </items>
                <VBox.margin>
                   <Insets />

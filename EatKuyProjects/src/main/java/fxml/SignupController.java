@@ -6,7 +6,6 @@
 package fxml;
 
 import com.mycompany.eatkuyprojects.QueryDb;
-import com.mycompany.eatkuyprojects.Session;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -34,8 +33,7 @@ import javafx.stage.Stage;
 public class SignupController implements Initializable {
 
     private QueryDb db;
-    Session s;
-     @FXML
+    @FXML
     private TextField emailSignup;
 
     @FXML
@@ -51,29 +49,45 @@ public class SignupController implements Initializable {
     private Hyperlink loginHyperlink;
 
     @FXML
-    void signupActivity(ActionEvent event) throws SQLException, IOException {
+    public void signupActivity(ActionEvent event) throws SQLException, IOException {
         String username = usernameSignup.getText();
         String email = emailSignup.getText();
         String pass = passwordSignup.getText();
-        ResultSet rs = db.isExist(username, email);
+        ResultSet rs = db.isUsernameExist(username);
+        ResultSet rs2 = db.isEmailExist(email);
         if(rs.next()){
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                 alert.setTitle("SIGN UP FAILED");
-                 alert.setHeaderText("SIGN UP FAILED !");
-                 alert.setContentText("Username / Email already used !");
-                 alert.showAndWait();
+            String uName = rs.getString(3);
+            if(uName.equalsIgnoreCase(username)){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("SIGN UP FAILED");
+                alert.setHeaderText("SIGN UP FAILED !");
+                alert.setContentText("Username already used !");
+                alert.showAndWait();
+                rs.close();
+            }
         }else{
-            s = new Session(username, pass);
-            db.InsertAkun(email, username, pass);
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/fxml/Main.fxml"));
-            Parent Main = loader.load();
-            Scene scene = new Scene(Main);
-            Stage Primarystage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-            Primarystage.setResizable(false);
-            Primarystage.setScene(scene);
-            Primarystage.show();
-        }
+            if(rs2.next()){
+                String uEmail = rs2.getString(2);
+                if(uEmail.equals(email)){
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("SIGN UP FAILED");
+                    alert.setHeaderText("SIGN UP FAILED !");
+                    alert.setContentText("Email already used !");
+                    alert.showAndWait();
+                    rs2.close();
+                }
+            }else{                        
+                db.InsertAkun(email, username, pass);
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/fxml/Signup2.fxml"));
+                Parent Main = loader.load();
+                Scene scene = new Scene(Main);
+                Stage Primarystage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+                Primarystage.setResizable(false);
+                Primarystage.setScene(scene);
+                Primarystage.show();
+            }
+        } 
     }
 
     @FXML
@@ -93,6 +107,8 @@ public class SignupController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        db = new QueryDb();
+        db.connect();
     }
     
 }
