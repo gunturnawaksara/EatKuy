@@ -48,7 +48,7 @@ public class LoginController implements Initializable {
     @FXML
     void signupFrame(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/fxml/Sign Up.fxml"));
+        loader.setLocation(getClass().getResource("/fxml/Signup.fxml"));
         Parent Main = loader.load();
         Scene scene = new Scene(Main);
         Stage Primarystage = (Stage) ((Node)event.getSource()).getScene().getWindow();
