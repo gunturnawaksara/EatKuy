@@ -18,7 +18,7 @@ public abstract class ConnectDb {
     Connection con;
     PreparedStatement ps;
     Statement st;
-    ResultSet rs,sr;
+    ResultSet rs,sr,rs2;
     
     public abstract void connect();
 }

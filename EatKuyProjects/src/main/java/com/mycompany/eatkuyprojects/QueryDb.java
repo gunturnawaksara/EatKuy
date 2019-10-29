@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -70,12 +71,11 @@ public class QueryDb extends ConnectDb{
         return rs;
     }
     
-    public ResultSet isExist(String username, String email){
+    public ResultSet isEmailExist(String email){
         try{
-            String query = "SELECT * from Akun WHERE Username=? OR Email=?";
+            String query = "SELECT * from Akun WHERE Email=?";
             ps = con.prepareStatement(query);
-            ps.setString(1, username);
-            ps.setString(2, email);
+            ps.setString(1, email);
             rs = ps.executeQuery();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null, "FAILED log");
@@ -83,7 +83,7 @@ public class QueryDb extends ConnectDb{
         return rs;
     }
     
-    public ResultSet isEmpty(String username){
+    public ResultSet isUsernameExist(String username){
         try{
             String query = "SELECT * from Akun WHERE Username=?";
             ps = con.prepareStatement(query);
@@ -95,5 +95,23 @@ public class QueryDb extends ConnectDb{
         return rs;
     }
     
+    public void InsertAkun (String Email, String Username, String Password){
+        try{
+            Statement statement;
+            statement = con.createStatement();
+            
+            int Usia = 0;
+            String JenisKelamin = "-";
+            int BeratBadan = 0;
+            int TinggiBadan = 0;
+            int TingkatAktivitas = 0;
+            int Status = 2;
+            String query = "INSERT INTO Akun(Email,Username,Password,JenisKelamin,Usia,BeratBadan,TinggiBadan,TingkatAktivitas,Status) VALUES ('"+Email+"','"+Username+"','"+Password+"','"+JenisKelamin+"','"+Usia+"','"+BeratBadan+"','"+TinggiBadan+"','"+TingkatAktivitas+"','"+Status+"')";
+            statement.executeUpdate(query);
+            System.out.println("success");
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "FAILED");
+        }
+    }
 }
 

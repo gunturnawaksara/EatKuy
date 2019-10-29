@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
@@ -69,6 +70,9 @@
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
             <TextField fx:id="emailSignup" layoutX="60.0" layoutY="137.0" prefHeight="30.0" prefWidth="224.0" promptText="Email" style="-fx-background-color: transparant; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;">
                <effect>
