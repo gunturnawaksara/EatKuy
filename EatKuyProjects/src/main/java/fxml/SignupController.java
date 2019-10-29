@@ -6,8 +6,6 @@
 package fxml;
 
 import com.mycompany.eatkuyprojects.QueryDb;
-import com.mycompany.eatkuyprojects.QueryDb;
-import com.mycompany.eatkuyprojects.Session;
 import com.mycompany.eatkuyprojects.Session;
 import java.io.IOException;
 import java.net.URL;
@@ -32,7 +30,7 @@ import javafx.stage.Stage;
  * @author Kukuh Nugroho
  */
 public class SignupController implements Initializable {
-    
+
     private QueryDb db;
     Session s;
      @FXML
