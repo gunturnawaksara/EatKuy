@@ -9,7 +9,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.AdminController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1039.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.AdminController">
    <left>
       <VBox alignment="CENTER" prefHeight="550.0" prefWidth="270.0" style="-fx-background-color: #d3d3d3;" BorderPane.alignment="CENTER">
          <children>
@@ -90,8 +90,16 @@
    <center>
       <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
+          <TableColumn fx:id="col_id" prefWidth="43.0" text="Id" />
+          <TableColumn fx:id="col_email" text="Email" />
+            <TableColumn fx:id="col_uname" prefWidth="83.0" text="Username" />
+            <TableColumn fx:id="col_pass" prefWidth="69.0" text="Password" />
+            <TableColumn fx:id="col_usia" prefWidth="57.0" text="Usia" />
+            <TableColumn fx:id="col_jkelamin" prefWidth="92.0" text="Jenis Kelamin" />
+            <TableColumn fx:id="col_bb" prefWidth="83.0" text="Berat Badan" />
+            <TableColumn fx:id="col_tb" prefWidth="86.33331298828125" text="Tinggi Badan" />
+            <TableColumn fx:id="col_ta" minWidth="0.0" prefWidth="100.66668701171875" text="Tingkat Aktivitas" />
+            <TableColumn fx:id="col_status" prefWidth="73.0" text="Status" />
         </columns>
       </TableView>
    </center>
