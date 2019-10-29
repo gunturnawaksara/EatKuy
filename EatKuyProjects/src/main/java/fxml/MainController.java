@@ -62,7 +62,7 @@ public class MainController implements Initializable {
         ResultSet rs = db.isEmpty(s.getUsername());
         try {
             if(rs.next()){
-                int bb = rs.getInt(5);
+                int bb = rs.getInt(7);
                 if(bb == 0){
                     loadUI("Signup2");
                 }
