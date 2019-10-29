@@ -98,6 +98,14 @@ public class MainController implements Initializable {
 
     @FXML
     private void doneActivity(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/fxml/Main.fxml"));
+        Parent Main = loader.load();
+        Scene scene = new Scene(Main);
+        Stage Primarystage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Primarystage.setResizable(false);
+        Primarystage.setScene(scene);
+        Primarystage.show();
     }
     
 }
