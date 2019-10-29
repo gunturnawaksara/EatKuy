@@ -15,6 +15,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
 /**
@@ -23,6 +26,31 @@ import javafx.stage.Stage;
  * @author ASUS
  */
 public class AdminController implements Initializable {
+
+    @FXML
+    private Button logout;
+    @FXML
+    private TableView<?> userTableView;
+    @FXML
+    private TableColumn<?, ?> col_id;
+    @FXML
+    private TableColumn<?, ?> col_email;
+    @FXML
+    private TableColumn<?, ?> col_uname;
+    @FXML
+    private TableColumn<?, ?> col_pass;
+    @FXML
+    private TableColumn<?, ?> col_usia;
+    @FXML
+    private TableColumn<?, ?> col_jkelamin;
+    @FXML
+    private TableColumn<?, ?> col_bb;
+    @FXML
+    private TableColumn<?, ?> col_tb;
+    @FXML
+    private TableColumn<?, ?> col_ta;
+    @FXML
+    private TableColumn<?, ?> col_status;
 
     @FXML
     void logoutButton(ActionEvent event) throws IOException {
