@@ -25,6 +25,7 @@ public class QueryDb extends ConnectDb{
     }
     
     public void connect(){
+        
         try{
             try{
                 Class.forName("org.sqlite.JDBC");
@@ -99,7 +100,6 @@ public class QueryDb extends ConnectDb{
         try{
             Statement statement;
             statement = con.createStatement();
-            
             int Usia = 0;
             String JenisKelamin = "-";
             int BeratBadan = 0;
@@ -108,22 +108,20 @@ public class QueryDb extends ConnectDb{
             int Status = 2;
             String query = "INSERT INTO Akun(Email,Username,Password,JenisKelamin,Usia,BeratBadan,TinggiBadan,TingkatAktivitas,Status) VALUES ('"+Email+"','"+Username+"','"+Password+"','"+JenisKelamin+"','"+Usia+"','"+BeratBadan+"','"+TinggiBadan+"','"+TingkatAktivitas+"','"+Status+"')";
             statement.executeUpdate(query);
-            System.out.println("success");
+            //System.out.println("success");
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null, "FAILED");
         }
     }
     
-    public void UpdateAkun (String JenisKelamin, String Usia, int BeratBadan, int TinggiBadan){
+    public void UpdateAkun (String JenisKelamin, String Usia, int BeratBadan, int TinggiBadan, String Username){
         try{
             Statement statement;
             statement = con.createStatement();
-            
-
             String query;
-            query = "UPDATE Akun SET(JenisKelamin,Usia,BeratBadan,TinggiBadan) VALUES ('"+JenisKelamin+"','"+Usia+"','"+BeratBadan+"','"+TinggiBadan+"')";
+            query = "UPDATE Akun SET JenisKelamin = '"+JenisKelamin+"', Usia= '"+Usia+"', BeratBadan= '"+BeratBadan+"', TinggiBadan= '"+TinggiBadan+"' WHERE Username='"+Username+"'";
             statement.executeUpdate(query);
-            System.out.println("success");
+            System.out.println(Username+"ini username");
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null, "FAILED");
         }

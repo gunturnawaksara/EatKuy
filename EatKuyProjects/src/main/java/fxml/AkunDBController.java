@@ -78,9 +78,9 @@ public class AkunDBController implements Initializable{
         
         //ambil data dari db dan masukkan ke TableView
         ObservableList<AkunDB> data;
-        try{
-            data = AkunQuery.
-        }
+//        try{
+//            data = AkunQuery.
+//        }
     }
     
     
