@@ -88,7 +88,7 @@
       </HBox>
    </top>
    <center>
-      <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="userTableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn fx:id="col_id" prefWidth="43.0" text="Id" />
           <TableColumn fx:id="col_email" text="Email" />

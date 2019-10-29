@@ -17,6 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
 /**
@@ -27,6 +28,8 @@ public class AkunDBController implements Initializable{
 
     @FXML
     private Button logout;
+    @FXML
+    private TableView<?> userTableView;
     @FXML
     private TableColumn<?, ?> col_id;
     @FXML
