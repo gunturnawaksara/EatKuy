@@ -5,6 +5,7 @@
  */
 package fxml;
 
+import com.mycompany.eatkuyprojects.AkunDB;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,6 +19,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 /**
@@ -29,27 +31,27 @@ public class AkunDBController implements Initializable{
     @FXML
     private Button logout;
     @FXML
-    private TableView<?> userTableView;
+    private TableView<AkunDB> userTableView;
     @FXML
-    private TableColumn<?, ?> col_id;
+    private TableColumn<AkunDB, Integer> col_id;
     @FXML
-    private TableColumn<?, ?> col_email;
+    private TableColumn<AkunDB, String> col_email;
     @FXML
-    private TableColumn<?, ?> col_uname;
+    private TableColumn<AkunDB, String> col_uname;
     @FXML
-    private TableColumn<?, ?> col_pass;
+    private TableColumn<AkunDB, String> col_pass;
     @FXML
-    private TableColumn<?, ?> col_usia;
+    private TableColumn<AkunDB, Integer> col_usia;
     @FXML
-    private TableColumn<?, ?> col_jkelamin;
+    private TableColumn<AkunDB, String> col_jkelamin;
     @FXML
-    private TableColumn<?, ?> col_bb;
+    private TableColumn<AkunDB, Integer> col_bb;
     @FXML
-    private TableColumn<?, ?> col_tb;
+    private TableColumn<AkunDB, Integer> col_tb;
     @FXML
-    private TableColumn<?, ?> col_ta;
+    private TableColumn<AkunDB, Integer> col_ta;
     @FXML
-    private TableColumn<?, ?> col_status;
+    private TableColumn<AkunDB, Integer> col_status;
 
     @FXML
     void logoutButton(ActionEvent event) throws IOException {
@@ -61,7 +63,16 @@ public class AkunDBController implements Initializable{
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        col_id.setCellValueFactory(new PropertyValueFactory("id"));
+        col_email.setCellValueFactory(new PropertyValueFactory("email"));
+        col_uname.setCellValueFactory(new PropertyValueFactory("username"));
+        col_pass.setCellValueFactory(new PropertyValueFactory("password"));
+        col_usia.setCellValueFactory(new PropertyValueFactory("usia"));
+        col_jkelamin.setCellValueFactory(new PropertyValueFactory("jeniskelamin"));
+        col_bb.setCellValueFactory(new PropertyValueFactory("beratbadan"));
+        col_tb.setCellValueFactory(new PropertyValueFactory("tinggibadan"));
+        col_ta.setCellValueFactory(new PropertyValueFactory("tingkatAktiitas"));
+        col_status.setCellValueFactory(new PropertyValueFactory("status"));
     }
     
     
