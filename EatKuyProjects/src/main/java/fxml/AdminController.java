@@ -26,14 +26,10 @@ public class AdminController implements Initializable {
 
     @FXML
     void logoutButton(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/fxml/Logout.fxml"));
-        Parent Main = loader.load();
-        Scene scene = new Scene(Main);
-        Stage Primarystage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        Primarystage.setResizable(false);
-        Primarystage.setScene(scene);
-        Primarystage.show();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Login.fxml"));
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        stage.setScene(new Scene(root));
     }
     
     @Override
