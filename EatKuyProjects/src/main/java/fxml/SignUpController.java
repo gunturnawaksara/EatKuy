@@ -45,7 +45,7 @@ public class SignUpController implements Initializable {
 
     @FXML
     void signupActivity(ActionEvent event) {
-
+        
     }
 
     @FXML

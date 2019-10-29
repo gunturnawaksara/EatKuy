@@ -10,7 +10,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.SignUpController">
    <children>
-      <ImageView fitHeight="392.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="363.0" fitWidth="664.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../pics/background_template.jpg" />
          </image>
