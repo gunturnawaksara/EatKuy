@@ -110,11 +110,11 @@
       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="doneButton" layoutX="749.0" layoutY="317.0" mnemonicParsing="false" onAction="#doneActivity" style="-fx-background-color: #32AE3F;" text="Done" />
-            <RadioButton layoutX="227.0" layoutY="169.0" mnemonicParsing="false" text="Sangat sering olahraga" />
-            <RadioButton layoutX="227.0" layoutY="193.0" mnemonicParsing="false" text="Sering olahraga (6-7 hari/ minggu)" />
-            <RadioButton layoutX="227.0" layoutY="220.0" mnemonicParsing="false" text="Normal olahraga (3-5 hari/ minggu)" />
-            <RadioButton layoutX="227.0" layoutY="248.0" mnemonicParsing="false" text="Jarang olahraga (1-3 hari/ minggu)" />
-            <RadioButton layoutX="227.0" layoutY="269.0" mnemonicParsing="false" text="Sangat jarang olahraga" />
+            <RadioButton layoutX="226.0" layoutY="290.0" mnemonicParsing="false" text="Sangat sering olahraga" />
+            <RadioButton layoutX="226.0" layoutY="257.0" mnemonicParsing="false" text="Sering olahraga (6-7 hari/ minggu)" />
+            <RadioButton layoutX="226.0" layoutY="224.0" mnemonicParsing="false" text="Normal olahraga (3-5 hari/ minggu)" />
+            <RadioButton layoutX="226.0" layoutY="197.0" mnemonicParsing="false" text="Jarang olahraga (1-3 hari/ minggu)" />
+            <RadioButton layoutX="226.0" layoutY="166.0" mnemonicParsing="false" text="Sangat jarang olahraga" />
             <TextField fx:id="tb" layoutX="224.0" layoutY="124.0" promptText="(cm)" />
             <TextField fx:id="bb" layoutX="224.0" layoutY="89.0" promptText="(Kg)" />
             <TextField fx:id="usia" layoutX="224.0" layoutY="54.0" promptText="Thn" />

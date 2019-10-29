@@ -97,7 +97,7 @@ public class MainController implements Initializable {
     }
 
     @FXML
-    private void doneActivity(ActionEvent event) {
+    private void doneActivity(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/fxml/Main.fxml"));
         Parent Main = loader.load();
