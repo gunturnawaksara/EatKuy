@@ -27,7 +27,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Label layoutX="50.0" layoutY="241.0" text="Tingkat Aktifitas  :">
+      <Label layoutX="51.0" layoutY="237.0" text="Tingkat Aktifitas  :">
          <font>
             <Font size="24.0" />
          </font>
@@ -41,6 +41,6 @@
       <RadioButton layoutX="269.0" layoutY="294.0" mnemonicParsing="false" text="Normal olahraga (3-5 hari/ minggu)" />
       <RadioButton layoutX="269.0" layoutY="323.0" mnemonicParsing="false" text="Sering olahraga (6-7 hari/ minggu)" />
       <RadioButton layoutX="269.0" layoutY="350.0" mnemonicParsing="false" text="Sangat sering olahraga" />
-      <Button fx:id="doneButton" layoutX="583.0" layoutY="345.0" mnemonicParsing="false" onAction="#doneActivity" style="-fx-background-color: #32AE3F;" text="Done" />
+      <Button fx:id="doneButton" layoutX="678.0" layoutY="331.0" mnemonicParsing="false" onAction="#doneActivity" style="-fx-background-color: #32AE3F;" text="Done" />
    </children>
 </Pane>
