@@ -5,6 +5,9 @@
  */
 package com.mycompany.eatkuyprojects;
 
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+
 /**
  *
  * @author Kukuh Nugroho
@@ -16,6 +19,10 @@ public class Session {
     public Session(String username, String password) {
         this.username = username;
         this.password = password;
+    }
+
+    public Session(TextField usernameSignup, PasswordField passwordSignup) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     public void destorySession(){
