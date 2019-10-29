@@ -13,16 +13,12 @@ import javafx.scene.control.TextField;
  * @author Kukuh Nugroho
  */
 public class Session {
-    String username;
-    String password;
+    String username = "";
+    String password = "";
     
     public Session(String username, String password) {
         this.username = username;
         this.password = password;
-    }
-
-    public Session(TextField usernameSignup, PasswordField passwordSignup) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     public void destorySession(){
