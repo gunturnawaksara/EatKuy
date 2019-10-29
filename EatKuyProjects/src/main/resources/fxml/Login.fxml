@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
@@ -45,7 +46,10 @@
       <Button fx:id="loginButton" layoutX="53.0" layoutY="229.0" mnemonicParsing="false" onAction="#loginActivity" prefHeight="39.0" prefWidth="224.0" style="-fx-background-color: #32AE3F;" text="Login">
          <font>
             <Font name="System Bold" size="18.0" />
-         </font></Button>
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
       <Label layoutX="28.0" layoutY="285.0" prefHeight="27.0" prefWidth="176.0" text="Don't  have an account?">
          <font>
             <Font name="System Bold Italic" size="14.0" />
