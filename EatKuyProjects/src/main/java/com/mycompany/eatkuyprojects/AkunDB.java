@@ -15,7 +15,7 @@ import javafx.beans.property.SimpleStringProperty;
 public class AkunDB {
 
     AkunDB() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
     }
 
     /**
@@ -99,7 +99,7 @@ public class AkunDB {
      * @param jeniskelamin the jeniskelamin to set
      */
     public void setJeniskelamin(String jeniskelamin) {
-        this.jeniskelamin.set(jeniskelamin);
+        this.jeniskelamin = new SimpleStringProperty(jeniskelamin);
     }
 
     /**
@@ -190,11 +190,11 @@ public class AkunDB {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    void setBeratBadan(int aInt) {
+    void setTinggiBadan(int aInt) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    void setTinggiBadan(int aInt) {
+    void setBeratBadan(int aInt) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

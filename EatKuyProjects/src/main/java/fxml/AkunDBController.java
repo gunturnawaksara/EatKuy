@@ -7,9 +7,14 @@ package fxml;
 
 import com.mycompany.eatkuyprojects.AkunDB;
 import com.mycompany.eatkuyprojects.AkunQuery;
+import com.mycompany.eatkuyprojects.QueryDb;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -78,9 +83,21 @@ public class AkunDBController implements Initializable{
         
         //ambil data dari db dan masukkan ke TableView
         ObservableList<AkunDB> data;
+<<<<<<< HEAD
+        try {
+            QueryDb db = new QueryDb();
+            String Query = "SELECT * FROM Akun";
+            ResultSet rs = db.queryResult(Query);
+            data = AkunQuery.getAkunDBList(rs);
+            userTableView.setItems(data);
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(AkunDBController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+=======
 //        try{
 //            data = AkunQuery.
 //        }
+>>>>>>> 65bd309a3c0223d5783027a1a1f10fd2b3de6e20
     }
     
     

@@ -62,9 +62,9 @@ public class Signup2Controller implements Initializable {
         int Tinggibadan = Integer.parseInt(tb.getText());
         String tamp;
         tamp=s.getUsername();
-        db.UpdateAkun(Jeniskelamin, Usia, Beratbadan, Tinggibadan,tamp);
+        db.UpdateAkun(Jeniskelamin, Usia, Beratbadan, Tinggibadan, tamp);
         System.out.println(s.getUsername());
-        if(s.getUsername().equals(null)){
+        if(tamp == ""){
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fxml/Main.fxml"));
             Parent Main = loader.load();
