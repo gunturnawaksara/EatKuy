@@ -34,47 +34,47 @@ import javafx.stage.Stage;
  * @author ASUS
  */
 public class MainController implements Initializable {
+    
         
     private QueryDb db;
     private Session s;
+    
     @FXML
     private BorderPane borderPane;
-    @FXML
-    private Label navigasi;
-    @FXML
-    private Label username;
-    @FXML
-    private Button breakfast;
-    @FXML
-    private Button lunch;
-    @FXML
-    private Button dinner;
-    @FXML
-    private MenuItem profile;
-    @FXML
-    private MenuItem about;
-    @FXML
-    private MenuItem logout;
+
     @FXML
     private Label kalori;
+
     @FXML
-    private Button doneButton;
+    private Button lunch;
+
     @FXML
-    private TextField tb;
+    private Button logout;
+
     @FXML
-    private TextField bb;
+    private Button profile;
+
     @FXML
-    private TextField usia;
+    private Label navigasi;
+
     @FXML
-    private TextField jeniskelamin;
+    private Button breakfast;
+
+    @FXML
+    private Button dinner;
+
+    @FXML
+    private Label username;
 
     /**
      * Initializes the controller class.
      */
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //TODO
-        
+        this.navigasi.setText("Breakfast");
     }
 //    username.setText(s.getUsername());
     private void loadUI(String title){
@@ -87,12 +87,37 @@ public class MainController implements Initializable {
         borderPane.setCenter(root);
     }
     
+    
+   @FXML
+    void profileButton(ActionEvent event) {
+        String navProfile="Profile";
+        this.navigasi.setText(navProfile);
+    }
+
+    @FXML
+    void breakfastButton(ActionEvent event) {
+        String navBreakfast="Breakfast";
+        this.navigasi.setText(navBreakfast);
+    }
+
+    @FXML
+    void lunchButton(ActionEvent event) {
+        String navLunch="Lunch";
+        this.navigasi.setText(navLunch);
+    }
+
+    @FXML
+    void dinnerButton(ActionEvent event) {
+        String navDinner="Dinner";
+        this.navigasi.setText(navDinner);
+    }
+
     @FXML
     void logoutButton(ActionEvent event) throws IOException {
-//        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Login.fxml"));
-//        Node node = (Node) event.getSource();
-//        Stage stage = (Stage) node.getScene().getWindow();
-//        stage.setScene(new Scene(root));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Login.fxml"));
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        stage.setScene(new Scene(root));
     }
 
     @FXML
@@ -106,5 +131,6 @@ public class MainController implements Initializable {
         Primarystage.setScene(scene);
         Primarystage.show();
     }
+
     
 }
