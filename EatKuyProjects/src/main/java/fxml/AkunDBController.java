@@ -83,6 +83,7 @@ public class AkunDBController implements Initializable{
         
         //ambil data dari db dan masukkan ke TableView
         ObservableList<AkunDB> data;
+<<<<<<< HEAD
         try {
             QueryDb db = new QueryDb();
             String Query = "SELECT * FROM Akun";
@@ -92,6 +93,11 @@ public class AkunDBController implements Initializable{
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(AkunDBController.class.getName()).log(Level.SEVERE, null, ex);
         }
+=======
+//        try{
+//            data = AkunQuery.
+//        }
+>>>>>>> 65bd309a3c0223d5783027a1a1f10fd2b3de6e20
     }
     
     
