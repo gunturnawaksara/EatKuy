@@ -20,6 +20,11 @@ import javax.swing.JOptionPane;
  * @author Kukuh
  */
 public class QueryDb extends ConnectDb{   
+
+    static Object getInstance() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     public QueryDb(){
         this.connect();
     }

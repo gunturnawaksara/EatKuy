@@ -29,7 +29,7 @@ public class AkunDB {
      * @param id the id to set
      */
     public void setId(int id) {
-        this.id.set(id);
+        this.id = new SimpleIntegerProperty(id);
     }
 
     /**
@@ -43,7 +43,7 @@ public class AkunDB {
      * @param email the email to set
      */
     public void setEmail(String email) {
-        this.email.set(email);
+        this.email = new SimpleStringProperty(email);
     }
 
     /**
@@ -57,7 +57,7 @@ public class AkunDB {
      * @param username the username to set
      */
     public void setUsername(String username) {
-        this.username.set(username);
+        this.username = new SimpleStringProperty(username);
     }
 
     /**
@@ -71,7 +71,7 @@ public class AkunDB {
      * @param password the password to set
      */
     public void setPassword(String password) {
-        this.password.set(password);
+        this.password = new SimpleStringProperty(password);
     }
 
     /**
@@ -85,7 +85,7 @@ public class AkunDB {
      * @param usia the usia to set
      */
     public void setUsia(int usia) {
-        this.usia.set(usia);
+        this.usia = new SimpleIntegerProperty(usia);
     }
 
     /**
@@ -113,7 +113,7 @@ public class AkunDB {
      * @param beratbadan the beratbadan to set
      */
     public void setBeratbadan(int beratbadan) {
-        this.beratbadan.set(beratbadan);
+        this.beratbadan = new SimpleIntegerProperty(beratbadan);
     }
 
     /**
@@ -127,7 +127,7 @@ public class AkunDB {
      * @param tinggibadan the tinggibadan to set
      */
     public void setTinggibadan(int tinggibadan) {
-        this.tinggibadan.set(tinggibadan);
+        this.tinggibadan = new SimpleIntegerProperty(tinggibadan);
     }
 
     /**
@@ -141,7 +141,7 @@ public class AkunDB {
      * @param tingkatAktivitas the tingkatAktivitas to set
      */
     public void setTingkatAktivitas(int tingkatAktivitas) {
-        this.tingkatAktivitas.set(tingkatAktivitas);
+        this.tingkatAktivitas = new SimpleIntegerProperty(tingkatAktivitas);
     }
 
     /**
@@ -155,7 +155,7 @@ public class AkunDB {
      * @param status the status to set
      */
     public void setStatus(int status) {
-        this.status.set(status);
+        this.status = new SimpleIntegerProperty(status);
     }
     private SimpleIntegerProperty id;
     private SimpleStringProperty email;
@@ -168,9 +168,7 @@ public class AkunDB {
     private SimpleIntegerProperty tingkatAktivitas;
     private SimpleIntegerProperty status;
     
-//    public AkunDB(){
-//        this(0,"","","",0,"",0,0,0,0);
-//    }
+    
     
     public AkunDB(int id, String email, String username, String password, 
             int usia, String jeniskelamin, int beratbadan, int tinggibadan, int tingkatAktivitas, int status){
@@ -184,17 +182,5 @@ public class AkunDB {
         this.tinggibadan = new SimpleIntegerProperty(tinggibadan);
         this.tingkatAktivitas = new SimpleIntegerProperty(tingkatAktivitas);
         this.status = new SimpleIntegerProperty(status);
-    }
-
-    void setJenisKelamin(String string) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    void setTinggiBadan(int aInt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    void setBeratBadan(int aInt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
