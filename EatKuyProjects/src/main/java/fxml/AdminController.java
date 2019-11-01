@@ -29,28 +29,8 @@ public class AdminController implements Initializable {
 
     @FXML
     private Button logout;
-    @FXML
-    private TableView<?> userTableView;
-    @FXML
-    private TableColumn<?, ?> col_id;
-    @FXML
-    private TableColumn<?, ?> col_email;
-    @FXML
-    private TableColumn<?, ?> col_uname;
-    @FXML
-    private TableColumn<?, ?> col_pass;
-    @FXML
-    private TableColumn<?, ?> col_usia;
-    @FXML
-    private TableColumn<?, ?> col_jkelamin;
-    @FXML
-    private TableColumn<?, ?> col_bb;
-    @FXML
-    private TableColumn<?, ?> col_tb;
-    @FXML
-    private TableColumn<?, ?> col_ta;
-    @FXML
-    private TableColumn<?, ?> col_status;
+    
+    
 
     @FXML
     void logoutButton(ActionEvent event) throws IOException {

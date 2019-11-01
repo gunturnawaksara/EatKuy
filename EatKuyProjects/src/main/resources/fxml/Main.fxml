@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
@@ -9,47 +10,65 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="674.0" prefWidth="1046.0" style="-fx-background-color: #d3d3d3;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.MainController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" style="-fx-background-color: #d3d3d3;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.MainController">
    <left>
       <VBox alignment="CENTER" prefHeight="409.0" prefWidth="166.0" style="-fx-background-color: #a73e32;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="breakfast" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #a73e32;" text="Breakfast" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="profile" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#profileButton" style="-fx-background-color: #a73e32;" text="Profile" textFill="WHITE">
                <VBox.margin>
-                  <Insets bottom="20.0" />
+                  <Insets bottom="10.0" />
                </VBox.margin>
                <font>
-                  <Font name="Segoe UI Bold" size="18.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
-            <Button fx:id="lunch" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #a73e32;" text="Lunch" textFill="WHITE">
+            <Button fx:id="breakfast" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#breakfastButton" style="-fx-background-color: #a73e32;" text="Breakfast" textAlignment="CENTER" textFill="WHITE">
                <VBox.margin>
-                  <Insets bottom="20.0" />
+                  <Insets bottom="10.0" />
                </VBox.margin>
                <font>
                   <Font name="Segoe UI Bold" size="18.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
-            <Button fx:id="dinner" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #a73e32;" text="Dinner" textFill="WHITE">
+            <Button fx:id="lunch" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#lunchButton" style="-fx-background-color: #a73e32;" text="Lunch" textFill="WHITE">
                <VBox.margin>
-                  <Insets bottom="20.0" />
+                  <Insets bottom="10.0" />
                </VBox.margin>
                <font>
                   <Font name="Segoe UI Bold" size="18.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
-            <MenuButton alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #a73e32;" text="Settings" textFill="WHITE">
-              <items>
-                <MenuItem fx:id="profile" mnemonicParsing="false" text="Profile" />
-                <MenuItem fx:id="about" mnemonicParsing="false" text="About" />
-                  <MenuItem fx:id="logout" mnemonicParsing="false" onAction="#logoutButton" text="Log Out" />
-              </items>
+            <Button fx:id="dinner" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#dinnerButton" style="-fx-background-color: #a73e32;" text="Dinner" textFill="WHITE">
                <VBox.margin>
-                  <Insets />
+                  <Insets bottom="10.0" />
                </VBox.margin>
                <font>
                   <Font name="Segoe UI Bold" size="18.0" />
                </font>
-            </MenuButton>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="logout" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#logoutButton" style="-fx-background-color: #a73e32;" text="Logout" textFill="WHITE">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
          </children>
       </VBox>
    </left>
@@ -58,7 +77,7 @@
          <children>
             <Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="94.0" prefWidth="400.0">
                <children>
-                  <ImageView fitHeight="87.0" fitWidth="78.0" layoutX="46.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="95.0" fitWidth="103.0" layoutX="37.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../pics/logo.png" />
                      </image>
@@ -100,8 +119,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <ProgressBar layoutX="423.0" layoutY="56.0" prefWidth="200.0" progress="0.0" />
-            <Label fx:id="kalori" layoutX="435.0" layoutY="85.0" text="Perhitungan kalori per hari" />
+            <Label fx:id="kalori" layoutX="417.0" layoutY="67.0" text="Perhitungan kalori per hari" />
          </children>
       </Pane>
    </bottom>
