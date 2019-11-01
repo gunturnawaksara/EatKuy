@@ -115,11 +115,16 @@
       <Pane prefHeight="134.0" prefWidth="1046.0" BorderPane.alignment="CENTER">
          <children>
             <Label layoutX="381.0" layoutY="8.0" text="Kalori yang anda butuhkan :">
+            <Label layoutX="399.0" layoutY="8.0" text="Kalori yang anda butuhkan :">
+            <Label layoutX="374.0" layoutY="8.0" text="Kalori yang anda butuhkan :">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
             <Label fx:id="kalori" layoutX="417.0" layoutY="67.0" text="Perhitungan kalori per hari" />
+            <ProgressBar layoutX="447.0" layoutY="54.0" prefWidth="200.0" progress="0.0" />
+            <Label layoutX="441.0" layoutY="93.0" text="Perhitungan kalori per hari" />
+            <Label fx:id="kalori" layoutX="416.0" layoutY="67.0" text="Perhitungan kalori per hari" />
          </children>
       </Pane>
    </bottom>
