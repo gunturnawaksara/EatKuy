@@ -6,7 +6,7 @@
 package fxml;
 
 import com.mycompany.eatkuyprojects.QueryDb;
-import com.mycompany.eatkuyprojects.Session;
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.Loader;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -37,8 +37,8 @@ public class MainController implements Initializable {
     
         
     private QueryDb db;
-    private Session s;
-    
+    public String sessionUsername;
+    private String sessionStatus;
     @FXML
     private BorderPane borderPane;
 
@@ -74,9 +74,10 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //TODO
-        this.navigasi.setText("Breakfast");
+        //this.navigasi.setText("Breakfast");
+        System.out.print(username.getText());
     }
-//    username.setText(s.getUsername());
+
     private void loadUI(String title){
         Parent root =  null;
         try {
@@ -92,6 +93,10 @@ public class MainController implements Initializable {
     void profileButton(ActionEvent event) {
         String navProfile="Profile";
         this.navigasi.setText(navProfile);
+        loadUI("Profil");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Main.fxml"));
+        ProfilController profilController = (ProfilController)loader.getController();
+        profilController.GetUser(sessionUsername);
     }
 
     @FXML
@@ -120,7 +125,6 @@ public class MainController implements Initializable {
         stage.setScene(new Scene(root));
     }
 
-    @FXML
     private void doneActivity(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/fxml/Main.fxml"));
@@ -131,6 +135,12 @@ public class MainController implements Initializable {
         Primarystage.setScene(scene);
         Primarystage.show();
     }
-
+   
+    public void GetUser(String uName, String uStatus) {
+        // TODO Auto-generated method stub
+        sessionUsername = uName;
+        sessionStatus = uStatus;
+        this.username.setText(uName);
+    }
     
 }

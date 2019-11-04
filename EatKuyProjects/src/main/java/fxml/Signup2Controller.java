@@ -6,7 +6,6 @@
 package fxml;
 
 import com.mycompany.eatkuyprojects.QueryDb;
-import com.mycompany.eatkuyprojects.Session;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -31,7 +30,6 @@ import javafx.stage.Stage;
 public class Signup2Controller implements Initializable {
     
     private QueryDb db;
-    private Session s;
     @FXML
     private Label username;
     @FXML
@@ -60,10 +58,8 @@ public class Signup2Controller implements Initializable {
         String Usia = usia.getText();
         int Beratbadan = Integer.parseInt(bb.getText());
         int Tinggibadan = Integer.parseInt(tb.getText());
-        String tamp;
-        tamp=s.getUsername();
+        String tamp = "";
         db.UpdateAkun(Jeniskelamin, Usia, Beratbadan, Tinggibadan, tamp);
-        System.out.println(s.getUsername());
         if(tamp == ""){
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fxml/Main.fxml"));
@@ -81,8 +77,5 @@ public class Signup2Controller implements Initializable {
             alert.showAndWait();
                     
         }
-    }
-    
-    
-    
+    } 
 }

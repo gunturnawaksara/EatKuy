@@ -6,7 +6,6 @@
 package fxml;
 
 import com.mycompany.eatkuyprojects.QueryDb;
-import com.mycompany.eatkuyprojects.Session;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -34,7 +33,6 @@ import javafx.stage.Stage;
 public class LoginController implements Initializable {
 
     private QueryDb db;
-    private Session s;
     @FXML
     private Button loginButton;
     @FXML
@@ -50,11 +48,12 @@ public class LoginController implements Initializable {
         String pass = passwordLogin.getText();
         ResultSet rs = db.logquery(username, pass);
         if(rs.next()){
-            int level = rs.getInt(10);
+            int level = rs.getInt("Status");
             if(level == 1){
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/fxml/Admin.fxml"));
-                Parent Main = loader.load();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Admin.fxml"));
+                Parent Main = (Parent) loader.load();
+                MainController mainCon = (MainController)loader.getController();
+                mainCon.GetUser(username, "Admin");
                 Scene scene = new Scene(Main);
                 Stage Primarystage = (Stage) ((Node)event.getSource()).getScene().getWindow();
                 Primarystage.setResizable(false);
@@ -62,10 +61,10 @@ public class LoginController implements Initializable {
                 Primarystage.show();
                 rs.close();
             }else{
-                s = new Session(username, pass);
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/fxml/Main.fxml"));
-                Parent Main = loader.load();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Main.fxml"));
+                Parent Main = (Parent) loader.load();
+                MainController mainCon = (MainController)loader.getController();
+                mainCon.GetUser(username, "Member");
                 Scene scene = new Scene(Main);
                 Stage Primarystage = (Stage) ((Node)event.getSource()).getScene().getWindow();
                 Primarystage.setResizable(false);

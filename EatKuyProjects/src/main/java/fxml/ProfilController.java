@@ -5,44 +5,22 @@
  */
 package fxml;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 /**
  * FXML Controller class
  *
- * @author ASUS
+ * @author Kukuh Nugroho
  */
 public class ProfilController implements Initializable {
-
-    @FXML
-    private Label navigasi;
-    @FXML
-    private Label username;
-    @FXML
-    private Button profile;
-    @FXML
-    private Button breakfast;
-    @FXML
-    private Button lunch;
-    @FXML
-    private Button dinner;
-    @FXML
-    private Button logout;
-    @FXML
-    private Label kalori;
+    
+    String sessionUsername;
     @FXML
     private TextField usia;
     @FXML
@@ -65,39 +43,14 @@ public class ProfilController implements Initializable {
     }    
 
     @FXML
-    private void profileButton(ActionEvent event) {
-        String navProfile="Profile";
-        this.navigasi.setText(navProfile);
-    }
-
-    @FXML
-    private void breakfastButton(ActionEvent event) {
-        String navBreakfast="Breakfast";
-        this.navigasi.setText(navBreakfast);
-    }
-
-    @FXML
-    private void lunchButton(ActionEvent event) {
-        String navLunch="Lunch";
-        this.navigasi.setText(navLunch);
-    }
-
-    @FXML
-    private void dinnerButton(ActionEvent event) {
-        String navDinner="Dinner";
-        this.navigasi.setText(navDinner);
-    }
-
-    @FXML
-    private void logoutButton(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Login.fxml"));
-        Node node = (Node) event.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
-        stage.setScene(new Scene(root));
-    }
-
-    @FXML
     private void changeButton(ActionEvent event) {
+        
+    }
+    
+    public void GetUser(String username) {
+        // TODO Auto-generated method stub
+        sessionUsername = username;
+        System.out.println(username);
     }
     
 }
