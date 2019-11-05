@@ -33,6 +33,8 @@ public class ProfilController implements Initializable {
     private TextField tingkatAktivitas;
     @FXML
     private Button change;
+    
+    MainController mc;
 
     /**
      * Initializes the controller class.
@@ -40,17 +42,11 @@ public class ProfilController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        System.out.println(mc.sessionUsername);
     }    
 
     @FXML
     private void changeButton(ActionEvent event) {
-        
-    }
-    
-    public void GetUser(String username) {
-        // TODO Auto-generated method stub
-        sessionUsername = username;
-        System.out.println(username);
     }
     
 }
