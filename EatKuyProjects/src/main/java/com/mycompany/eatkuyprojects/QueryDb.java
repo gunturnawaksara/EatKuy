@@ -13,6 +13,7 @@ import java.sql.Statement;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.control.Alert;
 import javax.swing.JOptionPane;
 
 /**
@@ -28,7 +29,7 @@ public class QueryDb extends ConnectDb{
     public QueryDb(){
         this.connect();
     }
-    
+
     public void connect(){
         
         try{
@@ -126,7 +127,11 @@ public class QueryDb extends ConnectDb{
             String query;
             query = "UPDATE Akun SET JenisKelamin = '"+JenisKelamin+"', Usia= '"+Usia+"', BeratBadan= '"+BeratBadan+"', TinggiBadan= '"+TinggiBadan+"' WHERE Username='"+Username+"'";
             statement.executeUpdate(query);
-            System.out.println(Username+"ini username");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("UPDATE SUCCESSFULL");
+            alert.setHeaderText("UPDATE SUCCESS FULL !");
+            alert.setContentText("USER DATA UPDATED");
+            alert.showAndWait();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null, "FAILED");
         }
