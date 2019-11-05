@@ -5,9 +5,8 @@
  */
 package fxml;
 
-import com.mycompany.eatkuyprojects.AkunDB;
-import com.mycompany.eatkuyprojects.AkunQuery;
-import com.mycompany.eatkuyprojects.QueryDb;
+import com.mycompany.eatkuyprojects.db.AkunDAO;
+import com.mycompany.eatkuyprojects.model.Akun;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -39,27 +38,27 @@ public class AdminController implements Initializable {
     @FXML
     private Button logout;
     @FXML
-    private TableView<AkunDB> userTableView;
+    private TableView<Akun> userTableView;
     @FXML
-    private TableColumn<AkunDB, Integer> col_id;
+    private TableColumn<Akun, Integer> col_id;
     @FXML
-    private TableColumn<AkunDB, String> col_email;
+    private TableColumn<Akun, String> col_email;
     @FXML
-    private TableColumn<AkunDB, String> col_uname;
+    private TableColumn<Akun, String> col_uname;
     @FXML
-    private TableColumn<AkunDB, String> col_pass;
+    private TableColumn<Akun, String> col_pass;
     @FXML
-    private TableColumn<AkunDB, Integer> col_usia;
+    private TableColumn<Akun, Integer> col_usia;
     @FXML
-    private TableColumn<AkunDB, String> col_jkelamin;
+    private TableColumn<Akun, String> col_jkelamin;
     @FXML
-    private TableColumn<AkunDB, Integer> col_bb;
+    private TableColumn<Akun, Integer> col_bb;
     @FXML
-    private TableColumn<AkunDB, Integer> col_tb;
+    private TableColumn<Akun, Integer> col_tb;
     @FXML
-    private TableColumn<AkunDB, Integer> col_ta;
+    private TableColumn<Akun, Integer> col_ta;
     @FXML
-    private TableColumn<AkunDB, Integer> col_status; 
+    private TableColumn<Akun, Integer> col_status; 
 
 
     @FXML
@@ -88,18 +87,14 @@ public class AdminController implements Initializable {
         col_tb.setCellValueFactory(new PropertyValueFactory("TinggiBadan"));
         col_ta.setCellValueFactory(new PropertyValueFactory("TingkatAktivitas"));
         col_status.setCellValueFactory(new PropertyValueFactory("Status"));
+        
         //ambil data dari db dan masukkan ke TableView
-        QueryDb db;
-        db = new QueryDb();
-        ObservableList<AkunDB> data;
+        ObservableList<Akun> data;
         try {
-            db.connect();
-            ResultSet rs = null;
-            data = AkunQuery.getAkunDBList(rs);
+            data = AkunDAO.searchAkuns();
             userTableView.setItems(data);
         } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }    
-    
+    }
 }
