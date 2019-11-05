@@ -5,13 +5,20 @@
  */
 package fxml;
 
+import com.mycompany.eatkuyprojects.QueryDb;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -20,7 +27,8 @@ import javafx.scene.control.TextField;
  */
 public class ProfilController implements Initializable {
     
-    String sessionUsername;
+    private QueryDb db;
+    public String sessionUsername;
     @FXML
     private TextField usia;
     @FXML
@@ -42,11 +50,19 @@ public class ProfilController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        System.out.println(mc.sessionUsername);
     }    
 
     @FXML
-    private void changeButton(ActionEvent event) {
+    private void changeButton(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Main.fxml"));
+        Parent Main = (Parent) loader.load();
+        MainController mainCon = (MainController)loader.getController();
+        mainCon.UpdateAkunUser(jenisKelamin.getText(), usia.getText(), beratBadan.getText(), tinggiBadan.getText());
+    }
+    
+    public void GetUser(String uName) {
+        // TODO Auto-generated method stub
+        sessionUsername = uName;
     }
     
 }

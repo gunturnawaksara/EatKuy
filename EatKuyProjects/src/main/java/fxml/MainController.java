@@ -38,7 +38,6 @@ public class MainController implements Initializable {
         
     private QueryDb db;
     public String sessionUsername;
-    private String sessionStatus;
     @FXML
     private BorderPane borderPane;
 
@@ -65,6 +64,7 @@ public class MainController implements Initializable {
 
     @FXML
     private Label username;
+    
 
     /**
      * Initializes the controller class.
@@ -79,7 +79,14 @@ public class MainController implements Initializable {
     private void loadUI(String title){
         Parent root =  null;
         try {
-            root = FXMLLoader.load(getClass().getResource(title+".fxml"));
+            if(title.equals("Profil")){
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Profil.fxml"));
+                root = (Parent) loader.load();
+                ProfilController profCon = (ProfilController)loader.getController();
+                profCon.GetUser(sessionUsername);
+            }else{
+                root = FXMLLoader.load(getClass().getResource(title+".fxml"));
+            }
         } catch (IOException ex) {
             Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
         }   
@@ -134,21 +141,32 @@ public class MainController implements Initializable {
         Primarystage.show();
     }
    
-    public void GetUserLogin(String uName, String uStatus) {
+    public void GetUserLogin(String uName) {
         // TODO Auto-generated method stub
         sessionUsername = uName;
-        sessionStatus = uStatus;
         this.username.setText(uName);
         this.navigasi.setText("Breakfast");
         loadUI("Breakfast");
     }
     
-    public void GetUserSignUp(String uName, String uStatus) {
+    public void GetUserSignUp(String uName) {
         // TODO Auto-generated method stub
         sessionUsername = uName;
-        sessionStatus = uStatus;
         this.username.setText(uName);
+        String navProfile="Profile";
+        this.navigasi.setText(navProfile);
         loadUI("Profil");
     }
     
+    public void UpdateAkunUser(String JenisKelamin, String Usia, String BeratBadan, String TinggiBadan){
+        this.username.setText(sessionUsername);
+        String navProfile="Profile";
+        this.navigasi.setText(navProfile);
+        loadUI("Profil");
+        String usiaUser = Usia;
+        String beratBadanUser = BeratBadan;
+        String tinggiBadanUser = TinggiBadan;
+        String jenisKelaminUser = JenisKelamin;
+        db.UpdateAkun(jenisKelaminUser, usiaUser, Integer.parseInt(beratBadanUser), Integer.parseInt(tinggiBadanUser), sessionUsername);
+    }
 }

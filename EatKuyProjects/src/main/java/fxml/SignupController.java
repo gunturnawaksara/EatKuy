@@ -81,7 +81,7 @@ public class SignupController implements Initializable {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Main.fxml"));
                 Parent Main = (Parent) loader.load();
                 MainController mainCon = (MainController)loader.getController();
-                mainCon.GetUserSignUp(username, "Member");
+                mainCon.GetUserSignUp(username);
                 Scene scene = new Scene(Main);
                 Stage Primarystage = (Stage) ((Node)event.getSource()).getScene().getWindow();
                 Primarystage.setResizable(false);

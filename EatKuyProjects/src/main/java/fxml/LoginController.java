@@ -63,7 +63,7 @@ public class LoginController implements Initializable {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Admin.fxml"));
                 Parent Main = (Parent) loader.load();
                 MainController mainCon = (MainController)loader.getController();
-                mainCon.GetUserLogin(username, "Admin");
+                mainCon.GetUserLogin(username);
                 Scene scene = new Scene(Main);
                 Stage Primarystage = (Stage) ((Node)event.getSource()).getScene().getWindow();
                 Primarystage.setResizable(false);
@@ -74,7 +74,7 @@ public class LoginController implements Initializable {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Main.fxml"));
                 Parent Main = (Parent) loader.load();
                 MainController mainCon = (MainController)loader.getController();
-                mainCon.GetUserLogin(username, "Member");
+                mainCon.GetUserLogin(username);
                 Scene scene = new Scene(Main);
                 Stage Primarystage = (Stage) ((Node)event.getSource()).getScene().getWindow();
                 Primarystage.setResizable(false);
