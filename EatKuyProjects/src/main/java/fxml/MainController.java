@@ -120,6 +120,7 @@ public class MainController implements Initializable {
         String navDinner="Dinner";
         this.navigasi.setText(navDinner);
         loadUI("Dinner");
+        System.out.print(sessionUsername);
     }
 
     @FXML
