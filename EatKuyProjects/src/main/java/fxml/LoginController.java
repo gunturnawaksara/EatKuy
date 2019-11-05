@@ -41,6 +41,16 @@ public class LoginController implements Initializable {
     private PasswordField passwordLogin;
     @FXML
     private TextField usernameLogin;
+    
+    /**
+     * Initializes the controller class.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+        db = new QueryDb();
+        db.connect();
+    } 
 
     @FXML
     void loginActivity(ActionEvent event) throws SQLException, IOException {
@@ -53,7 +63,7 @@ public class LoginController implements Initializable {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Admin.fxml"));
                 Parent Main = (Parent) loader.load();
                 MainController mainCon = (MainController)loader.getController();
-                mainCon.GetUser(username, "Admin");
+                mainCon.GetUserLogin(username, "Admin");
                 Scene scene = new Scene(Main);
                 Stage Primarystage = (Stage) ((Node)event.getSource()).getScene().getWindow();
                 Primarystage.setResizable(false);
@@ -64,7 +74,7 @@ public class LoginController implements Initializable {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Main.fxml"));
                 Parent Main = (Parent) loader.load();
                 MainController mainCon = (MainController)loader.getController();
-                mainCon.GetUser(username, "Member");
+                mainCon.GetUserLogin(username, "Member");
                 Scene scene = new Scene(Main);
                 Stage Primarystage = (Stage) ((Node)event.getSource()).getScene().getWindow();
                 Primarystage.setResizable(false);
@@ -80,8 +90,6 @@ public class LoginController implements Initializable {
             alert.showAndWait();
         }
     }
-    
-        
 
     @FXML
     void signupFrame(ActionEvent event) throws IOException {
@@ -94,14 +102,6 @@ public class LoginController implements Initializable {
         Primarystage.setScene(scene);
         Primarystage.show();
     }
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        db = new QueryDb();
-        db.connect();
-    }    
+       
     
 }

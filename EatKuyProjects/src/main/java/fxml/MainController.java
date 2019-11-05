@@ -74,8 +74,6 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //TODO
-        //this.navigasi.setText("Breakfast");
-        System.out.print(username.getText());
     }
 
     private void loadUI(String title){
@@ -94,27 +92,27 @@ public class MainController implements Initializable {
         String navProfile="Profile";
         this.navigasi.setText(navProfile);
         loadUI("Profil");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Main.fxml"));
-        ProfilController profilController = (ProfilController)loader.getController();
-        profilController.GetUser(sessionUsername);
     }
 
     @FXML
     void breakfastButton(ActionEvent event) {
         String navBreakfast="Breakfast";
         this.navigasi.setText(navBreakfast);
+        loadUI("Breakfast");
     }
 
     @FXML
     void lunchButton(ActionEvent event) {
         String navLunch="Lunch";
         this.navigasi.setText(navLunch);
+        loadUI("Lunch");
     }
 
     @FXML
     void dinnerButton(ActionEvent event) {
         String navDinner="Dinner";
         this.navigasi.setText(navDinner);
+        loadUI("Dinner");
     }
 
     @FXML
@@ -136,11 +134,21 @@ public class MainController implements Initializable {
         Primarystage.show();
     }
    
-    public void GetUser(String uName, String uStatus) {
+    public void GetUserLogin(String uName, String uStatus) {
         // TODO Auto-generated method stub
         sessionUsername = uName;
         sessionStatus = uStatus;
         this.username.setText(uName);
+        this.navigasi.setText("Breakfast");
+        loadUI("Breakfast");
+    }
+    
+    public void GetUserSignUp(String uName, String uStatus) {
+        // TODO Auto-generated method stub
+        sessionUsername = uName;
+        sessionStatus = uStatus;
+        this.username.setText(uName);
+        loadUI("Profil");
     }
     
 }
