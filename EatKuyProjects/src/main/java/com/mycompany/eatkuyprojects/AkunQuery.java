@@ -15,7 +15,8 @@ import javafx.collections.ObservableList;
  * @author ASUS
  */
 public class AkunQuery {
-        public static ObservableList<AkunDB> getAkunDBList(ResultSet rs) throws SQLException, ClassNotFoundException {
+        
+    public static ObservableList<AkunDB> getAkunDBList(ResultSet rs) throws SQLException{
         ObservableList<AkunDB> AkunDBList = FXCollections.observableArrayList();
         while (rs.next()) {
             AkunDB akun = new AkunDB();

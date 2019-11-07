@@ -13,6 +13,8 @@ import java.sql.Statement;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javax.swing.JOptionPane;
 
@@ -136,5 +138,25 @@ public class QueryDb extends ConnectDb{
             JOptionPane.showMessageDialog(null, "FAILED");
         }
     }
+    
+    public static ObservableList<AkunDB> getAkunDBList(ResultSet rs) throws SQLException{
+        ObservableList<AkunDB> AkunDBList = FXCollections.observableArrayList();
+        while (rs.next()) {
+            AkunDB akun = new AkunDB();
+            akun.setId(rs.getInt("ID_User"));
+            akun.setEmail(rs.getString("Email"));
+            akun.setUsername(rs.getString("Username"));
+            akun.setPassword(rs.getString("Password"));
+            akun.setUsia(rs.getInt("Usia"));
+            akun.setJeniskelamin(rs.getString("JenisKelamin"));
+            akun.setBeratbadan(rs.getInt("BeratBadan"));
+            akun.setTinggibadan(rs.getInt("TinggiBadan"));
+            akun.setTingkatAktivitas(rs.getInt("TingkatAktivitas"));
+            akun.setStatus(rs.getInt("Status"));
+            AkunDBList.add(akun);
+        }
+        return AkunDBList;
+    }
+    
 }
 

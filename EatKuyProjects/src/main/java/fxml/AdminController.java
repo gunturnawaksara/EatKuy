@@ -35,7 +35,8 @@ import javafx.stage.Stage;
  * @author ASUS
  */
 public class AdminController implements Initializable {
-
+    
+    private QueryDb db;
     @FXML
     private Button logout;
     @FXML
@@ -89,7 +90,6 @@ public class AdminController implements Initializable {
         col_ta.setCellValueFactory(new PropertyValueFactory("TingkatAktivitas"));
         col_status.setCellValueFactory(new PropertyValueFactory("Status"));
         //ambil data dari db dan masukkan ke TableView
-        QueryDb db;
         db = new QueryDb();
         ObservableList<AkunDB> data;
         try {
@@ -97,7 +97,7 @@ public class AdminController implements Initializable {
             ResultSet rs = null;
             data = AkunQuery.getAkunDBList(rs);
             userTableView.setItems(data);
-        } catch (SQLException | ClassNotFoundException ex) {
+        } catch (SQLException ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }    
