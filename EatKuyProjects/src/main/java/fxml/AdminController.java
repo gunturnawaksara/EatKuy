@@ -61,6 +61,10 @@ public class AdminController implements Initializable {
     private TableColumn<Akun, Integer> col_ta;
     @FXML
     private TableColumn<Akun, Integer> col_status; 
+    @FXML
+    private Button lihatAkun;
+    @FXML
+    private TableColumn<Akun, Button> col_hapusBtn;
 
 
     @FXML
@@ -97,10 +101,15 @@ public class AdminController implements Initializable {
             ResultSet rs = null;
             data = AkunDAO.searchAkuns();
             userTableView.setItems(data);
+<<<<<<< Updated upstream
         } catch (SQLException ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
+=======
+        } catch (SQLException | ClassNotFoundException ex) {
+            
+>>>>>>> Stashed changes
         }
     }    
     
