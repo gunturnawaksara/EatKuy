@@ -22,7 +22,7 @@ public class DBUtil {
     private static DBUtil dbutil = null;
     private static Connection conn = null;
     
-    private DBUtil(){
+    public DBUtil(){
     }
     
     public static DBUtil getInstance(){

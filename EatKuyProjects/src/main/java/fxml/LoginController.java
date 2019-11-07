@@ -5,7 +5,7 @@
  */
 package fxml;
 
-import com.mycompany.eatkuyprojects.QueryDb;
+import com.mycompany.eatkuyprojects.DBUtil;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -24,6 +24,7 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -32,7 +33,6 @@ import javafx.stage.Stage;
  */
 public class LoginController implements Initializable {
 
-    private QueryDb db;
     @FXML
     private Button loginButton;
     @FXML
@@ -47,45 +47,49 @@ public class LoginController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        db = new QueryDb();
-        db.connect();
+        // TODO;
     } 
 
     @FXML
-    void loginActivity(ActionEvent event) throws SQLException, IOException {
-        String username = usernameLogin.getText();
-        String pass = passwordLogin.getText();
-        ResultSet rs = db.logquery(username, pass);
-        if(rs.next()){
-            int level = rs.getInt("Status");
-            if(level == 1){
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Admin.fxml"));
-                Parent Main = (Parent) loader.load();
-                Scene scene = new Scene(Main);
-                Stage Primarystage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-                Primarystage.setResizable(false);
-                Primarystage.setScene(scene);
-                Primarystage.show();
-                rs.close();
+    void loginActivity(ActionEvent event) throws SQLException, IOException, ClassNotFoundException {
+        try{
+            String username = usernameLogin.getText();
+            String pass = passwordLogin.getText();
+            DBUtil db = new DBUtil();
+            String query = "SELECT * from Akun WHERE Username = '"+username+"' AND Password =  '"+pass+"'";
+            ResultSet rs = db.dbExecuteQuery(query);
+            if(rs.next()){
+                int level = rs.getInt("Status");
+                if(level == 1){
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Admin.fxml"));
+                    Parent Main = (Parent) loader.load();
+                    Scene scene = new Scene(Main);
+                    Stage Primarystage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+                    Primarystage.setResizable(false);
+                    Primarystage.setScene(scene);
+                    Primarystage.show();
+                    rs.close();
+                }else{
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Home.fxml"));
+                    Parent Main = (Parent) loader.load();
+                    HomeController home = (HomeController)loader.getController();
+                    home.GetUserLogin(username, "Member");
+                    Scene scene = new Scene(Main);
+                    Stage Primarystage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+                    Primarystage.setResizable(false);
+                    Primarystage.setScene(scene);
+                    Primarystage.show();
+                    rs.close();
+                }
             }else{
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Home.fxml"));
-                Parent Main = (Parent) loader.load();
-                HomeController home = (HomeController)loader.getController();
-                home.GetUserLogin(username, "Member");
-                Scene scene = new Scene(Main);
-                Stage Primarystage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-                Primarystage.setResizable(false);
-                Primarystage.setScene(scene);
-                Primarystage.show();
-                rs.close();
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("LOGIN FAILED");
+                alert.setHeaderText("LOGIN FAILED !");
+                alert.setContentText("Username / Password is WRONG !");
+                alert.showAndWait();
             }
-        }else{
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("LOGIN FAILED");
-            alert.setHeaderText("LOGIN FAILED !");
-            alert.setContentText("Username / Password is WRONG !");
-            alert.showAndWait();
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "FAILED log");
         }
     }
 

@@ -60,6 +60,7 @@ public class AkunDAO {
             akun.setTinggiBadan(rs.getInt("TinggiBadan"));
             akun.setTingkatAktivitas(rs.getInt("TingkatAktivitas"));
             akun.setStatus(rs.getInt("Status"));
+            akunList.add(akun);
         }
         return akunList;
     }
