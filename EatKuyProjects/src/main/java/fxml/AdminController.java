@@ -7,6 +7,9 @@ package fxml;
 
 import com.mycompany.eatkuyprojects.db.AkunDAO;
 import com.mycompany.eatkuyprojects.model.Akun;
+import com.mycompany.eatkuyprojects.Akun;
+import com.mycompany.eatkuyprojects.AkunDAO;
+import com.mycompany.eatkuyprojects.QueryDb;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -34,7 +37,8 @@ import javafx.stage.Stage;
  * @author ASUS
  */
 public class AdminController implements Initializable {
-
+    
+    private QueryDb db;
     @FXML
     private Button logout;
     @FXML
@@ -89,11 +93,24 @@ public class AdminController implements Initializable {
         col_status.setCellValueFactory(new PropertyValueFactory("Status"));
         
         //ambil data dari db dan masukkan ke TableView
+
         ObservableList<Akun> data;
         try {
             data = AkunDAO.searchAkuns();
             userTableView.setItems(data);
         } catch (SQLException | ClassNotFoundException ex) {
+
+        db = new QueryDb();
+        ObservableList<Akun> data;
+        try {
+            db.connect();
+            ResultSet rs = null;
+            data = AkunDAO.searchAkuns();
+            userTableView.setItems(data);
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
