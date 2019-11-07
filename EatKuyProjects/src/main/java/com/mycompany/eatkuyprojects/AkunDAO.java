@@ -37,7 +37,7 @@ public class AkunDAO {
     public static ObservableList<Akun> searchAkuns() throws SQLException, ClassNotFoundException {
         String selectStmt = "SELECT * FROM akun";
         try {
-            ResultSet rsMtk = QueryDb.getInstance().dbExecuteQuery(selectStmt);
+            ResultSet rsMtk = DBUtil.getInstance().dbExecuteQuery(selectStmt);
             ObservableList<Akun> mtkList = getAkunList(rsMtk);
             return mtkList;
         } catch (SQLException e) {

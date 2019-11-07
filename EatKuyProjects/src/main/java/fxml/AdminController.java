@@ -6,6 +6,7 @@
 package fxml;
 
 import com.mycompany.eatkuyprojects.Akun;
+import com.mycompany.eatkuyprojects.AkunDAO;
 import com.mycompany.eatkuyprojects.QueryDb;
 import java.io.IOException;
 import java.net.URL;
@@ -94,10 +95,12 @@ public class AdminController implements Initializable {
         try {
             db.connect();
             ResultSet rs = null;
-            data = AkunDAO.getAkunList(rs);
+            data = AkunDAO.searchAkuns();
             userTableView.setItems(data);
         } catch (SQLException ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }    
     
