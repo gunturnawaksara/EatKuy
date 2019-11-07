@@ -5,8 +5,7 @@
  */
 package fxml;
 
-import com.mycompany.eatkuyprojects.AkunDB;
-import com.mycompany.eatkuyprojects.AkunQuery;
+import com.mycompany.eatkuyprojects.Akun;
 import com.mycompany.eatkuyprojects.QueryDb;
 import java.io.IOException;
 import java.net.URL;
@@ -40,27 +39,27 @@ public class AdminController implements Initializable {
     @FXML
     private Button logout;
     @FXML
-    private TableView<AkunDB> userTableView;
+    private TableView<Akun> userTableView;
     @FXML
-    private TableColumn<AkunDB, Integer> col_id;
+    private TableColumn<Akun, Integer> col_id;
     @FXML
-    private TableColumn<AkunDB, String> col_email;
+    private TableColumn<Akun, String> col_email;
     @FXML
-    private TableColumn<AkunDB, String> col_uname;
+    private TableColumn<Akun, String> col_uname;
     @FXML
-    private TableColumn<AkunDB, String> col_pass;
+    private TableColumn<Akun, String> col_pass;
     @FXML
-    private TableColumn<AkunDB, Integer> col_usia;
+    private TableColumn<Akun, Integer> col_usia;
     @FXML
-    private TableColumn<AkunDB, String> col_jkelamin;
+    private TableColumn<Akun, String> col_jkelamin;
     @FXML
-    private TableColumn<AkunDB, Integer> col_bb;
+    private TableColumn<Akun, Integer> col_bb;
     @FXML
-    private TableColumn<AkunDB, Integer> col_tb;
+    private TableColumn<Akun, Integer> col_tb;
     @FXML
-    private TableColumn<AkunDB, Integer> col_ta;
+    private TableColumn<Akun, Integer> col_ta;
     @FXML
-    private TableColumn<AkunDB, Integer> col_status; 
+    private TableColumn<Akun, Integer> col_status; 
 
 
     @FXML
@@ -91,11 +90,11 @@ public class AdminController implements Initializable {
         col_status.setCellValueFactory(new PropertyValueFactory("Status"));
         //ambil data dari db dan masukkan ke TableView
         db = new QueryDb();
-        ObservableList<AkunDB> data;
+        ObservableList<Akun> data;
         try {
             db.connect();
             ResultSet rs = null;
-            data = AkunQuery.getAkunDBList(rs);
+            data = AkunDAO.getAkunList(rs);
             userTableView.setItems(data);
         } catch (SQLException ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);

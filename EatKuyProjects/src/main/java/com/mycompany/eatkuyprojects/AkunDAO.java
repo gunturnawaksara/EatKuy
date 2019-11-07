@@ -14,7 +14,8 @@ import javafx.collections.ObservableList;
  *
  * @author Kukuh Nugroho
  */
-public class AkunDAO {
+public class AkunDAO { 
+    
     private static Akun getAkunFromResultSet(ResultSet rs) throws SQLException {
         Akun akun = null;
         if (rs.next()) {
@@ -36,7 +37,7 @@ public class AkunDAO {
     public static ObservableList<Akun> searchAkuns() throws SQLException, ClassNotFoundException {
         String selectStmt = "SELECT * FROM akun";
         try {
-            ResultSet rsMtk = DBUtil.getInstance().dbExecuteQuery(selectStmt);
+            ResultSet rsMtk = QueryDb.getInstance().dbExecuteQuery(selectStmt);
             ObservableList<Akun> mtkList = getAkunList(rsMtk);
             return mtkList;
         } catch (SQLException e) {

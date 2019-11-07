@@ -6,7 +6,9 @@
 package com.mycompany.eatkuyprojects;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -23,17 +25,23 @@ import javax.swing.JOptionPane;
  * @author Kukuh
  */
 public class QueryDb extends ConnectDb{   
-
-    static Object getInstance() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    private static QueryDb qdb = null;
+    private static Connection con = null;
+    PreparedStatement ps;
+    Statement st;
+    ResultSet rs,sr,rs2;
     
     public QueryDb(){
-        this.connect();
     }
-
-    public void connect(){
-        
+    
+    public static QueryDb getInstance(){
+        if(qdb == null){
+            qdb = new QueryDb();
+        }
+        return qdb;
+    }
+    
+    public void connect(){  
         try{
             try{
                 Class.forName("org.sqlite.JDBC");
