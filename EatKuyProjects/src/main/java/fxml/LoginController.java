@@ -74,6 +74,7 @@ public class LoginController implements Initializable {
                     Parent Main = (Parent) loader.load();
                     HomeController home = (HomeController)loader.getController();
                     home.GetUserLogin(username, "Member");
+                    home.GetKaloriUser();
                     Scene scene = new Scene(Main);
                     Stage Primarystage = (Stage) ((Node)event.getSource()).getScene().getWindow();
                     Primarystage.setResizable(false);
@@ -89,7 +90,8 @@ public class LoginController implements Initializable {
                 alert.showAndWait();
             }
         }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, "FAILED log");
+            //JOptionPane.showMessageDialog(null, "FAILED log");
+            ex.printStackTrace();
         }
     }
 

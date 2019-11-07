@@ -9,7 +9,12 @@ import com.mycompany.eatkuyprojects.DBUtil;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +22,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -34,35 +40,58 @@ public class HomeController implements Initializable {
     private String sessionUsername;
     private String sessionStatus;
     @FXML
-    private TextField jenisKelamin;
-    @FXML
     private TextField usia;
+
+    @FXML
+    private ImageView tambahL;
+
+    @FXML
+    private ImageView searchButtonL;
+
     @FXML
     private TextField beratBadan;
-    @FXML
-    private TextField tinggiBadan;
-    @FXML
-    private TextField tingkatAktivitas;
-    @FXML
-    private Label username;
-    @FXML
-    private Label kalori;
+
     @FXML
     private TextField search;
+
     @FXML
-    private ImageView searchButton;
+    private ImageView searchButtonB;
+
     @FXML
-    private ImageView tambah;
+    private Label kaloriD;
+    
+
+    @FXML
+    private Label kaloriB;
+
+    @FXML
+    private TextField jenisKelamin;
+
+    @FXML
+    private Label kaloriL;
+
+    @FXML
+    private TextField tingkatAktivitas;
+
+    @FXML
+    private TextField tinggiBadan;
+
+    @FXML
+    private ImageView tambahD;
+
+    @FXML
+    private Label username;
+
+    @FXML
+    private ImageView tambahB;
 
     /**
      * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        db = new DBUtil();
-    }    
-
+     */  
+    
+    
+    
+    
     @FXML
     private void changeButton(ActionEvent event) {
         String usiaUser = usia.getText();
@@ -91,4 +120,39 @@ public class HomeController implements Initializable {
         this.sessionStatus = uStatus;
     }
     
+ 
+    
+    public void GetKaloriUser() throws SQLException, ClassNotFoundException{
+        String query="SELECT Usia, JenisKelamin, BeratBadan, TinggiBadan from Akun WHERE Username='"+sessionUsername+"'";
+        ResultSet rs=db.dbExecuteQuery(query);
+        rs.next();        
+        int usia= rs.getInt(1);
+        String jk = rs.getString(2);
+        int bb= rs.getInt(3);
+        int tb= rs.getInt(4);
+        int tamp1;
+        int tamp2;
+        String kal;
+        if(jk.equals("Laki-laki")){
+           tamp1 =  66 + (14 * bb) + (5 * tb) - (7 * usia);
+           kal =String.valueOf(tamp1);
+           this.kaloriB.setText(kal);
+           this.kaloriD.setText(kal);
+           this.kaloriL.setText(kal);
+        } else if(jk.equals("Perempuan")){
+            tamp2 = 655 + (10 * bb) + (2 * tb) - (5 * usia);
+            kal =String.valueOf(tamp2);
+            this.kaloriB.setText(kal);
+            this.kaloriD.setText(kal);
+            this.kaloriL.setText(kal);
+        }
+        rs.close();
+    }
+      
+    
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+        db = new DBUtil();
+    } 
 }
