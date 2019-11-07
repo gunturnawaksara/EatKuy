@@ -5,7 +5,7 @@
  */
 package fxml;
 
-import com.mycompany.eatkuyprojects.QueryDb;
+import com.mycompany.eatkuyprojects.DBUtil;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -24,6 +24,7 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -32,7 +33,6 @@ import javafx.stage.Stage;
  */
 public class SignupController implements Initializable {
 
-    private QueryDb db;
     @FXML
     private TextField emailSignup;
 
@@ -50,46 +50,60 @@ public class SignupController implements Initializable {
 
     @FXML
     public void signupActivity(ActionEvent event) throws SQLException, IOException {
-        String username = usernameSignup.getText();
-        String email = emailSignup.getText();
-        String pass = passwordSignup.getText();
-        ResultSet rs = db.isUsernameExist(username);
-        ResultSet rs2 = db.isEmailExist(email);
-        if(rs.next()){
-            String uName = rs.getString(3);
-            if(uName.equalsIgnoreCase(username)){
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("SIGN UP FAILED");
-                alert.setHeaderText("SIGN UP FAILED !");
-                alert.setContentText("Username already used !");
-                alert.showAndWait();
-                rs.close();
-            }
-        }else{
-            if(rs2.next()){
-                String uEmail = rs2.getString(2);
-                if(uEmail.equals(email)){
+        try{
+            DBUtil db = new DBUtil();
+            String username = usernameSignup.getText();
+            String email = emailSignup.getText();
+            String pass = passwordSignup.getText();
+            String query1 = "SELECT * from Akun WHERE Email='"+email+"'";
+            String query2 = "SELECT * from Akun WHERE Username='"+username+"'";
+            ResultSet rs = db.dbExecuteQuery(query1);
+            ResultSet rs2 = db.dbExecuteQuery(query2);
+            if(rs.next()){
+                String uName = rs.getString(3);
+                if(uName.equalsIgnoreCase(username)){
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("SIGN UP FAILED");
                     alert.setHeaderText("SIGN UP FAILED !");
-                    alert.setContentText("Email already used !");
+                    alert.setContentText("Username already used !");
                     alert.showAndWait();
-                    rs2.close();
+                    rs.close();
                 }
-            }else{                        
-                db.InsertAkun(email, username, pass);
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Main.fxml"));
-                Parent Main = (Parent) loader.load();
-                HomeController home = (HomeController)loader.getController();
-                home.GetUserLogin(username, "Member");
-                Scene scene = new Scene(Main);
-                Stage Primarystage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-                Primarystage.setResizable(false);
-                Primarystage.setScene(scene);
-                Primarystage.show();
-                rs.close();
+            }else{
+                if(rs2.next()){
+                    String uEmail = rs2.getString(2);
+                    if(uEmail.equals(email)){
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("SIGN UP FAILED");
+                        alert.setHeaderText("SIGN UP FAILED !");
+                        alert.setContentText("Email already used !");
+                        alert.showAndWait();
+                        rs2.close();
+                    }
+                }else{
+                    int Usia = 0;
+                    String JenisKelamin = "-";
+                    int BeratBadan = 0;
+                    int TinggiBadan = 0;
+                    int TingkatAktivitas = 0;
+                    int Status = 2;
+                    String query3 = "INSERT INTO Akun(Email,Username,Password,JenisKelamin,Usia,BeratBadan,TinggiBadan,TingkatAktivitas,Status) VALUES ('"+email+"','"+username+"','"+pass+"','"+JenisKelamin+"','"+Usia+"','"+BeratBadan+"','"+TinggiBadan+"','"+TingkatAktivitas+"','"+Status+"')";;
+                    ResultSet rs3 = db.dbExecuteQuery(query3);
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Main.fxml"));
+                    Parent Main = (Parent) loader.load();
+                    HomeController home = (HomeController)loader.getController();
+                    home.GetUserLogin(username, "Member");
+                    Scene scene = new Scene(Main);
+                    Stage Primarystage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+                    Primarystage.setResizable(false);
+                    Primarystage.setScene(scene);
+                    Primarystage.show();
+                    rs.close();
+                }
             }
-        } 
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(null, "FAILED log");
+        }
     }
 
     @FXML
@@ -109,8 +123,6 @@ public class SignupController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        db = new QueryDb();
-        db.connect();
     }
     
 }

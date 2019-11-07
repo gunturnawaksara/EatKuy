@@ -5,15 +5,23 @@
  */
 package fxml;
 
-import com.mycompany.eatkuyprojects.QueryDb;
+import com.mycompany.eatkuyprojects.DBUtil;
+import java.io.IOException;
 import java.net.URL;
+import java.sql.ResultSet;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -22,7 +30,7 @@ import javafx.scene.image.ImageView;
  */
 public class HomeController implements Initializable {
     
-    private QueryDb db;
+    private DBUtil db;
     private String sessionUsername;
     private String sessionStatus;
     @FXML
@@ -52,8 +60,7 @@ public class HomeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        db = new QueryDb();
-        db.connect();
+        db = new DBUtil();
     }    
 
     @FXML
@@ -62,11 +69,20 @@ public class HomeController implements Initializable {
         String beratBadanUser = beratBadan.getText();
         String tinggiBadanUser = tinggiBadan.getText();
         String jenisKelaminUser = jenisKelamin.getText();
-        db.UpdateAkun(jenisKelaminUser, usiaUser, Integer.parseInt(beratBadanUser), Integer.parseInt(tinggiBadanUser), sessionUsername);
+        try{
+            String query = "UPDATE Akun SET JenisKelamin = '"+jenisKelaminUser+"', Usia= '"+usiaUser+"', BeratBadan= '"+beratBadanUser+"', TinggiBadan= '"+tinggiBadanUser+"' WHERE Username='"+sessionUsername+"'";
+            db.dbExecuteUpdate(query);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "FAILED log");
+        }
     }
 
     @FXML
-    private void logoutButton(ActionEvent event) {
+    private void logoutButton(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Login.fxml"));
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        stage.setScene(new Scene(root));
     }
     
     public void GetUserLogin(String uName, String uStatus) {
