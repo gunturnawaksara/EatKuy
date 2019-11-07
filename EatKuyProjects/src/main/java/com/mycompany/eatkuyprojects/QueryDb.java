@@ -139,24 +139,5 @@ public class QueryDb extends ConnectDb{
         }
     }
     
-    public static ObservableList<AkunDB> getAkunDBList(ResultSet rs) throws SQLException{
-        ObservableList<AkunDB> AkunDBList = FXCollections.observableArrayList();
-        while (rs.next()) {
-            AkunDB akun = new AkunDB();
-            akun.setId(rs.getInt("ID_User"));
-            akun.setEmail(rs.getString("Email"));
-            akun.setUsername(rs.getString("Username"));
-            akun.setPassword(rs.getString("Password"));
-            akun.setUsia(rs.getInt("Usia"));
-            akun.setJeniskelamin(rs.getString("JenisKelamin"));
-            akun.setBeratbadan(rs.getInt("BeratBadan"));
-            akun.setTinggibadan(rs.getInt("TinggiBadan"));
-            akun.setTingkatAktivitas(rs.getInt("TingkatAktivitas"));
-            akun.setStatus(rs.getInt("Status"));
-            AkunDBList.add(akun);
-        }
-        return AkunDBList;
-    }
-    
 }
 
