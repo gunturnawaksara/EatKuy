@@ -41,7 +41,6 @@ public class LoginController implements Initializable {
     private PasswordField passwordLogin;
     @FXML
     private TextField usernameLogin;
-    
     /**
      * Initializes the controller class.
      */
@@ -104,6 +103,4 @@ public class LoginController implements Initializable {
         Primarystage.setScene(scene);
         Primarystage.show();
     }
-       
-    
 }

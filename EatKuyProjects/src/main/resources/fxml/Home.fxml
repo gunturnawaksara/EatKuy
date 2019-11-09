@@ -63,7 +63,7 @@
             </Tab>
             <Tab text="Breakfast">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #fa8072;">
+                <AnchorPane fx:id="col_idmakal" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #fa8072;">
                      <children>
                         <ImageView fitHeight="93.0" fitWidth="97.0" layoutX="28.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                            <effect>
@@ -79,10 +79,11 @@
                             <TableColumn prefWidth="75.0" text="C2" />
                           </columns>
                         </TableView>
-                        <TableView layoutX="725.0" layoutY="127.0" prefHeight="380.0" prefWidth="366.0">
+                        <TableView fx:id="tabel_makananKal" layoutX="725.0" layoutY="127.0">
                           <columns>
-                            <TableColumn prefWidth="75.0" text="C1" />
-                            <TableColumn prefWidth="75.0" text="C2" />
+                              <TableColumn fx:id="col_idmakal" prefWidth="75.0" text="Id" />
+                            <TableColumn fx:id="col_namaMakanan" prefWidth="183.0" text="Nama Makanan" />
+                            <TableColumn fx:id="col_kalori" prefWidth="183.0" text="Kalori" />
                           </columns>
                         </TableView>
                         <Label layoutX="455.0" layoutY="353.0" text="Kalori yang anda butuhkan :" textFill="WHITE">
@@ -96,7 +97,7 @@
                            </font>
                         </Label>
                         <TextField fx:id="search" layoutX="725.0" layoutY="539.0" />
-                        <ImageView fx:id="searchButton" fitHeight="30.0" fitWidth="41.0" layoutX="955.0" layoutY="544.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="searchButton" fitHeight="30.0" fitWidth="41.0" layoutX="874.0" layoutY="549.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../pics/search_icon.png" />
                            </image>

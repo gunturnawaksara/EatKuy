@@ -6,10 +6,13 @@
 package fxml;
 
 import com.mycompany.eatkuyprojects.DBUtil;
+import com.mycompany.eatkuyprojects.MakalDAO;
+import com.mycompany.eatkuyprojects.MakananKalori;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +21,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
@@ -53,14 +59,33 @@ public class HomeController implements Initializable {
     private ImageView searchButton;
     @FXML
     private ImageView tambah;
+    @FXML
+    private TableView<MakananKalori> tabel_makananKal;
+    @FXML
+    private TableColumn<MakananKalori, Integer> col_idmakal;
+    @FXML
+    private TableColumn<MakananKalori, String> col_namaMakanan;
+    @FXML
+    private TableColumn<MakananKalori, Integer> col_kalori;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        //TODO
         db = new DBUtil();
+        col_idmakal.setCellValueFactory(new PropertyValueFactory("id_makanan"));
+        col_namaMakanan.setCellValueFactory(new PropertyValueFactory("Nama_makanan"));
+        col_kalori.setCellValueFactory(new PropertyValueFactory("Kalori"));
+        
+        ObservableList<MakananKalori> data;
+        try {
+            data = MakalDAO.searchMakananKaloris();
+            tabel_makananKal.setItems(data);
+        } catch (SQLException | ClassNotFoundException ex) {
+
+        }
     }    
 
     @FXML
