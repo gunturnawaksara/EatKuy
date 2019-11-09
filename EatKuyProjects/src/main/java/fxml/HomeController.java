@@ -64,14 +64,9 @@ public class HomeController implements Initializable {
     @FXML
     private Label kaloriB;
 
-    @FXML
-    private TextField jenisKelamin;
 
     @FXML
     private Label kaloriL;
-
-    @FXML
-    private TextField tingkatAktivitas;
 
     @FXML
     private TextField tinggiBadan;
@@ -84,11 +79,19 @@ public class HomeController implements Initializable {
 
     @FXML
     private ImageView tambahB;
+    
+    @FXML
+    private ComboBox<String> comboJK;
+    
+    @FXML
+    private ComboBox<String> comboAktivitas;
+    
+    ObservableList<String> JK = FXCollections.observableArrayList("Laki-laki","Perempuan");
+    ObservableList<String> aktivitas = FXCollections.observableArrayList("Sangat jarang olahraga","Jarang olahraga","Normal olahraga","Sering olahraga","Sangat sering olahraga");
 
     /**
      * Initializes the controller class.
      */  
-    
     
     
     
@@ -97,10 +100,13 @@ public class HomeController implements Initializable {
         String usiaUser = usia.getText();
         String beratBadanUser = beratBadan.getText();
         String tinggiBadanUser = tinggiBadan.getText();
-        String jenisKelaminUser = jenisKelamin.getText();
+        String jenisKelaminUser = comboJK.getValue();
+        String tingkatAktivitasUser = comboAktivitas.getValue();
         try{
-            String query = "UPDATE Akun SET JenisKelamin = '"+jenisKelaminUser+"', Usia= '"+usiaUser+"', BeratBadan= '"+beratBadanUser+"', TinggiBadan= '"+tinggiBadanUser+"' WHERE Username='"+sessionUsername+"'";
+            String query = "UPDATE Akun SET JenisKelamin = '"+jenisKelaminUser+"', Usia= '"+usiaUser+"', BeratBadan= '"+beratBadanUser+"', TinggiBadan= '"+tinggiBadanUser+"', TingkatAktivitas= '"+tingkatAktivitasUser+"' WHERE Username='"+sessionUsername+"'";
             db.dbExecuteUpdate(query);
+            JOptionPane.showMessageDialog(null, "Berhasil Update");
+            this.GetKaloriUser();
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "FAILED log");
         }
@@ -120,28 +126,111 @@ public class HomeController implements Initializable {
         this.sessionStatus = uStatus;
     }
     
- 
-    
-    public void GetKaloriUser() throws SQLException, ClassNotFoundException{
-        String query="SELECT Usia, JenisKelamin, BeratBadan, TinggiBadan from Akun WHERE Username='"+sessionUsername+"'";
+    public int hitungKaloriL() throws SQLException, ClassNotFoundException{
+        String query="SELECT Usia, JenisKelamin, BeratBadan, TinggiBadan, TingkatAktivitas from Akun WHERE Username='"+sessionUsername+"'";
         ResultSet rs=db.dbExecuteQuery(query);
         rs.next();        
         int usia= rs.getInt(1);
         String jk = rs.getString(2);
         int bb= rs.getInt(3);
         int tb= rs.getInt(4);
-        int tamp1;
-        int tamp2;
+        String ta = rs.getString(5);
+        int tamp;
+        
+        return tamp =  66 + (14 * bb) + (5 * tb) - (7 * usia);
+    }
+    
+    public int hitungKaloriP() throws SQLException, ClassNotFoundException{
+        String query="SELECT Usia, JenisKelamin, BeratBadan, TinggiBadan, TingkatAktivitas from Akun WHERE Username='"+sessionUsername+"'";
+        ResultSet rs=db.dbExecuteQuery(query);
+        rs.next();        
+        int usia= rs.getInt(1);
+        String jk = rs.getString(2);
+        int bb= rs.getInt(3);
+        int tb= rs.getInt(4);
+        String ta = rs.getString(5);
+        int tamp;
+        
+        return tamp = 655 + (10 * bb) + (2 * tb) - (5 * usia);
+    }
+    
+    public void GetKaloriUser() throws SQLException, ClassNotFoundException{
+        String query="SELECT Usia, JenisKelamin, BeratBadan, TinggiBadan, TingkatAktivitas from Akun WHERE Username='"+sessionUsername+"'";
+        ResultSet rs=db.dbExecuteQuery(query);
+        rs.next();        
+        int usia= rs.getInt(1);
+        String jk = rs.getString(2);
+        int bb= rs.getInt(3);
+        int tb= rs.getInt(4);
+        String ta = rs.getString(5);
+        int tamp;
         String kal;
-        if(jk.equals("Laki-laki")){
-           tamp1 =  66 + (14 * bb) + (5 * tb) - (7 * usia);
-           kal =String.valueOf(tamp1);
+        if(jk.equals("Laki-laki")&& ta.equals("Sangat jarang olahraga")){
+           tamp=(int) (1.2*this.hitungKaloriL());
+           kal =String.valueOf(tamp);
            this.kaloriB.setText(kal);
            this.kaloriD.setText(kal);
            this.kaloriL.setText(kal);
-        } else if(jk.equals("Perempuan")){
-            tamp2 = 655 + (10 * bb) + (2 * tb) - (5 * usia);
-            kal =String.valueOf(tamp2);
+           
+        } else if(jk.equals("Laki-laki")&& ta.equals("Jarang olahraga")){
+            tamp= (int) (1.375*this.hitungKaloriL());
+            kal =String.valueOf(tamp);
+            this.kaloriB.setText(kal);
+            this.kaloriD.setText(kal);
+            this.kaloriL.setText(kal);
+            
+        }  else if(jk.equals("Laki-laki")&& ta.equals("Normal olahraga")){
+            tamp= (int) (1.55*this.hitungKaloriL());
+            kal =String.valueOf(tamp);
+            this.kaloriB.setText(kal);
+            this.kaloriD.setText(kal);
+            this.kaloriL.setText(kal);
+            
+        }  else if(jk.equals("Laki-laki")&& ta.equals("Sering olahraga")){
+            tamp= (int) (1.725*this.hitungKaloriL());
+            kal =String.valueOf(tamp);
+            this.kaloriB.setText(kal);
+            this.kaloriD.setText(kal);
+            this.kaloriL.setText(kal);
+            
+        }  else if(jk.equals("Laki-laki")&& ta.equals("Sangat sering olahraga")){
+            tamp= (int) (1.9*this.hitungKaloriL());
+            kal =String.valueOf(tamp);
+            this.kaloriB.setText(kal);
+            this.kaloriD.setText(kal);
+            this.kaloriL.setText(kal);
+            
+        }  else if(jk.equals("Perempuan")&& ta.equals("Sangat jarang olahraga")){
+            tamp= (int) (1.2*this.hitungKaloriP());
+            kal =String.valueOf(tamp);
+            this.kaloriB.setText(kal);
+            this.kaloriD.setText(kal);
+            this.kaloriL.setText(kal);
+            
+        } else if(jk.equals("Perempuan")&& ta.equals("Jarang olahraga")){
+            tamp= (int) (1.375*this.hitungKaloriP());
+            kal =String.valueOf(tamp);
+            this.kaloriB.setText(kal);
+            this.kaloriD.setText(kal);
+            this.kaloriL.setText(kal);
+            
+        } else if(jk.equals("Perempuan")&& ta.equals("Normal olahraga")){
+            tamp= (int) (1.55*this.hitungKaloriP());
+            kal =String.valueOf(tamp);
+            this.kaloriB.setText(kal);
+            this.kaloriD.setText(kal);
+            this.kaloriL.setText(kal);
+            
+        } else if(jk.equals("Perempuan")&& ta.equals("Sering olahraga")){
+            tamp= (int) (1.725*this.hitungKaloriP());
+            kal =String.valueOf(tamp);
+            this.kaloriB.setText(kal);
+            this.kaloriD.setText(kal);
+            this.kaloriL.setText(kal);
+            
+        } else if(jk.equals("Perempuan")&& ta.equals("Sangat sering olahraga")){
+            tamp= (int) (1.9*this.hitungKaloriP());
+            kal =String.valueOf(tamp);
             this.kaloriB.setText(kal);
             this.kaloriD.setText(kal);
             this.kaloriL.setText(kal);
@@ -154,5 +243,7 @@ public class HomeController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         db = new DBUtil();
+        comboJK.setItems(JK);
+        comboAktivitas.setItems(aktivitas);
     } 
 }

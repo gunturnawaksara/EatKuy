@@ -47,9 +47,9 @@
                               <TextField fx:id="usia" layoutX="214.0" layoutY="105.0" />
                               <TextField fx:id="beratBadan" layoutX="214.0" layoutY="155.0" />
                               <TextField fx:id="tinggiBadan" layoutX="214.0" layoutY="212.0" />
-                              <TextField fx:id="tingkatAktivitas" layoutX="214.0" layoutY="267.0" />
                               <Button layoutX="392.0" layoutY="331.0" mnemonicParsing="false" onAction="#changeButton" style="-fx-background-color: #32AE3F;" text="Change" />
-                              <TextField fx:id="jenisKelamin" layoutX="214.0" layoutY="53.0" />
+                              <ComboBox fx:id="comboJK" layoutX="214.0" layoutY="53.0" prefWidth="150.0" />
+                              <ComboBox fx:id="comboAktivitas" layoutX="214.0" layoutY="267.0" prefWidth="150.0" />
                            </children>
                         </Pane>
                         <ImageView fitHeight="57.0" fitWidth="45.0" layoutX="1043.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
