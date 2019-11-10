@@ -59,6 +59,10 @@ public class AdminController implements Initializable {
     private TableColumn<Akun, Integer> col_ta;
     @FXML
     private TableColumn<Akun, Integer> col_status; 
+    @FXML
+    private Button lihatAkun;
+    @FXML
+    private TableColumn<Akun, Button> col_hapusBtn;
 
 
     @FXML
@@ -96,6 +100,7 @@ public class AdminController implements Initializable {
             userTableView.setItems(data);
         } catch (SQLException | ClassNotFoundException ex) {
 
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
