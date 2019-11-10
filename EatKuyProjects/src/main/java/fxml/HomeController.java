@@ -234,6 +234,7 @@ public class HomeController implements Initializable {
         }
         rs.close();
     }
+    
       
     public void loadDB(TableColumn<Makanan, Integer> idMakanan, TableColumn<Makanan, String> namaMakanan, TableColumn<Makanan, Integer> kaloriMakanan, TableView<Makanan> tableTab){
         idMakanan.setCellValueFactory(new PropertyValueFactory("id_makanan"));
