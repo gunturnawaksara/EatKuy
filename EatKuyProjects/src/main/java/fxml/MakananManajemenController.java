@@ -94,25 +94,27 @@ public class MakananManajemenController implements Initializable {
         try{
             String queryCek = "SELECT * FROM Makanan WHERE Nama_makanan = '"+namaM+"'";
             ResultSet rsCek = db.dbExecuteQuery(queryCek);
-            String namaMakananDB = rsCek.getString("Nama_makanan");
             if(rsCek.next()){
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("ADD FOOD FAILED");
                 alert.setHeaderText("GAGAL MENAMBAH MAKANAN !");
                 alert.setContentText("MAKANAN SUDAH TERDAFTAR !");
                 alert.showAndWait();
+                clearField();
+                rsCek.close();
             }else{
+                rsCek.close();
                 String query = "INSERT INTO Makanan(Nama_makanan, Kalori) VALUES('"+namaM+"','"+KalM+"')";
-                ResultSet rs = db.dbExecuteQuery(query);
+                db.dbExecuteUpdate(query);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("ADD FOOD SUCCESS");
                 alert.setHeaderText("TAMBAH MAKANAN !");
                 alert.setContentText("BERHASIL MENAMBAH MAKANAN !");
                 alert.showAndWait();
+                clearField();
                 loadDB();
-                rs.close();
             }
-            rsCek.close();
+            
         }catch(Exception e){
             System.out.print(e);
         }
@@ -129,6 +131,7 @@ public class MakananManajemenController implements Initializable {
             alert.setHeaderText("DELETE MAKANAN !");
             alert.setContentText("BERHASIL MENGHAPUS MAKANAN !");
             alert.showAndWait();
+            clearField();
             loadDB();
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
@@ -149,14 +152,15 @@ public class MakananManajemenController implements Initializable {
                 alert.setTitle("UPDATE SUCCESS");
                 alert.setHeaderText("UPDATE MAKANAN !");
                 alert.setContentText("BERHASIL MENGUPDATE MAKANAN !");
-                alert.showAndWait();   
-            }
-            else{
+                alert.showAndWait();
+                clearField();
+            }else{
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("UPDATE FAILED");
                 alert.setHeaderText("UPDATE MAKANAN !");
                 alert.setContentText("GAGAL MENGUPDATE MAKANAN !");
                 alert.showAndWait();  
+                clearField();
             }
             loadDB();
         }catch(Exception e){
@@ -173,6 +177,13 @@ public class MakananManajemenController implements Initializable {
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
+    }
+    
+    public void clearField(){
+        namaMakananBaru.setText(null);
+        namaMakananLama.setText(null);
+        kaloriMakananBaru.setText(null);
+        kaloriMakananLama.setText(null);
     }
     
 }

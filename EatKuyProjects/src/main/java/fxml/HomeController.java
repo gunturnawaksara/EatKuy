@@ -141,6 +141,7 @@ public class HomeController implements Initializable {
     public void GetUserLogin(String uName) {
         // TODO Auto-generated method stub
         this.sessionUsername = uName;
+        this.username.setText(uName);
     }
     
     public int hitungKaloriL() throws SQLException, ClassNotFoundException{
