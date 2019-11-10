@@ -51,10 +51,12 @@ public class SignUp2Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        comboJK.setItems(JK);
+        comboAktivitas.setItems(aktivitas);
     }    
 
     @FXML
-    private void changeButton(ActionEvent event) {
+    private void doneButton(ActionEvent event) {
         DBUtil db = new DBUtil();
         String usiaUser = usia.getText();
         String beratBadanUser = beratBadan.getText();
@@ -64,7 +66,7 @@ public class SignUp2Controller implements Initializable {
         try{
             String query = "UPDATE Akun SET JenisKelamin = '"+jenisKelaminUser+"', Usia= '"+usiaUser+"', BeratBadan= '"+beratBadanUser+"', TinggiBadan= '"+tinggiBadanUser+"', TingkatAktivitas= '"+tingkatAktivitasUser+"' WHERE Username='"+sessionUsername+"'";
             db.dbExecuteUpdate(query);
-            JOptionPane.showMessageDialog(null, "Berhasil Update");
+            JOptionPane.showMessageDialog(null, "Berhasil Signup");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Home.fxml"));
             Parent Main = (Parent) loader.load();
             HomeController home = (HomeController)loader.getController();
