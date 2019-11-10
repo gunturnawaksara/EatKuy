@@ -28,7 +28,7 @@ public class AkunDAO {
             akun.setJenisKelamin(rs.getString("JenisKelamin"));
             akun.setBeratBadan(rs.getInt("BeratBadan"));
             akun.setTinggiBadan(rs.getInt("TinggiBadan"));
-            akun.setTingkatAktivitas(rs.getInt("TingkatAktivitas"));
+            akun.setTingkatAktivitas(rs.getString("TingkatAktivitas"));
             akun.setStatus(rs.getInt("Status"));
         }
         return akun;
@@ -58,7 +58,7 @@ public class AkunDAO {
             akun.setJenisKelamin(rs.getString("JenisKelamin"));
             akun.setBeratBadan(rs.getInt("BeratBadan"));
             akun.setTinggiBadan(rs.getInt("TinggiBadan"));
-            akun.setTingkatAktivitas(rs.getInt("TingkatAktivitas"));
+            akun.setTingkatAktivitas(rs.getString("TingkatAktivitas"));
             akun.setStatus(rs.getInt("Status"));
             akunList.add(akun);
         }
