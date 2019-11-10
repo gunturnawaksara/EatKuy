@@ -70,7 +70,7 @@
                   </AnchorPane>
               </content>
             </Tab>
-            <Tab text="Lunch">
+            <Tab onSelectionChanged="#loadLunchDB" text="Lunch">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #fa8072;">
                      <children>
@@ -120,7 +120,7 @@
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab text="Dinner">
+            <Tab onSelectionChanged="#loadDinnerDB" text="Dinner">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #fa8072;">
                      <children>
