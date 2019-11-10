@@ -24,17 +24,17 @@
                   <Image url="@../pics/background_template.jpg" />
                </image>
             </ImageView>
-            <ImageView fitHeight="33.0" fitWidth="31.0" layoutX="16.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="33.0" fitWidth="31.0" layoutX="14.0" layoutY="157.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../pics/Email_icon.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="33.0" fitWidth="31.0" layoutX="16.0" layoutY="193.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="33.0" fitWidth="31.0" layoutX="14.0" layoutY="204.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../pics/Key_icon.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="33.0" fitWidth="31.0" layoutX="16.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="33.0" fitWidth="31.0" layoutX="14.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../pics/icon_user.png" />
                </image>
@@ -49,7 +49,7 @@
                   <Font name="System Bold Italic" size="14.0" />
                </font>
             </Label>
-            <PasswordField fx:id="passwordSignup" layoutX="60.0" layoutY="188.0" prefHeight="31.0" prefWidth="224.0" promptText="Password" style="-fx-background-color: transparant; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;">
+            <PasswordField fx:id="passwordSignup" layoutX="58.0" layoutY="199.0" prefHeight="31.0" prefWidth="224.0" promptText="Password" style="-fx-background-color: transparant; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;">
                <effect>
                   <Lighting>
                      <bumpInput>
@@ -61,7 +61,7 @@
                   </Lighting>
                </effect>
             </PasswordField>
-            <TextField fx:id="usernameSignup" layoutX="60.0" layoutY="86.0" prefHeight="30.0" prefWidth="224.0" promptText="Username" style="-fx-background-color: transparant; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;">
+            <TextField fx:id="usernameSignup" layoutX="58.0" layoutY="97.0" prefHeight="30.0" prefWidth="224.0" promptText="Username" style="-fx-background-color: transparant; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;">
                <effect>
                   <Lighting>
                      <bumpInput>
@@ -81,7 +81,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <TextField fx:id="emailSignup" layoutX="60.0" layoutY="137.0" prefHeight="30.0" prefWidth="224.0" promptText="Email" style="-fx-background-color: transparant; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;">
+            <TextField fx:id="emailSignup" layoutX="58.0" layoutY="148.0" prefHeight="30.0" prefWidth="224.0" promptText="Email" style="-fx-background-color: transparant; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;">
                <effect>
                   <Lighting>
                      <bumpInput>
