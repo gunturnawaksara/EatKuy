@@ -63,6 +63,8 @@ public class LoginController implements Initializable {
                 if(level == 1){
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Admin.fxml"));
                     Parent Main = (Parent) loader.load();
+                    AdminController adm = (AdminController)loader.getController();
+                    adm.onLoad();
                     Scene scene = new Scene(Main);
                     Stage Primarystage = (Stage) ((Node)event.getSource()).getScene().getWindow();
                     Primarystage.setResizable(false);

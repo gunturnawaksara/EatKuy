@@ -87,7 +87,7 @@ public class SignupController implements Initializable {
                     int TinggiBadan = 0;
                     int TingkatAktivitas = 0;
                     int Status = 2;
-                    String query3 = "INSERT INTO Akun(Email,Username,Password,JenisKelamin,Usia,BeratBadan,TinggiBadan,TingkatAktivitas,Status) VALUES ('"+email+"','"+username+"','"+pass+"','"+JenisKelamin+"','"+Usia+"','"+BeratBadan+"','"+TinggiBadan+"','"+TingkatAktivitas+"','"+Status+"')";;
+                    String query3 = "INSERT INTO Akun(Email,Username,Password,JenisKelamin,Usia,BeratBadan,TinggiBadan,TingkatAktivitas,Status) VALUES ('"+email+"','"+username+"','"+pass+"','"+JenisKelamin+"','"+Usia+"','"+BeratBadan+"','"+TinggiBadan+"','"+TingkatAktivitas+"','"+Status+"')";
                     ResultSet rs3 = db.dbExecuteQuery(query3);
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Main.fxml"));
                     Parent Main = (Parent) loader.load();
@@ -98,7 +98,7 @@ public class SignupController implements Initializable {
                     Primarystage.setResizable(false);
                     Primarystage.setScene(scene);
                     Primarystage.show();
-                    rs.close();
+                    rs3.close();
                 }
             }
         } catch(Exception e){

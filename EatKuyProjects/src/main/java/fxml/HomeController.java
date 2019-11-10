@@ -6,6 +6,8 @@
 package fxml;
 
 import com.mycompany.eatkuyprojects.DBUtil;
+import com.mycompany.eatkuyprojects.Makanan;
+import com.mycompany.eatkuyprojects.MakananDAO;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -24,7 +26,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
@@ -41,53 +46,45 @@ public class HomeController implements Initializable {
     private String sessionStatus;
     @FXML
     private TextField usia;
-
     @FXML
     private ImageView tambahL;
-
     @FXML
     private ImageView searchButtonL;
-
     @FXML
     private TextField beratBadan;
-
     @FXML
     private TextField search;
-
     @FXML
     private ImageView searchButtonB;
-
     @FXML
     private Label kaloriD;
-    
-
     @FXML
     private Label kaloriB;
-
-
     @FXML
     private Label kaloriL;
-
     @FXML
     private TextField tinggiBadan;
-
     @FXML
     private ImageView tambahD;
-
     @FXML
     private Label username;
-
     @FXML
     private ImageView tambahB;
-    
     @FXML
     private ComboBox<String> comboJK;
-    
     @FXML
     private ComboBox<String> comboAktivitas;
     
     ObservableList<String> JK = FXCollections.observableArrayList("Laki-laki","Perempuan");
     ObservableList<String> aktivitas = FXCollections.observableArrayList("Sangat jarang olahraga","Jarang olahraga","Normal olahraga","Sering olahraga","Sangat sering olahraga");
+    @FXML
+    private TableColumn<Makanan, Integer> col_idBreakfast;
+    @FXML
+    private TableColumn<Makanan, String> col_namaBreakfast;
+    @FXML
+    private TableColumn<Makanan, Integer> col_KaloriBreakfast;
+    @FXML
+    private TableView<Makanan> makananBreakfast;
 
     /**
      * Initializes the controller class.
@@ -238,6 +235,19 @@ public class HomeController implements Initializable {
         rs.close();
     }
       
+    public void loadDB(TableColumn<Makanan, Integer> idMakanan, TableColumn<Makanan, String> namaMakanan, TableColumn<Makanan, Integer> kaloriMakanan, TableView<Makanan> tableTab){
+        idMakanan.setCellValueFactory(new PropertyValueFactory("id_makanan"));
+        namaMakanan.setCellValueFactory(new PropertyValueFactory("Nama_makanan"));
+        kaloriMakanan.setCellValueFactory(new PropertyValueFactory("Kalori"));
+        
+        ObservableList<Makanan> data;
+        try {
+            data = MakananDAO.searchMakanans();
+            tableTab.setItems(data);
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(MakananManajemenController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -245,5 +255,6 @@ public class HomeController implements Initializable {
         db = new DBUtil();
         comboJK.setItems(JK);
         comboAktivitas.setItems(aktivitas);
+        loadDB(col_idBreakfast, col_namaBreakfast, col_KaloriBreakfast, makananBreakfast);
     } 
 }
