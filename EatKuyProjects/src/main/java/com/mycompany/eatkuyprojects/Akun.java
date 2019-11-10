@@ -21,7 +21,7 @@ public class Akun {
     private SimpleStringProperty JenisKelamin;
     private SimpleIntegerProperty BeratBadan;
     private SimpleIntegerProperty TinggiBadan;
-    private SimpleIntegerProperty TingkatAktivitas;
+    private SimpleStringProperty TingkatAktivitas;
     private SimpleIntegerProperty Status;
 
     public int getID_User() {
@@ -88,12 +88,12 @@ public class Akun {
         this.TinggiBadan = new SimpleIntegerProperty(TinggiBadan);
     }
 
-    public int getTingkatAktivitas() {
+    public String getTingkatAktivitas() {
         return TingkatAktivitas.get();
     }
 
-    public void setTingkatAktivitas(int TingkatAktivitas) {
-        this.TingkatAktivitas = new SimpleIntegerProperty(TingkatAktivitas);
+    public void setTingkatAktivitas(String TingkatAktivitas) {
+        this.TingkatAktivitas = new SimpleStringProperty(TingkatAktivitas);
     }
 
     public int getStatus() {

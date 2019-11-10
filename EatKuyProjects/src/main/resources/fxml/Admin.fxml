@@ -3,8 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -13,11 +11,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1039.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.AdminController">
+<BorderPane fx:id="borderpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="770.0" prefWidth="1339.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.AdminController">
    <left>
       <VBox alignment="CENTER" prefHeight="550.0" prefWidth="270.0" style="-fx-background-color: #d3d3d3;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="lihatAkun" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#lihatAkunButton" style="-fx-background-color: #d3d3d3;" text="Lihat Akun">
+            <Button fx:id="lihatAkun" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#lihatAkunButton" style="-fx-background-color: #d3d3d3;" text="Daftar Akun">
                <VBox.margin>
                   <Insets bottom="20.0" />
                </VBox.margin>
@@ -28,18 +26,7 @@
                   <InnerShadow />
                </effect>
             </Button>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="39.0" prefWidth="229.0" style="-fx-background-color: #d3d3d3;" text="Lihat makanan/minuman">
-               <VBox.margin>
-                  <Insets bottom="20.0" />
-               </VBox.margin>
-               <font>
-                  <Font name="Segoe UI Bold" size="18.0" />
-               </font>
-               <effect>
-                  <InnerShadow />
-               </effect>
-            </Button>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #d3d3d3;" text="Tambah makanan/minuman">
+            <Button fx:id="lihatMakanan" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#lihatMakananButton" prefHeight="39.0" prefWidth="229.0" style="-fx-background-color: #d3d3d3;" text="Daftar Makanan">
                <VBox.margin>
                   <Insets bottom="20.0" />
                </VBox.margin>
@@ -91,20 +78,4 @@
          </children>
       </HBox>
    </top>
-   <center>
-      <TableView fx:id="userTableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-        <columns>
-          <TableColumn fx:id="col_id" prefWidth="43.0" text="Id" />
-          <TableColumn fx:id="col_email" text="Email" />
-            <TableColumn fx:id="col_uname" prefWidth="83.0" text="Username" />
-            <TableColumn fx:id="col_pass" prefWidth="69.0" text="Password" />
-            <TableColumn fx:id="col_usia" prefWidth="57.0" text="Usia" />
-            <TableColumn fx:id="col_jkelamin" prefWidth="92.0" text="Jenis Kelamin" />
-            <TableColumn fx:id="col_bb" prefWidth="83.0" text="Berat Badan" />
-            <TableColumn fx:id="col_tb" prefWidth="86.33331298828125" text="Tinggi Badan" />
-            <TableColumn fx:id="col_ta" minWidth="0.0" prefWidth="100.66668701171875" text="Tingkat Aktivitas" />
-            <TableColumn fx:id="col_status" prefWidth="73.0" text="Status" />
-        </columns>
-      </TableView>
-   </center>
 </BorderPane>

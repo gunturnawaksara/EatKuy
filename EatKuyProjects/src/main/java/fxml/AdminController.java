@@ -5,16 +5,11 @@
  */
 package fxml;
 
-import com.mycompany.eatkuyprojects.Akun;
-import com.mycompany.eatkuyprojects.AkunDAO;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,9 +18,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 /**
@@ -36,29 +29,13 @@ import javafx.stage.Stage;
 public class AdminController implements Initializable {
     
     @FXML
+    private BorderPane borderpane;
+    @FXML
+    private Button lihatAkun;
+    @FXML
+    private Button lihatMakanan;
+    @FXML
     private Button logout;
-    @FXML
-    private TableView<Akun> userTableView;
-    @FXML
-    private TableColumn<Akun, Integer> col_id;
-    @FXML
-    private TableColumn<Akun, String> col_email;
-    @FXML
-    private TableColumn<Akun, String> col_uname;
-    @FXML
-    private TableColumn<Akun, String> col_pass;
-    @FXML
-    private TableColumn<Akun, Integer> col_usia;
-    @FXML
-    private TableColumn<Akun, String> col_jkelamin;
-    @FXML
-    private TableColumn<Akun, Integer> col_bb;
-    @FXML
-    private TableColumn<Akun, Integer> col_tb;
-    @FXML
-    private TableColumn<Akun, Integer> col_ta;
-    @FXML
-    private TableColumn<Akun, Integer> col_status; 
 
 
     @FXML
@@ -69,33 +46,39 @@ public class AdminController implements Initializable {
         stage.setScene(new Scene(root));
     }
     
-     @FXML
+    @FXML
     void lihatAkunButton(ActionEvent event) {
-       
+       loadUI("UserManajemen");
     }
     
     
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        col_id.setCellValueFactory(new PropertyValueFactory("ID_User"));
-        col_email.setCellValueFactory(new PropertyValueFactory("Email"));
-        col_uname.setCellValueFactory(new PropertyValueFactory("Username"));
-        col_pass.setCellValueFactory(new PropertyValueFactory("Password"));
-        col_usia.setCellValueFactory(new PropertyValueFactory("Usia"));
-        col_jkelamin.setCellValueFactory(new PropertyValueFactory("JenisKelamin"));
-        col_bb.setCellValueFactory(new PropertyValueFactory("BeratBadan"));
-        col_tb.setCellValueFactory(new PropertyValueFactory("TinggiBadan"));
-        col_ta.setCellValueFactory(new PropertyValueFactory("TingkatAktivitas"));
-        col_status.setCellValueFactory(new PropertyValueFactory("Status"));
-        
-        //ambil data dari db dan masukkan ke TableView
-
-        ObservableList<Akun> data;
+    
+    private void loadUI(String title){
+        Parent root = null;
         try {
-            data = AkunDAO.searchAkuns();
-            userTableView.setItems(data);
-        } catch (SQLException | ClassNotFoundException ex) {
-
-        }
+            root = FXMLLoader.load(getClass().getResource(title+".fxml"));
+        } catch (IOException ex) {
+            Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
+        }   
+        borderpane.setCenter(root);
     }
+    
+    public void onLoad(){
+        loadUI("UserManajemen");
+    }
+    
+    public void refreshMakanan(){
+        loadUI("MakananManajemen");
+    }
+
+    @FXML
+    public void lihatMakananButton(ActionEvent event) {
+        loadUI("MakananManajemen");
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+    }
+
+
 }

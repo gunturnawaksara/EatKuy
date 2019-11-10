@@ -87,18 +87,18 @@ public class SignupController implements Initializable {
                     int TinggiBadan = 0;
                     int TingkatAktivitas = 0;
                     int Status = 2;
-                    String query3 = "INSERT INTO Akun(Email,Username,Password,JenisKelamin,Usia,BeratBadan,TinggiBadan,TingkatAktivitas,Status) VALUES ('"+email+"','"+username+"','"+pass+"','"+JenisKelamin+"','"+Usia+"','"+BeratBadan+"','"+TinggiBadan+"','"+TingkatAktivitas+"','"+Status+"')";;
+                    String query3 = "INSERT INTO Akun(Email,Username,Password,JenisKelamin,Usia,BeratBadan,TinggiBadan,TingkatAktivitas,Status) VALUES ('"+email+"','"+username+"','"+pass+"','"+JenisKelamin+"','"+Usia+"','"+BeratBadan+"','"+TinggiBadan+"','"+TingkatAktivitas+"','"+Status+"')";
                     ResultSet rs3 = db.dbExecuteQuery(query3);
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Main.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/SignUp2.fxml"));
                     Parent Main = (Parent) loader.load();
-                    HomeController home = (HomeController)loader.getController();
-                    home.GetUserLogin(username, "Member");
+                    SignUp2Controller sg = (SignUp2Controller)loader.getController();
+                    sg.GetUserLogin(username);
                     Scene scene = new Scene(Main);
                     Stage Primarystage = (Stage) ((Node)event.getSource()).getScene().getWindow();
                     Primarystage.setResizable(false);
                     Primarystage.setScene(scene);
                     Primarystage.show();
-                    rs.close();
+                    rs3.close();
                 }
             }
         } catch(Exception e){

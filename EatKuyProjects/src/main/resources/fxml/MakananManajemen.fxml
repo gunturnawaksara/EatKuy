@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="673.0" prefWidth="1078.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.MakananManajemenController">
+   <children>
+      <TableView fx:id="makananTableView" layoutX="7.0" onMouseClicked="#getMakananValue" prefHeight="673.0" prefWidth="462.0">
+         <columns>
+            <TableColumn fx:id="col_idm" prefWidth="56.000030517578125" text="Id" />
+            <TableColumn fx:id="col_namam" prefWidth="260.0" text="Nama Makanan" />
+            <TableColumn fx:id="col_kalorim" minWidth="0.0" prefWidth="143.0" text="Kalori Makanan" />
+         </columns>
+      </TableView>
+      <AnchorPane layoutX="469.0" prefHeight="673.0" prefWidth="608.0">
+         <children>
+            <Label layoutX="15.0" layoutY="155.0" text="Nama Makanan" />
+            <TextField fx:id="namaMakananBaru" layoutX="15.0" layoutY="183.0" />
+            <Button fx:id="tambahMakananButton" layoutX="168.0" layoutY="227.0" mnemonicParsing="false" onAction="#tambahMakanAction" text="Tambah Makanan" />
+            <Label layoutX="250.0" layoutY="154.0" text="Kalori Makanan" />
+            <TextField fx:id="kaloriMakananBaru" layoutX="250.0" layoutY="182.0" />
+            <Button fx:id="hapusMakanButton" layoutX="250.0" layoutY="449.0" mnemonicParsing="false" onAction="#hapusMakananAction" text="Hapus Makanan" />
+            <Label layoutX="15.0" layoutY="126.0" text="TAMBAH MAKANAN">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="337.0" text="UPDATE MAKANAN">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="366.0" text="Nama Makanan" />
+            <TextField fx:id="namaMakananLama" layoutX="14.0" layoutY="394.0" />
+            <Label layoutX="249.0" layoutY="365.0" text="Kalori Makanan" />
+            <TextField fx:id="kaloriMakananLama" layoutX="249.0" layoutY="393.0" />
+            <Button fx:id="updateMakanButton1" layoutX="67.0" layoutY="449.0" mnemonicParsing="false" onAction="#updateMakananAction" text="Update Makanan" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
