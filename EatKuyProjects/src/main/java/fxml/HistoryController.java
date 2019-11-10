@@ -7,7 +7,10 @@ package fxml;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TableView;
 
 /**
  * FXML Controller class
@@ -16,6 +19,9 @@ import javafx.fxml.Initializable;
  */
 public class HistoryController implements Initializable {
 
+    @FXML
+    private TableView<?> tabelHistory;
+
     /**
      * Initializes the controller class.
      */
@@ -23,5 +29,9 @@ public class HistoryController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void backButton(ActionEvent event) {
+    }
     
 }
