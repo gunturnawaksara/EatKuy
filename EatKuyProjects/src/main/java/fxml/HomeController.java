@@ -279,7 +279,7 @@ public class HomeController implements Initializable {
     }
     
     public void loadDinnerDB(){
-        loadDB(col_idDinner, col_namaDinner, col_KaloriDinner, makananDinner);
+        loadDB(col_idDinner, col_namaDinner, col_KaloriDinner, makananDinner);   
     }
     
     @Override
