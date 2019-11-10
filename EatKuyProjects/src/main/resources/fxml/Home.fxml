@@ -20,7 +20,7 @@
    <center>
       <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
-            <Tab text="Breakfast">
+            <Tab onSelectionChanged="#loadBreakfastDB" text="Breakfast">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #fa8072;">
                      <children>
@@ -40,7 +40,7 @@
                         </TableView>
                         <TableView fx:id="makananBreakfast" layoutX="725.0" layoutY="127.0" prefHeight="380.0" prefWidth="366.0">
                           <columns>
-                            <TableColumn fx:id="col_idBreakfast" prefWidth="75.0" text="ID" />
+                            <TableColumn fx:id="col_idBreakfast" prefWidth="75.0" text="No" />
                             <TableColumn fx:id="col_namaBreakfast" prefWidth="182.0" text="Nama Makanan" />
                               <TableColumn fx:id="col_KaloriBreakfast" prefWidth="108.0" text="Kalori" />
                           </columns>
@@ -55,7 +55,7 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="search" layoutX="725.0" layoutY="539.0" prefHeight="31.0" prefWidth="215.0" promptText="Search Food/Kalori" />
+                        <TextField fx:id="searchBreakfast" layoutX="725.0" layoutY="539.0" prefHeight="31.0" prefWidth="215.0" promptText="Search Food/Kalori" />
                         <ImageView fx:id="searchButtonB" fitHeight="30.0" fitWidth="41.0" layoutX="948.0" layoutY="540.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../pics/search_icon.png" />
@@ -71,20 +71,28 @@
               </content>
             </Tab>
             <Tab text="Lunch">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #fa8072;">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #fa8072;">
                      <children>
-                        <TextField fx:id="search" layoutX="725.0" layoutY="539.0" />
+                        <ImageView fitHeight="93.0" fitWidth="97.0" layoutX="28.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                           <image>
+                              <Image url="@../pics/logo.png" />
+                           </image>
+                        </ImageView>
                         <TableView layoutX="57.0" layoutY="127.0" prefHeight="451.0" prefWidth="366.0">
                            <columns>
                               <TableColumn prefWidth="75.0" text="C1" />
                               <TableColumn prefWidth="75.0" text="C2" />
                            </columns>
                         </TableView>
-                        <TableView layoutX="725.0" layoutY="127.0" prefHeight="380.0" prefWidth="366.0">
+                        <TableView fx:id="makananLunch" layoutX="725.0" layoutY="127.0" prefHeight="380.0" prefWidth="366.0">
                            <columns>
-                              <TableColumn prefWidth="75.0" text="C1" />
-                              <TableColumn prefWidth="75.0" text="C2" />
+                              <TableColumn fx:id="col_idLunch" prefWidth="75.0" text="No" />
+                              <TableColumn fx:id="col_namaLunch" prefWidth="182.0" text="Nama Makanan" />
+                              <TableColumn fx:id="col_KaloriLunch" prefWidth="108.0" text="Kalori" />
                            </columns>
                         </TableView>
                         <Label layoutX="455.0" layoutY="353.0" text="Kalori yang anda butuhkan :" textFill="WHITE">
@@ -97,31 +105,24 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="93.0" fitWidth="97.0" layoutX="28.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-                           <effect>
-                              <DropShadow />
-                           </effect>
-                           <image>
-                              <Image url="@../pics/logo.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fx:id="tambahL" fitHeight="56.0" fitWidth="47.0" layoutX="1044.0" layoutY="521.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../pics/plus_icon.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fx:id="searchButtonL" fitHeight="30.0" fitWidth="41.0" layoutX="955.0" layoutY="544.0" pickOnBounds="true" preserveRatio="true">
+                        <TextField fx:id="searchLunch" layoutX="725.0" layoutY="539.0" prefHeight="31.0" prefWidth="215.0" promptText="Search Food/Kalori" />
+                        <ImageView fx:id="searchButtonB1" fitHeight="30.0" fitWidth="41.0" layoutX="948.0" layoutY="540.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../pics/search_icon.png" />
                            </image>
                         </ImageView>
+                        <ImageView fx:id="tambahL" fitHeight="56.0" fitWidth="47.0" layoutX="1044.0" layoutY="517.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../pics/plus_icon.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
-              </content>
+               </content>
             </Tab>
             <Tab text="Dinner">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #fa8072;">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #fa8072;">
                      <children>
                         <ImageView fitHeight="93.0" fitWidth="97.0" layoutX="28.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                            <effect>
@@ -131,42 +132,43 @@
                               <Image url="@../pics/logo.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="tambahD" fitHeight="56.0" fitWidth="47.0" layoutX="1044.0" layoutY="521.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../pics/plus_icon.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fx:id="searchButtonL" fitHeight="30.0" fitWidth="41.0" layoutX="955.0" layoutY="544.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../pics/search_icon.png" />
-                           </image>
-                        </ImageView>
-                        <TextField fx:id="search" layoutX="725.0" layoutY="539.0" />
-                        <Label fx:id="kaloriD" layoutX="551.0" layoutY="407.0" text="Kalori" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="455.0" layoutY="353.0" text="Kalori yang anda butuhkan :" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font>
-                        </Label>
-                        <TableView layoutX="725.0" layoutY="127.0" prefHeight="380.0" prefWidth="366.0">
-                           <columns>
-                              <TableColumn prefWidth="75.0" text="C1" />
-                              <TableColumn prefWidth="75.0" text="C2" />
-                           </columns>
-                        </TableView>
                         <TableView layoutX="57.0" layoutY="127.0" prefHeight="451.0" prefWidth="366.0">
                            <columns>
                               <TableColumn prefWidth="75.0" text="C1" />
                               <TableColumn prefWidth="75.0" text="C2" />
                            </columns>
                         </TableView>
+                        <TableView fx:id="makananDinner" layoutX="725.0" layoutY="127.0" prefHeight="380.0" prefWidth="366.0">
+                           <columns>
+                              <TableColumn fx:id="col_idDinner" prefWidth="75.0" text="No" />
+                              <TableColumn fx:id="col_namaDinner" prefWidth="182.0" text="Nama Makanan" />
+                              <TableColumn fx:id="col_KaloriDinner" prefWidth="108.0" text="Kalori" />
+                           </columns>
+                        </TableView>
+                        <Label layoutX="455.0" layoutY="353.0" text="Kalori yang anda butuhkan :" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="kaloriD" layoutX="551.0" layoutY="407.0" text="Kalori" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="searchLunch1" layoutX="725.0" layoutY="539.0" prefHeight="31.0" prefWidth="215.0" promptText="Search Food/Kalori" />
+                        <ImageView fx:id="searchButtonB11" fitHeight="30.0" fitWidth="41.0" layoutX="948.0" layoutY="540.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../pics/search_icon.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="tambahD" fitHeight="56.0" fitWidth="47.0" layoutX="1044.0" layoutY="517.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../pics/plus_icon.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
-              </content>
+               </content>
             </Tab>
             <Tab text="About">
               <content>
