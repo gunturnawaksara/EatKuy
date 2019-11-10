@@ -55,8 +55,8 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="searchBreakfast" layoutX="725.0" layoutY="539.0" prefHeight="31.0" prefWidth="215.0" promptText="Search Food/Kalori" />
-                        <ImageView fx:id="searchButtonB" fitHeight="30.0" fitWidth="41.0" layoutX="948.0" layoutY="540.0" pickOnBounds="true" preserveRatio="true">
+                        <TextField fx:id="searchBreakfast" layoutX="725.0" layoutY="539.0" onAction="#filterMakananBreakfast" prefHeight="31.0" prefWidth="215.0" promptText="Search Food/Kalori" />
+                        <ImageView fitHeight="30.0" fitWidth="41.0" layoutX="948.0" layoutY="540.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../pics/search_icon.png" />
                            </image>
@@ -105,8 +105,8 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="searchLunch" layoutX="725.0" layoutY="539.0" prefHeight="31.0" prefWidth="215.0" promptText="Search Food/Kalori" />
-                        <ImageView fx:id="searchButtonB1" fitHeight="30.0" fitWidth="41.0" layoutX="948.0" layoutY="540.0" pickOnBounds="true" preserveRatio="true">
+                        <TextField fx:id="searchLunch" layoutX="725.0" layoutY="539.0" onAction="#filterMakananLunch" prefHeight="31.0" prefWidth="215.0" promptText="Search Food/Kalori" />
+                        <ImageView fitHeight="30.0" fitWidth="41.0" layoutX="948.0" layoutY="540.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../pics/search_icon.png" />
                            </image>
@@ -155,8 +155,8 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="searchLunch1" layoutX="725.0" layoutY="539.0" prefHeight="31.0" prefWidth="215.0" promptText="Search Food/Kalori" />
-                        <ImageView fx:id="searchButtonB11" fitHeight="30.0" fitWidth="41.0" layoutX="948.0" layoutY="540.0" pickOnBounds="true" preserveRatio="true">
+                        <TextField fx:id="searchDinner" layoutX="725.0" layoutY="539.0" onAction="#filterMakananDinner" prefHeight="31.0" prefWidth="215.0" promptText="Search Food/Kalori" />
+                        <ImageView fitHeight="30.0" fitWidth="41.0" layoutX="948.0" layoutY="540.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../pics/search_icon.png" />
                            </image>
