@@ -13,10 +13,15 @@ import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,6 +36,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.InputMethodEvent;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 
@@ -47,8 +53,6 @@ public class HomeController implements Initializable {
     private TextField usia;
     @FXML
     private TextField beratBadan;
-    @FXML
-    private ImageView searchButtonB;
     @FXML
     private Label kaloriD;
     @FXML
@@ -89,8 +93,6 @@ public class HomeController implements Initializable {
     @FXML
     private TextField searchLunch;
     @FXML
-    private ImageView searchButtonB1;
-    @FXML
     private TableView<Makanan> makananDinner;
     @FXML
     private TableColumn<Makanan, Integer> col_idDinner;
@@ -99,13 +101,11 @@ public class HomeController implements Initializable {
     @FXML
     private TableColumn<Makanan, Integer> col_KaloriDinner;
     @FXML
-    private TextField searchLunch1;
-    @FXML
-    private ImageView searchButtonB11;
-    @FXML
     private ImageView tambahL;
     @FXML
     private ImageView tambahD;
+    @FXML
+    private TextField searchDinner;
 
     /**
      * Initializes the controller class.
@@ -271,16 +271,53 @@ public class HomeController implements Initializable {
         }
     }
     
+    @FXML
     public void loadBreakfastDB(){
         loadDB(col_idBreakfast, col_namaBreakfast, col_KaloriBreakfast, makananBreakfast);
     }
     
+    @FXML
     public void loadLunchDB(){
         loadDB(col_idLunch, col_namaLunch, col_KaloriLunch, makananLunch);
     }
     
+    @FXML
     public void loadDinnerDB(){
         loadDB(col_idDinner, col_namaDinner, col_KaloriDinner, makananDinner);   
+    }
+    
+    public void searchFiltered(TextField session, TableView<Makanan> tabSeacrh){
+        ObservableList<Makanan> data;
+        try {
+            data = MakananDAO.searchMakanans();
+            final FilteredList<Makanan> filteredList = new FilteredList<>(data);
+            session.textProperty().addListener(new ChangeListener<String>() {
+                @Override
+                public void changed(ObservableValue<? extends String> observable, String oldValue, final String newValue) {
+                    filteredList.setPredicate(new Predicate<Makanan>() {
+                        @Override
+                        public boolean test(Makanan t) {
+                            if(newValue == null || newValue.isEmpty()){
+                                return true;
+                            }
+                            String lowerCaseFilter = newValue.toLowerCase();
+                            if(t.getNama_makanan().toLowerCase().indexOf(lowerCaseFilter) != -1){
+                                return true;
+                            } else if (String.valueOf(t.getKalori()).toLowerCase().indexOf(lowerCaseFilter) != -1){
+                                return true;
+                            }
+                            return false;
+                        }
+                    });
+                }
+            });
+            SortedList<Makanan> sortedData = new SortedList<>(filteredList);
+            sortedData.comparatorProperty().bind(tabSeacrh.comparatorProperty());
+            tabSeacrh.setItems(sortedData);
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(MakananManajemenController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
     
     @Override
@@ -291,4 +328,19 @@ public class HomeController implements Initializable {
         comboAktivitas.setItems(aktivitas);
         loadBreakfastDB();
     } 
+
+    @FXML
+    private void filterMakananBreakfast(ActionEvent event) {
+        searchFiltered(searchBreakfast, makananBreakfast);
+    }
+
+    @FXML
+    private void filterMakananLunch(ActionEvent event) {
+        searchFiltered(searchLunch, makananLunch);
+    }
+       
+    @FXML
+    private void filterMakananDinner(ActionEvent event) {
+        searchFiltered(searchDinner, makananDinner);
+    }
 }
