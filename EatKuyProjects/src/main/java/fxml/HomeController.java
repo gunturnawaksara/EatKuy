@@ -343,4 +343,19 @@ public class HomeController implements Initializable {
     private void filterMakananDinner(ActionEvent event) {
         searchFiltered(searchDinner, makananDinner);
     }
+
+    @FXML
+    private void historyButtonB(ActionEvent event) throws IOException {
+        
+    }
+
+    @FXML
+    private void historyButtonL(ActionEvent event) throws IOException {
+         
+    }
+
+    @FXML
+    private void historyButtonD(ActionEvent event) throws IOException {
+        
+    }        
 }

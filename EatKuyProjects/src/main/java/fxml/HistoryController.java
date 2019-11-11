@@ -32,6 +32,7 @@ public class HistoryController implements Initializable {
 
     @FXML
     private void backButton(ActionEvent event) {
+        
     }
     
 }
