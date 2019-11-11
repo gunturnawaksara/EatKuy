@@ -175,84 +175,85 @@ public class HomeController implements Initializable {
     public void GetKaloriUser() throws SQLException, ClassNotFoundException{
         String query="SELECT Usia, JenisKelamin, BeratBadan, TinggiBadan, TingkatAktivitas from Akun WHERE Username='"+sessionUsername+"'";
         ResultSet rs=db.dbExecuteQuery(query);
-        rs.next();        
-        int usia= rs.getInt(1);
-        String jk = rs.getString(2);
-        int bb= rs.getInt(3);
-        int tb= rs.getInt(4);
-        String ta = rs.getString(5);
-        int tamp;
-        String kal;
-        if(jk.equals("Laki-laki")&& ta.equals("Sangat jarang olahraga")){
-           tamp=(int) (1.2*this.hitungKaloriL());
-           kal =String.valueOf(tamp);
-           this.kaloriB.setText(kal);
-           this.kaloriD.setText(kal);
-           this.kaloriL.setText(kal);
-           
-        } else if(jk.equals("Laki-laki")&& ta.equals("Jarang olahraga")){
-            tamp= (int) (1.375*this.hitungKaloriL());
-            kal =String.valueOf(tamp);
-            this.kaloriB.setText(kal);
-            this.kaloriD.setText(kal);
-            this.kaloriL.setText(kal);
-            
-        }  else if(jk.equals("Laki-laki")&& ta.equals("Normal olahraga")){
-            tamp= (int) (1.55*this.hitungKaloriL());
-            kal =String.valueOf(tamp);
-            this.kaloriB.setText(kal);
-            this.kaloriD.setText(kal);
-            this.kaloriL.setText(kal);
-            
-        }  else if(jk.equals("Laki-laki")&& ta.equals("Sering olahraga")){
-            tamp= (int) (1.725*this.hitungKaloriL());
-            kal =String.valueOf(tamp);
-            this.kaloriB.setText(kal);
-            this.kaloriD.setText(kal);
-            this.kaloriL.setText(kal);
-            
-        }  else if(jk.equals("Laki-laki")&& ta.equals("Sangat sering olahraga")){
-            tamp= (int) (1.9*this.hitungKaloriL());
-            kal =String.valueOf(tamp);
-            this.kaloriB.setText(kal);
-            this.kaloriD.setText(kal);
-            this.kaloriL.setText(kal);
-            
-        }  else if(jk.equals("Perempuan")&& ta.equals("Sangat jarang olahraga")){
-            tamp= (int) (1.2*this.hitungKaloriP());
-            kal =String.valueOf(tamp);
-            this.kaloriB.setText(kal);
-            this.kaloriD.setText(kal);
-            this.kaloriL.setText(kal);
-            
-        } else if(jk.equals("Perempuan")&& ta.equals("Jarang olahraga")){
-            tamp= (int) (1.375*this.hitungKaloriP());
-            kal =String.valueOf(tamp);
-            this.kaloriB.setText(kal);
-            this.kaloriD.setText(kal);
-            this.kaloriL.setText(kal);
-            
-        } else if(jk.equals("Perempuan")&& ta.equals("Normal olahraga")){
-            tamp= (int) (1.55*this.hitungKaloriP());
-            kal =String.valueOf(tamp);
-            this.kaloriB.setText(kal);
-            this.kaloriD.setText(kal);
-            this.kaloriL.setText(kal);
-            
-        } else if(jk.equals("Perempuan")&& ta.equals("Sering olahraga")){
-            tamp= (int) (1.725*this.hitungKaloriP());
-            kal =String.valueOf(tamp);
-            this.kaloriB.setText(kal);
-            this.kaloriD.setText(kal);
-            this.kaloriL.setText(kal);
-            
-        } else if(jk.equals("Perempuan")&& ta.equals("Sangat sering olahraga")){
-            tamp= (int) (1.9*this.hitungKaloriP());
-            kal =String.valueOf(tamp);
-            this.kaloriB.setText(kal);
-            this.kaloriD.setText(kal);
-            this.kaloriL.setText(kal);
-        }
+        if(rs.next()){
+            int usia= rs.getInt(1);
+            String jk = rs.getString(2);
+            int bb= rs.getInt(3);
+            int tb= rs.getInt(4);
+            String ta = rs.getString(5);
+            int tamp;
+            String kal;
+            if(jk.equals("Laki-laki")&& ta.equals("Sangat jarang olahraga")){
+               tamp=(int) (1.2*this.hitungKaloriL());
+               kal =String.valueOf(tamp);
+               this.kaloriB.setText(kal);
+               this.kaloriD.setText(kal);
+               this.kaloriL.setText(kal);
+
+            } else if(jk.equals("Laki-laki")&& ta.equals("Jarang olahraga")){
+                tamp= (int) (1.375*this.hitungKaloriL());
+                kal =String.valueOf(tamp);
+                this.kaloriB.setText(kal);
+                this.kaloriD.setText(kal);
+                this.kaloriL.setText(kal);
+
+            }  else if(jk.equals("Laki-laki")&& ta.equals("Normal olahraga")){
+                tamp= (int) (1.55*this.hitungKaloriL());
+                kal =String.valueOf(tamp);
+                this.kaloriB.setText(kal);
+                this.kaloriD.setText(kal);
+                this.kaloriL.setText(kal);
+
+            }  else if(jk.equals("Laki-laki")&& ta.equals("Sering olahraga")){
+                tamp= (int) (1.725*this.hitungKaloriL());
+                kal =String.valueOf(tamp);
+                this.kaloriB.setText(kal);
+                this.kaloriD.setText(kal);
+                this.kaloriL.setText(kal);
+
+            }  else if(jk.equals("Laki-laki")&& ta.equals("Sangat sering olahraga")){
+                tamp= (int) (1.9*this.hitungKaloriL());
+                kal =String.valueOf(tamp);
+                this.kaloriB.setText(kal);
+                this.kaloriD.setText(kal);
+                this.kaloriL.setText(kal);
+
+            }  else if(jk.equals("Perempuan")&& ta.equals("Sangat jarang olahraga")){
+                tamp= (int) (1.2*this.hitungKaloriP());
+                kal =String.valueOf(tamp);
+                this.kaloriB.setText(kal);
+                this.kaloriD.setText(kal);
+                this.kaloriL.setText(kal);
+
+            } else if(jk.equals("Perempuan")&& ta.equals("Jarang olahraga")){
+                tamp= (int) (1.375*this.hitungKaloriP());
+                kal =String.valueOf(tamp);
+                this.kaloriB.setText(kal);
+                this.kaloriD.setText(kal);
+                this.kaloriL.setText(kal);
+
+            } else if(jk.equals("Perempuan")&& ta.equals("Normal olahraga")){
+                tamp= (int) (1.55*this.hitungKaloriP());
+                kal =String.valueOf(tamp);
+                this.kaloriB.setText(kal);
+                this.kaloriD.setText(kal);
+                this.kaloriL.setText(kal);
+
+            } else if(jk.equals("Perempuan")&& ta.equals("Sering olahraga")){
+                tamp= (int) (1.725*this.hitungKaloriP());
+                kal =String.valueOf(tamp);
+                this.kaloriB.setText(kal);
+                this.kaloriD.setText(kal);
+                this.kaloriL.setText(kal);
+
+            } else if(jk.equals("Perempuan")&& ta.equals("Sangat sering olahraga")){
+                tamp= (int) (1.9*this.hitungKaloriP());
+                kal =String.valueOf(tamp);
+                this.kaloriB.setText(kal);
+                this.kaloriD.setText(kal);
+                this.kaloriL.setText(kal);
+            }
+        }        
         rs.close();
     }
       
@@ -322,11 +323,19 @@ public class HomeController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        db = new DBUtil();
-        comboJK.setItems(JK);
-        comboAktivitas.setItems(aktivitas);
-        loadBreakfastDB();
+        try {
+            // TODO
+            db = new DBUtil();
+            this.GetUserLogin(sessionUsername);
+            this.GetKaloriUser();
+            comboJK.setItems(JK);
+            comboAktivitas.setItems(aktivitas);
+            loadBreakfastDB();
+        } catch (SQLException ex) {
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     } 
 
     @FXML
@@ -346,16 +355,40 @@ public class HomeController implements Initializable {
 
     @FXML
     private void historyButtonB(ActionEvent event) throws IOException {
-        
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/History.fxml"));
+                    Parent Main = (Parent) loader.load();
+                    HistoryController his = (HistoryController)loader.getController();
+                    his.GetUserLogin(this.sessionUsername);
+                    Scene scene = new Scene(Main);
+                    Stage Primarystage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+                    Primarystage.setResizable(false);
+                    Primarystage.setScene(scene);
+                    Primarystage.show();
     }
 
     @FXML
     private void historyButtonL(ActionEvent event) throws IOException {
-         
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/History.fxml"));
+                    Parent Main = (Parent) loader.load();
+                    HistoryController his = (HistoryController)loader.getController();
+                    his.GetUserLogin(this.sessionUsername);
+                    Scene scene = new Scene(Main);
+                    Stage Primarystage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+                    Primarystage.setResizable(false);
+                    Primarystage.setScene(scene);
+                    Primarystage.show();
     }
 
     @FXML
     private void historyButtonD(ActionEvent event) throws IOException {
-        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/History.fxml"));
+                    Parent Main = (Parent) loader.load();
+                    HistoryController his = (HistoryController)loader.getController();
+                    his.GetUserLogin(this.sessionUsername);
+                    Scene scene = new Scene(Main);
+                    Stage Primarystage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+                    Primarystage.setResizable(false);
+                    Primarystage.setScene(scene);
+                    Primarystage.show();
     }        
 }
