@@ -6,6 +6,8 @@
 package fxml;
 
 import com.mycompany.eatkuyprojects.DBUtil;
+import com.mycompany.eatkuyprojects.DailyEat;
+import com.mycompany.eatkuyprojects.DailyEatDAO;
 import com.mycompany.eatkuyprojects.Makanan;
 import com.mycompany.eatkuyprojects.MakananDAO;
 import java.io.IOException;
@@ -23,6 +25,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -54,58 +57,44 @@ public class HomeController implements Initializable {
     @FXML
     private TextField beratBadan;
     @FXML
-    private Label kaloriD;
-    @FXML
-    private Label kaloriB;
-    @FXML
-    private Label kaloriL;
+    private Label kalori;
     @FXML
     private TextField tinggiBadan;
     @FXML
     private Label username;
     @FXML
-    private ImageView tambahB;
+    private ImageView tambahButton;
     @FXML
     private ComboBox<String> comboJK;
     @FXML
     private ComboBox<String> comboAktivitas;
+    @FXML
+    private ComboBox<String> comboSesi;
     
     ObservableList<String> JK = FXCollections.observableArrayList("Laki-laki","Perempuan");
     ObservableList<String> aktivitas = FXCollections.observableArrayList("Sangat jarang olahraga","Jarang olahraga","Normal olahraga","Sering olahraga","Sangat sering olahraga");
+    ObservableList<String> sesi = FXCollections.observableArrayList("Breakfast","Lunch","Dinner");
     @FXML
-    private TableColumn<Makanan, Integer> col_idBreakfast;
+    private TableView<Makanan> makananTabel;
     @FXML
-    private TableColumn<Makanan, String> col_namaBreakfast;
+    private TextField searchField;
     @FXML
-    private TableColumn<Makanan, Integer> col_KaloriBreakfast;
+    private TableView<DailyEat> catatMakanan;
+
     @FXML
-    private TableView<Makanan> makananBreakfast;
+    private TableColumn<Makanan, Integer> col_idMakanan;
     @FXML
-    private TextField searchBreakfast;
+    private TableColumn<Makanan, String> col_namaMakanan;
     @FXML
-    private TableView<Makanan> makananLunch;
+    private TableColumn<Makanan, Integer> col_KaloriMakanan;
     @FXML
-    private TableColumn<Makanan, Integer> col_idLunch;
+    private TableColumn<DailyEat, Integer> col_idCatat;
     @FXML
-    private TableColumn<Makanan, String> col_namaLunch;
+    private TableColumn<DailyEat, String> col_namaMakananCatat;
     @FXML
-    private TableColumn<Makanan, Integer> col_KaloriLunch;
+    private TableColumn<DailyEat, Integer> col_kaloriCatat;
     @FXML
-    private TextField searchLunch;
-    @FXML
-    private TableView<Makanan> makananDinner;
-    @FXML
-    private TableColumn<Makanan, Integer> col_idDinner;
-    @FXML
-    private TableColumn<Makanan, String> col_namaDinner;
-    @FXML
-    private TableColumn<Makanan, Integer> col_KaloriDinner;
-    @FXML
-    private ImageView tambahL;
-    @FXML
-    private ImageView tambahD;
-    @FXML
-    private TextField searchDinner;
+    private TableColumn<DailyEat, String> col_sesiCatat;
 
     /**
      * Initializes the controller class.
@@ -186,79 +175,74 @@ public class HomeController implements Initializable {
             if(jk.equals("Laki-laki")&& ta.equals("Sangat jarang olahraga")){
                tamp=(int) (1.2*this.hitungKaloriL());
                kal =String.valueOf(tamp);
-               this.kaloriB.setText(kal);
-               this.kaloriD.setText(kal);
-               this.kaloriL.setText(kal);
+               this.kalori.setText(kal);
 
             } else if(jk.equals("Laki-laki")&& ta.equals("Jarang olahraga")){
                 tamp= (int) (1.375*this.hitungKaloriL());
                 kal =String.valueOf(tamp);
-                this.kaloriB.setText(kal);
-                this.kaloriD.setText(kal);
-                this.kaloriL.setText(kal);
+                this.kalori.setText(kal);
 
             }  else if(jk.equals("Laki-laki")&& ta.equals("Normal olahraga")){
                 tamp= (int) (1.55*this.hitungKaloriL());
                 kal =String.valueOf(tamp);
-                this.kaloriB.setText(kal);
-                this.kaloriD.setText(kal);
-                this.kaloriL.setText(kal);
+                this.kalori.setText(kal);
 
             }  else if(jk.equals("Laki-laki")&& ta.equals("Sering olahraga")){
                 tamp= (int) (1.725*this.hitungKaloriL());
                 kal =String.valueOf(tamp);
-                this.kaloriB.setText(kal);
-                this.kaloriD.setText(kal);
-                this.kaloriL.setText(kal);
+                this.kalori.setText(kal);
 
             }  else if(jk.equals("Laki-laki")&& ta.equals("Sangat sering olahraga")){
                 tamp= (int) (1.9*this.hitungKaloriL());
                 kal =String.valueOf(tamp);
-                this.kaloriB.setText(kal);
-                this.kaloriD.setText(kal);
-                this.kaloriL.setText(kal);
+                this.kalori.setText(kal);
 
             }  else if(jk.equals("Perempuan")&& ta.equals("Sangat jarang olahraga")){
                 tamp= (int) (1.2*this.hitungKaloriP());
                 kal =String.valueOf(tamp);
-                this.kaloriB.setText(kal);
-                this.kaloriD.setText(kal);
-                this.kaloriL.setText(kal);
+                this.kalori.setText(kal);
 
             } else if(jk.equals("Perempuan")&& ta.equals("Jarang olahraga")){
                 tamp= (int) (1.375*this.hitungKaloriP());
                 kal =String.valueOf(tamp);
-                this.kaloriB.setText(kal);
-                this.kaloriD.setText(kal);
-                this.kaloriL.setText(kal);
+                this.kalori.setText(kal);
 
             } else if(jk.equals("Perempuan")&& ta.equals("Normal olahraga")){
                 tamp= (int) (1.55*this.hitungKaloriP());
                 kal =String.valueOf(tamp);
-                this.kaloriB.setText(kal);
-                this.kaloriD.setText(kal);
-                this.kaloriL.setText(kal);
+                this.kalori.setText(kal);
 
             } else if(jk.equals("Perempuan")&& ta.equals("Sering olahraga")){
                 tamp= (int) (1.725*this.hitungKaloriP());
                 kal =String.valueOf(tamp);
-                this.kaloriB.setText(kal);
-                this.kaloriD.setText(kal);
-                this.kaloriL.setText(kal);
+                this.kalori.setText(kal);
 
             } else if(jk.equals("Perempuan")&& ta.equals("Sangat sering olahraga")){
                 tamp= (int) (1.9*this.hitungKaloriP());
                 kal =String.valueOf(tamp);
-                this.kaloriB.setText(kal);
-                this.kaloriD.setText(kal);
-                this.kaloriL.setText(kal);
+                this.kalori.setText(kal);
             }
         }
         rs.close();
     }
+    
+    public void loadDB1(TableColumn<DailyEat, Integer> id_Catat, TableColumn<DailyEat, String> namaMakananCatat, TableColumn<DailyEat, Integer> kaloriCatat, TableColumn<DailyEat, String> sesiCatat, TableView<DailyEat> tableTab){
+        id_Catat.setCellValueFactory(new PropertyValueFactory("ID_Catat"));
+        namaMakananCatat.setCellValueFactory(new PropertyValueFactory("NamaMakanan"));
+        kaloriCatat.setCellValueFactory(new PropertyValueFactory("Kalori"));
+        sesiCatat.setCellValueFactory(new PropertyValueFactory("SesiMakan"));
+        
+        ObservableList<DailyEat> data;
+        try {
+            data = DailyEatDAO.searchDailyEats();
+            tableTab.setItems(data);
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(MakananManajemenController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
       
       
-    public void loadDB(TableColumn<Makanan, Integer> idMakanan, TableColumn<Makanan, String> namaMakanan, TableColumn<Makanan, Integer> kaloriMakanan, TableView<Makanan> tableTab){
+    public void loadDB2(TableColumn<Makanan, Integer> idMakanan, TableColumn<Makanan, String> namaMakanan, TableColumn<Makanan, Integer> kaloriMakanan, TableView<Makanan> tableTab){
         idMakanan.setCellValueFactory(new PropertyValueFactory("id_makanan"));
         namaMakanan.setCellValueFactory(new PropertyValueFactory("Nama_makanan"));
         kaloriMakanan.setCellValueFactory(new PropertyValueFactory("Kalori"));
@@ -272,19 +256,12 @@ public class HomeController implements Initializable {
         }
     }
     
-    @FXML
-    public void loadBreakfastDB(){
-        loadDB(col_idBreakfast, col_namaBreakfast, col_KaloriBreakfast, makananBreakfast);
+    public void loadMakananDB(){
+        loadDB2(col_idMakanan, col_namaMakanan, col_KaloriMakanan, makananTabel);
     }
     
-    @FXML
-    public void loadLunchDB(){
-        loadDB(col_idLunch, col_namaLunch, col_KaloriLunch, makananLunch);
-    }
-    
-    @FXML
-    public void loadDinnerDB(){
-        loadDB(col_idDinner, col_namaDinner, col_KaloriDinner, makananDinner);   
+    public void loadCatatDB(){
+        loadDB1(col_idCatat, col_namaMakananCatat, col_kaloriCatat, col_sesiCatat, catatMakanan);
     }
     
     public void searchFiltered(TextField session, TableView<Makanan> tabSeacrh){
@@ -327,26 +304,18 @@ public class HomeController implements Initializable {
         db = new DBUtil();
         comboJK.setItems(JK);
         comboAktivitas.setItems(aktivitas);
-        loadBreakfastDB();
+        comboSesi.setItems(sesi);
+        loadMakananDB();
+        loadCatatDB();
     } 
 
     @FXML
-    private void filterMakananBreakfast(ActionEvent event) {
-        searchFiltered(searchBreakfast, makananBreakfast);
+    private void filterMakanan(ActionEvent event) {
+        searchFiltered(searchField, makananTabel);
     }
 
     @FXML
-    private void filterMakananLunch(ActionEvent event) {
-        searchFiltered(searchLunch, makananLunch);
-    }
-       
-    @FXML
-    private void filterMakananDinner(ActionEvent event) {
-        searchFiltered(searchDinner, makananDinner);
-    }
-
-    @FXML
-    private void historyButtonB(ActionEvent event) throws IOException {
+    private void historyButton(ActionEvent event) throws IOException {
          FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/History.fxml"));
                     Parent Main = (Parent) loader.load();
                     HistoryController his = (HistoryController)loader.getController();
@@ -356,31 +325,6 @@ public class HomeController implements Initializable {
                     Primarystage.setResizable(false);
                     Primarystage.setScene(scene);
                     Primarystage.show();
-    }
-
-    @FXML
-    private void historyButtonL(ActionEvent event) throws IOException {
-         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/History.fxml"));
-                    Parent Main = (Parent) loader.load();
-                    HistoryController his = (HistoryController)loader.getController();
-                    his.GetUserLogin(this.sessionUsername);
-                    Scene scene = new Scene(Main);
-                    Stage Primarystage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-                    Primarystage.setResizable(false);
-                    Primarystage.setScene(scene);
-                    Primarystage.show();
-    }
-
-    @FXML
-    private void historyButtonD(ActionEvent event) throws IOException {
-       FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/History.fxml"));
-                    Parent Main = (Parent) loader.load();
-                    HistoryController his = (HistoryController)loader.getController();
-                    his.GetUserLogin(this.sessionUsername);
-                    Scene scene = new Scene(Main);
-                    Stage Primarystage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-                    Primarystage.setResizable(false);
-                    Primarystage.setScene(scene);
-                    Primarystage.show(); 
     }        
+
 }
