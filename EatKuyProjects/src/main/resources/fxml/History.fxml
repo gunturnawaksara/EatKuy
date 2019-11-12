@@ -9,11 +9,11 @@
    <children>
       <TableView fx:id="tabelHistory" layoutX="38.0" prefHeight="507.0" prefWidth="721.0">
         <columns>
-          <TableColumn prefWidth="49.0" text="ID" />
-          <TableColumn prefWidth="151.0" text="User" />
-            <TableColumn minWidth="0.0" prefWidth="282.0" text="Nama Makanan" />
-            <TableColumn prefWidth="98.0" text="Kalori" />
-            <TableColumn prefWidth="140.0" text="Tanggal" />
+          <TableColumn fx:id="col_idHistory" prefWidth="49.0" text="ID" />
+          <TableColumn fx:id="col_userHistory" prefWidth="151.0" text="User" />
+            <TableColumn fx:id="col_makananHistory" minWidth="0.0" prefWidth="282.0" text="Nama Makanan" />
+            <TableColumn fx:id="col_kaloriHistory" prefWidth="98.0" text="Kalori" />
+            <TableColumn fx:id="col_tanggalHistory" prefWidth="140.0" text="Tanggal" />
         </columns>
       </TableView>
       <Button layoutX="375.0" layoutY="539.0" mnemonicParsing="false" onAction="#backButton" text="Back" />
