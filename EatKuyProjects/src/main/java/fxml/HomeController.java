@@ -32,6 +32,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -40,6 +41,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.InputMethodEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 
@@ -62,8 +64,6 @@ public class HomeController implements Initializable {
     private TextField tinggiBadan;
     @FXML
     private Label username;
-    @FXML
-    private ImageView tambahButton;
     @FXML
     private ComboBox<String> comboJK;
     @FXML
@@ -95,6 +95,10 @@ public class HomeController implements Initializable {
     private TableColumn<DailyEat, Integer> col_kaloriCatat;
     @FXML
     private TableColumn<DailyEat, String> col_sesiCatat;
+    @FXML
+    private TextField makananTxt;
+    @FXML
+    private TextField kaloriTxt;
 
     /**
      * Initializes the controller class.
@@ -325,6 +329,42 @@ public class HomeController implements Initializable {
                     Primarystage.setResizable(false);
                     Primarystage.setScene(scene);
                     Primarystage.show();
-    }        
+    }  
+
+    @FXML
+    private void getMakanan(MouseEvent event) {
+        try{
+            makananTxt.setText(makananTabel.getSelectionModel().getSelectedItem().getNama_makanan());
+            kaloriTxt.setText(makananTabel.getSelectionModel().getSelectedItem().getKalori());
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    
+    public void clearField(){
+        makananTxt.setText(null);
+        kaloriTxt.setText(null);
+        comboSesi.setValue(null);
+    }
+
+    @FXML
+    private void buttonTambah(MouseEvent event) {
+        String namaM = makananTxt.getText();
+        String kaloriM = kaloriTxt.getText();
+        String sesi = comboSesi.getValue();
+        try{
+                String query = "INSERT INTO MakananHarian(NamaMakanan, Kalori,SesiMakan) VALUES('"+namaM+"','"+kaloriM+"','"+sesi+"')";
+                db.dbExecuteUpdate(query);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("ADD FOOD SUCCESS");
+                alert.setHeaderText("TAMBAH MAKANAN !");
+                alert.setContentText("BERHASIL MENAMBAH MAKANAN !");
+                alert.showAndWait();
+                clearField();
+                loadDB1(col_idCatat, col_namaMakananCatat, col_kaloriCatat, col_sesiCatat, catatMakanan);
+        }catch(Exception e){
+            System.out.print(e);
+        }
+    }
 
 }

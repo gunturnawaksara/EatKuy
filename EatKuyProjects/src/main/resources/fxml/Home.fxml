@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -22,7 +16,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="706.0" prefWidth="1147.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.HomeController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="706.0" prefWidth="1147.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.HomeController">
    <center>
       <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
@@ -46,7 +40,7 @@
                               <TableColumn fx:id="col_sesiCatat" prefWidth="104.0" text="Sesi" />
                           </columns>
                         </TableView>
-                        <TableView fx:id="makananTabel" layoutX="725.0" layoutY="127.0" prefHeight="380.0" prefWidth="397.0">
+                        <TableView fx:id="makananTabel" layoutX="725.0" layoutY="127.0" onMouseClicked="#getMakanan" prefHeight="380.0" prefWidth="397.0">
                           <columns>
                             <TableColumn fx:id="col_idMakanan" prefWidth="49.0" text="No" />
                             <TableColumn fx:id="col_namaMakanan" prefWidth="243.0" text="Nama Makanan" />
@@ -63,13 +57,13 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="searchField" layoutX="725.0" layoutY="539.0" onAction="#filterMakanan" prefHeight="31.0" prefWidth="215.0" promptText="Search Food/Kalori" />
-                        <ImageView fitHeight="30.0" fitWidth="41.0" layoutX="969.0" layoutY="541.0" pickOnBounds="true" preserveRatio="true">
+                        <TextField fx:id="searchField" layoutX="849.0" layoutY="71.0" onAction="#filterMakanan" prefHeight="31.0" prefWidth="215.0" promptText="Search Food/Kalori" />
+                        <ImageView fitHeight="30.0" fitWidth="41.0" layoutX="1084.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../pics/search_icon.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="tambahButton" fitHeight="56.0" fitWidth="47.0" layoutX="1060.0" layoutY="532.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="56.0" fitWidth="47.0" layoutX="1060.0" layoutY="532.0" onMouseClicked="#buttonTambah" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../pics/plus_icon.png" />
                            </image>
@@ -81,6 +75,8 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
+                        <TextField fx:id="makananTxt" layoutX="727.0" layoutY="541.0" prefHeight="31.0" prefWidth="124.0" promptText="Nama Makanan" />
+                        <TextField fx:id="kaloriTxt" layoutX="863.0" layoutY="541.0" prefHeight="31.0" prefWidth="121.0" promptText="Kalori" />
                      </children>
                   </AnchorPane>
               </content>
