@@ -36,6 +36,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -104,6 +105,8 @@ public class HomeController implements Initializable {
     private TextField kaloriTxt;
     @FXML
     private ImageView tambahBtn;
+    @FXML
+    private Button changeBtn;
 
     /**
      * Initializes the controller class.
@@ -113,18 +116,29 @@ public class HomeController implements Initializable {
     
     @FXML
     private void changeButton(ActionEvent event) {
-        String usiaUser = usia.getText();
-        String beratBadanUser = beratBadan.getText();
-        String tinggiBadanUser = tinggiBadan.getText();
-        String jenisKelaminUser = comboJK.getValue();
-        String tingkatAktivitasUser = comboAktivitas.getValue();
-        try{
-            String query = "UPDATE Akun SET JenisKelamin = '"+jenisKelaminUser+"', Usia= '"+usiaUser+"', BeratBadan= '"+beratBadanUser+"', TinggiBadan= '"+tinggiBadanUser+"', TingkatAktivitas= '"+tingkatAktivitasUser+"' WHERE Username='"+sessionUsername+"'";
-            db.dbExecuteUpdate(query);
-            JOptionPane.showMessageDialog(null, "Berhasil Update");
-            this.GetKaloriUser();
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, "FAILED log");
+        if(changeBtn.getText().equals("Change")){
+            comboJK.setDisable(false);
+            beratBadan.setDisable(false);
+            tinggiBadan.setDisable(false);
+            usia.setDisable(false);
+            comboAktivitas.setDisable(false);
+            changeBtn.setText("SAVE");
+        }else{
+            String usiaUser = usia.getText();
+            String beratBadanUser = beratBadan.getText();
+            String tinggiBadanUser = tinggiBadan.getText();
+            String jenisKelaminUser = comboJK.getValue();
+            String tingkatAktivitasUser = comboAktivitas.getValue();
+            try{
+                String query = "UPDATE Akun SET JenisKelamin = '"+jenisKelaminUser+"', Usia= '"+usiaUser+"', BeratBadan= '"+beratBadanUser+"', TinggiBadan= '"+tinggiBadanUser+"', TingkatAktivitas= '"+tingkatAktivitasUser+"' WHERE Username='"+sessionUsername+"'";
+                db.dbExecuteUpdate(query);
+                JOptionPane.showMessageDialog(null, "Berhasil Update");
+                this.GetKaloriUser();
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, "FAILED log");
+            }
+            changeBtn.setText("Change");
+            getDisableChanger();
         }
     }
 
@@ -136,11 +150,37 @@ public class HomeController implements Initializable {
         stage.setScene(new Scene(root));
     }
     
-    public void GetUserLogin(String uName) {
+    public void GetUserLogin(String uName){
         // TODO Auto-generated method stub
         this.sessionUsername = uName;
         this.username.setText(uName);
+        getDisableChanger();
     }
+    
+    public void getDisableChanger(){
+        String query = "SELECT * FROM Akun Where Username = '"+sessionUsername+"'";
+        ResultSet rs;
+        try {
+            rs = db.dbExecuteQuery(query);
+            if(rs.next()){
+                comboJK.setValue(rs.getString("JenisKelamin"));
+                beratBadan.setText(String.valueOf(rs.getInt("BeratBadan")));
+                tinggiBadan.setText(String.valueOf(rs.getInt("TinggiBadan")));
+                usia.setText(String.valueOf(rs.getInt("Usia")));
+                comboAktivitas.setValue(rs.getString("TingkatAktivitas"));
+            }
+            comboJK.setDisable(true);
+            beratBadan.setDisable(true);
+            tinggiBadan.setDisable(true);
+            usia.setDisable(true);
+            comboAktivitas.setDisable(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }
+    
     
     public int hitungKaloriL() throws SQLException, ClassNotFoundException{
         String query="SELECT Usia, JenisKelamin, BeratBadan, TinggiBadan, TingkatAktivitas from Akun WHERE Username='"+sessionUsername+"'";
