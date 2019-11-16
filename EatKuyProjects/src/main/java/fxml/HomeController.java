@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
 import java.util.logging.Level;
@@ -311,6 +313,13 @@ public class HomeController implements Initializable {
         comboSesi.setItems(sesi);
         loadMakananDB();
         loadCatatDB();
+        try {
+            pindahHistory();
+        } catch (SQLException ex) {
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     } 
 
     @FXML
@@ -352,8 +361,11 @@ public class HomeController implements Initializable {
         String namaM = makananTxt.getText();
         String kaloriM = kaloriTxt.getText();
         String sesi = comboSesi.getValue();
+        String pattern = "yyyy-mm-dd";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        String date = simpleDateFormat.format(new Date());
         try{
-                String query = "INSERT INTO MakananHarian(NamaMakanan, Kalori,SesiMakan) VALUES('"+namaM+"','"+kaloriM+"','"+sesi+"')";
+                String query = "INSERT INTO MakananHarian(NamaMakanan, Kalori, SesiMakan, Tanggal) VALUES('"+namaM+"','"+kaloriM+"','"+sesi+"','"+date+"')";
                 db.dbExecuteUpdate(query);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("ADD FOOD SUCCESS");
@@ -365,6 +377,23 @@ public class HomeController implements Initializable {
         }catch(Exception e){
             System.out.print(e);
         }
+    }
+    
+    public void pindahHistory() throws SQLException, ClassNotFoundException{
+        String pattern = "yyyy-mm-dd";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        String date = simpleDateFormat.format(new Date());
+        System.out.print(date);
+        String query = "SELECT * FROM MakananHarian WHERE Username= '"+sessionUsername+"'";
+        ResultSet rs2 = db.dbExecuteQuery(query);
+        while(rs2.next()){
+            if(String.valueOf(rs2.getDate("Tanggal")) != date){
+                String queryInsert = "INSERT INTO MakananHistory(ID_History, User, NamaMakanan, Kalori, Tanggal VALUES('"+rs2.getString("ID_catat")+"','"+sessionUsername+"','"+rs2.getString("NamaMakanan")+"','"+rs2.getString("Kalori")+"','"+rs2.getString("Tanggal")+"')";
+                db.dbExecuteUpdate(queryInsert);
+            }
+        }
+        String queryReset = "DELETE FROM MakananHarian WHERE 1";
+        db.dbExecuteUpdate(queryReset);
     }
 
 }

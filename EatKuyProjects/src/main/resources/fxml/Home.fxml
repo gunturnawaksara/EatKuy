@@ -68,7 +68,7 @@
                               <Image url="@../pics/plus_icon.png" />
                            </image>
                         </ImageView>
-                        <Button layoutX="195.0" layoutY="541.0" mnemonicParsing="false" onAction="#historyButton" text="Show History" />
+                        <Button layoutX="206.0" layoutY="544.0" mnemonicParsing="false" onAction="#historyButton" text="Show History" />
                         <ComboBox fx:id="comboSesi" layoutX="849.0" layoutY="588.0" prefWidth="150.0" />
                         <Label layoutX="725.0" layoutY="590.0" text="Sesi makan" textFill="WHITE">
                            <font>

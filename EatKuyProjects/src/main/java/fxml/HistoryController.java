@@ -56,7 +56,7 @@ public class HistoryController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    @Override
+    @Override 
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         loadHistory();
