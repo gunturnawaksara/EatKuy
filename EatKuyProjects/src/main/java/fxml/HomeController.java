@@ -400,10 +400,4 @@ public class HomeController implements Initializable {
         tanggalHistory.setValue(LocalDate.now());
     }
     
-
-    @FXML
-    private void tanggalButton(ActionEvent event) {
-        
-    }
-    
 }
