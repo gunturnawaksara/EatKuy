@@ -16,6 +16,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
@@ -38,6 +39,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -107,6 +109,8 @@ public class HomeController implements Initializable {
     private ImageView tambahBtn;
     @FXML
     private Button changeBtn;
+    @FXML
+    private DatePicker tanggalHistory;
 
     /**
      * Initializes the controller class.
@@ -314,25 +318,26 @@ public class HomeController implements Initializable {
         comboSesi.setItems(sesi);
         loadDB1(col_idCatat, col_namaMakananCatat, col_kaloriCatat, col_sesiCatat, catatMakanan);
         loadDB2(col_idMakanan, col_namaMakanan, col_KaloriMakanan, makananTabel);
+        tanggalHariIni();
     } 
 
     @FXML
     private void filterMakanan(ActionEvent event) {
-        ObservableList<Makanan> data;
+        ObservableList<DailyEat> data;
         try {
-            data = MakananDAO.searchMakanans();
-            final FilteredList<Makanan> filteredList = new FilteredList<>(data);
+            data = DailyEatDAO.searchDailyEats();
+            final FilteredList<DailyEat> filteredList = new FilteredList<>(data);
             searchField.textProperty().addListener(new ChangeListener<String>() {
                 @Override
                 public void changed(ObservableValue<? extends String> observable, String oldValue, final String newValue) {
-                    filteredList.setPredicate(new Predicate<Makanan>() {
+                    filteredList.setPredicate(new Predicate<DailyEat>() {
                         @Override
-                        public boolean test(Makanan t) {
+                        public boolean test(DailyEat t) {
                             if(newValue == null || newValue.isEmpty()){
                                 return true;
                             }
                             String lowerCaseFilter = newValue.toLowerCase();
-                            if(t.getNama_makanan().toLowerCase().indexOf(lowerCaseFilter) != -1){
+                            if(t.getNamaMakanan().toLowerCase().indexOf(lowerCaseFilter) != -1){
                                 return true;
                             } else if (String.valueOf(t.getKalori()).toLowerCase().indexOf(lowerCaseFilter) != -1){
                                 return true;
@@ -342,26 +347,14 @@ public class HomeController implements Initializable {
                     });
                 }
             });
-            SortedList<Makanan> sortedData = new SortedList<>(filteredList);
-            sortedData.comparatorProperty().bind(makananTabel.comparatorProperty());
-            makananTabel.setItems(sortedData);
+            SortedList<DailyEat> sortedData = new SortedList<>(filteredList);
+            sortedData.comparatorProperty().bind(catatMakanan.comparatorProperty());
+            catatMakanan.setItems(sortedData);
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(MakananManajemenController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-    @FXML
-    private void historyButton(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/History.fxml"));
-        Parent Main = (Parent) loader.load();
-        HistoryController his = (HistoryController)loader.getController();
-        his.GetUserLogin(this.sessionUsername);
-        Scene scene = new Scene(Main);
-        Stage Primarystage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        Primarystage.setResizable(false);
-        Primarystage.setScene(scene);
-        Primarystage.show();
-    }  
+ 
 
     @FXML
     private void getMakanan(MouseEvent event) {
@@ -404,22 +397,15 @@ public class HomeController implements Initializable {
         }
     }
     
-    public void pindahHistory() throws SQLException, ClassNotFoundException{
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-        Date date = new Date();
-        String query = "SELECT * FROM MakananHarian WHERE Username= '"+sessionUsername+"'";
-        ResultSet rs = db.dbExecuteQuery(query);
-        if(rs.next()){
-            while(rs.next()){
-                if(rs.getString("Tanggal") != dateFormat.format(date)){
-                    String queryInsert = "INSERT INTO MakananHistory(ID_History, User, NamaMakanan, Kalori, Tanggal) VALUES('"+rs.getString("ID_catat")+"','"+sessionUsername+"','"+rs.getString("NamaMakanan")+"','"+rs.getString("Kalori")+"','"+rs.getString("Tanggal")+"')";
-                    db.dbExecuteUpdate(queryInsert);
-                    String queryReset = "DELETE FROM MakananHarian WHERE NamaMakanan = '"+rs.getString("NamaMakanan")+"'";
-                    db.dbExecuteUpdate(queryReset);
-                } 
-            }
-            loadDB1(col_idCatat, col_namaMakananCatat, col_kaloriCatat, col_sesiCatat, catatMakanan);
-        }
+    
+    public void tanggalHariIni(){
+        tanggalHistory.setValue(LocalDate.now());
+    }
+    
+
+    @FXML
+    private void tanggalButton(ActionEvent event) {
+        
     }
     
 }

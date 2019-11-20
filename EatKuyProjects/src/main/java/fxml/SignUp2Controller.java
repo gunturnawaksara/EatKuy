@@ -72,7 +72,6 @@ public class SignUp2Controller implements Initializable {
             HomeController home = (HomeController)loader.getController();
             home.GetUserLogin(this.sessionUsername);
             home.GetKaloriUser();
-            home.pindahHistory();
             Scene scene = new Scene(Main);
             Stage Primarystage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             Primarystage.setResizable(false);
