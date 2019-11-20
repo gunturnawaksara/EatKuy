@@ -286,12 +286,12 @@ public class HomeController implements Initializable {
         sesiCatat.setCellValueFactory(new PropertyValueFactory("SesiMakan"));
         
         ObservableList<DailyEat> data;
-        try {
+        try {    
             data = DailyEatDAO.searchDailyEats();
             tableTab.setItems(data);
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(MakananManajemenController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }  
     }
       
       
@@ -377,9 +377,7 @@ public class HomeController implements Initializable {
         String namaM = makananTxt.getText();
         String kaloriM = kaloriTxt.getText();
         String sesi = comboSesi.getValue();
-        String pattern = "yyyy-MM-dd";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-        String date = simpleDateFormat.format(new Date());
+        LocalDate date = tanggalHistory.getValue();
         if(sesi != null){
             try{
                 String query = "INSERT INTO MakananHarian(NamaMakanan, Kalori, SesiMakan, Tanggal, Username) VALUES('"+namaM+"','"+kaloriM+"','"+sesi+"','"+date+"','"+sessionUsername+"')";

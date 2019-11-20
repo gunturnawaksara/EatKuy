@@ -73,5 +73,5 @@ public class DailyEat {
     public void setSesiMakan(String SesiMakan) {
         this.SesiMakan = new SimpleStringProperty(SesiMakan);
     }
-    
+      
 }
