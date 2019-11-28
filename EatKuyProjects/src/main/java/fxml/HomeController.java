@@ -111,6 +111,8 @@ public class HomeController implements Initializable {
     private Button changeBtn;
     @FXML
     private DatePicker tanggalHistory;
+    
+    private String tanggal;
 
     /**
      * Initializes the controller class.
@@ -279,7 +281,7 @@ public class HomeController implements Initializable {
         rs.close();
     }
     
-    public void loadDB1(TableColumn<DailyEat, Integer> id_Catat, TableColumn<DailyEat, String> namaMakananCatat, TableColumn<DailyEat, Integer> kaloriCatat, TableColumn<DailyEat, String> sesiCatat, TableView<DailyEat> tableTab){
+    public void loadDB1(TableColumn<DailyEat, Integer> id_Catat, TableColumn<DailyEat, String> namaMakananCatat, TableColumn<DailyEat, Integer> kaloriCatat, TableColumn<DailyEat, String> sesiCatat, TableView<DailyEat> tableTab, String date){
         id_Catat.setCellValueFactory(new PropertyValueFactory("ID_Catat"));
         namaMakananCatat.setCellValueFactory(new PropertyValueFactory("NamaMakanan"));
         kaloriCatat.setCellValueFactory(new PropertyValueFactory("Kalori"));
@@ -287,11 +289,13 @@ public class HomeController implements Initializable {
         
         ObservableList<DailyEat> data;
         try {    
-            data = DailyEatDAO.searchDailyEats();
+            data = DailyEatDAO.searchDailyEats(date);
             tableTab.setItems(data);
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(MakananManajemenController.class.getName()).log(Level.SEVERE, null, ex);
-        }  
+        }
+        
+        
     }
       
       
@@ -316,16 +320,16 @@ public class HomeController implements Initializable {
         comboJK.setItems(JK);
         comboAktivitas.setItems(aktivitas);
         comboSesi.setItems(sesi);
-        loadDB1(col_idCatat, col_namaMakananCatat, col_kaloriCatat, col_sesiCatat, catatMakanan);
-        loadDB2(col_idMakanan, col_namaMakanan, col_KaloriMakanan, makananTabel);
         tanggalHariIni();
+        loadDB1(col_idCatat, col_namaMakananCatat, col_kaloriCatat, col_sesiCatat, catatMakanan, String.valueOf(LocalDate.now()));
+        loadDB2(col_idMakanan, col_namaMakanan, col_KaloriMakanan, makananTabel);
     } 
 
     @FXML
     private void filterMakanan(ActionEvent event) {
         ObservableList<DailyEat> data;
         try {
-            data = DailyEatDAO.searchDailyEats();
+            data = DailyEatDAO.searchDailyEats(tanggal);
             final FilteredList<DailyEat> filteredList = new FilteredList<>(data);
             searchField.textProperty().addListener(new ChangeListener<String>() {
                 @Override
@@ -377,10 +381,9 @@ public class HomeController implements Initializable {
         String namaM = makananTxt.getText();
         String kaloriM = kaloriTxt.getText();
         String sesi = comboSesi.getValue();
-        LocalDate date = tanggalHistory.getValue();
         if(sesi != null){
             try{
-                String query = "INSERT INTO MakananHarian(NamaMakanan, Kalori, SesiMakan, Tanggal, Username) VALUES('"+namaM+"','"+kaloriM+"','"+sesi+"','"+date+"','"+sessionUsername+"')";
+                String query = "INSERT INTO MakananHarian(NamaMakanan, Kalori, SesiMakan, Tanggal, Username) VALUES('"+namaM+"','"+kaloriM+"','"+sesi+"','"+tanggal+"','"+sessionUsername+"')";
                 db.dbExecuteUpdate(query);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("ADD FOOD SUCCESS");
@@ -388,7 +391,7 @@ public class HomeController implements Initializable {
                 alert.setContentText("BERHASIL MENAMBAH MAKANAN !");
                 alert.showAndWait();
                 clearField();
-                loadDB1(col_idCatat, col_namaMakananCatat, col_kaloriCatat, col_sesiCatat, catatMakanan);
+                loadDB1(col_idCatat, col_namaMakananCatat, col_kaloriCatat, col_sesiCatat, catatMakanan, tanggal);
             }catch(Exception e){
                 System.out.print(e);
             }
@@ -398,6 +401,28 @@ public class HomeController implements Initializable {
     
     public void tanggalHariIni(){
         tanggalHistory.setValue(LocalDate.now());
+        tanggal = String.valueOf(tanggalHistory.getValue());
+    }
+
+    @FXML
+    private void getNewDate(ActionEvent event) throws ClassNotFoundException, SQLException {
+        tanggal = String.valueOf(tanggalHistory.getValue());
+        loadDB1(col_idCatat, col_namaMakananCatat, col_kaloriCatat, col_sesiCatat, catatMakanan, tanggal);
+        hitungPogressKalori(tanggal);
+    }
+    
+    public void hitungPogressKalori(String kalori) throws ClassNotFoundException, SQLException{
+        String selectStmt = "SELECT * FROM MakananHarian WHERE Tanggal = '"+tanggal+"'";
+        try {
+            ResultSet rsMtk = DBUtil.getInstance().dbExecuteQuery(selectStmt);
+            rsMtk.getString("Kalori");
+            int jmlhKalori = Integer.parseInt(this.kalori.getText());
+            int kalMakanan = Integer.parseInt(rsMtk.getString("Kalori"));
+            this.kalori.setText(String.valueOf(jmlhKalori-kalMakanan));
+        } catch (SQLException e) {
+            System.out.println("SQL select operation has been failed: " + e); //Return exception
+            throw e;
+        }
     }
     
 }
