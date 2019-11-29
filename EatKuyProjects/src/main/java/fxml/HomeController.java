@@ -286,11 +286,11 @@ public class HomeController implements Initializable {
         namaMakananCatat.setCellValueFactory(new PropertyValueFactory("NamaMakanan"));
         kaloriCatat.setCellValueFactory(new PropertyValueFactory("Kalori"));
         sesiCatat.setCellValueFactory(new PropertyValueFactory("SesiMakan"));
-        
         ObservableList<DailyEat> data;
         try {    
             data = DailyEatDAO.searchDailyEats(date);
             tableTab.setItems(data);
+            hitungPogressKalori(tanggal);
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(MakananManajemenController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -405,20 +405,22 @@ public class HomeController implements Initializable {
     }
 
     @FXML
-    private void getNewDate(ActionEvent event) throws ClassNotFoundException, SQLException {
+    private void getNewDate(ActionEvent event) {
         tanggal = String.valueOf(tanggalHistory.getValue());
         loadDB1(col_idCatat, col_namaMakananCatat, col_kaloriCatat, col_sesiCatat, catatMakanan, tanggal);
-        hitungPogressKalori(tanggal);
+        
     }
     
     public void hitungPogressKalori(String kalori) throws ClassNotFoundException, SQLException{
-        String selectStmt = "SELECT * FROM MakananHarian WHERE Tanggal = '"+tanggal+"'";
+        GetKaloriUser();
         try {
+            String selectStmt = "SELECT * FROM MakananHarian WHERE Tanggal = '"+tanggal+"'";
             ResultSet rsMtk = DBUtil.getInstance().dbExecuteQuery(selectStmt);
-            rsMtk.getString("Kalori");
-            int jmlhKalori = Integer.parseInt(this.kalori.getText());
-            int kalMakanan = Integer.parseInt(rsMtk.getString("Kalori"));
-            this.kalori.setText(String.valueOf(jmlhKalori-kalMakanan));
+            while(rsMtk.next()){
+                int jmlhKalori = Integer.parseInt(this.kalori.getText());
+                int kalMakanan = Integer.parseInt(rsMtk.getString("Kalori"));
+                this.kalori.setText(String.valueOf(jmlhKalori-kalMakanan));
+            }
         } catch (SQLException e) {
             System.out.println("SQL select operation has been failed: " + e); //Return exception
             throw e;
