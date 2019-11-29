@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="706.0" prefWidth="1147.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.HomeController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="706.0" prefWidth="1147.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.HomeController">
    <center>
       <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
@@ -84,7 +84,7 @@
                         </Label>
                         <TextField fx:id="makananTxt" layoutX="727.0" layoutY="541.0" prefHeight="31.0" prefWidth="124.0" promptText="Nama Makanan" />
                         <TextField fx:id="kaloriTxt" layoutX="863.0" layoutY="541.0" prefHeight="31.0" prefWidth="121.0" promptText="Kalori" />
-                        <DatePicker fx:id="tanggalHistory" layoutX="28.0" layoutY="542.0" promptText="Tanggal History" />
+                        <DatePicker fx:id="tanggalHistory" layoutX="28.0" layoutY="542.0" onAction="#getNewDate" promptText="Tanggal History" />
                      </children>
                   </AnchorPane>
               </content>

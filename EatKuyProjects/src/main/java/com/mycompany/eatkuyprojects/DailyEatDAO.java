@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.DatePicker;
 
 /**
  *
@@ -27,8 +28,8 @@ public class DailyEatDAO {
         return de;
     }
     
-    public static ObservableList<DailyEat> searchDailyEats() throws SQLException, ClassNotFoundException {
-        String selectStmt = "SELECT * FROM MakananHarian";
+    public static ObservableList<DailyEat> searchDailyEats(String date) throws SQLException, ClassNotFoundException {
+        String selectStmt = "SELECT * FROM MakananHarian WHERE Tanggal = '"+date+"'";
         try {
             ResultSet rsMtk = DBUtil.getInstance().dbExecuteQuery(selectStmt);
             ObservableList<DailyEat> mtkList = getDailyEatList(rsMtk);
