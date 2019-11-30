@@ -426,5 +426,18 @@ public class HomeController implements Initializable {
             throw e;
         }
     }
+
+    @FXML
+    private void grafik_btn(ActionEvent event) throws IOException, IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Grafik.fxml"));
+        Parent Main = (Parent) loader.load();
+        GrafikController grafik = (GrafikController)loader.getController();
+        grafik.GetUserLogin(this.sessionUsername);
+        Scene scene = new Scene(Main);
+        Stage Primarystage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Primarystage.setResizable(false);
+        Primarystage.setScene(scene);
+        Primarystage.show();
+    }
     
 }
