@@ -28,8 +28,8 @@ public class DailyEatDAO {
         return de;
     }
     
-    public static ObservableList<DailyEat> searchDailyEats(String date) throws SQLException, ClassNotFoundException {
-        String selectStmt = "SELECT * FROM MakananHarian WHERE Tanggal = '"+date+"'";
+    public static ObservableList<DailyEat> searchDailyEats(String date, String sessionUsername) throws SQLException, ClassNotFoundException {
+        String selectStmt = "SELECT * FROM MakananHarian WHERE Tanggal = '"+date+"' AND Username = '"+sessionUsername+"'";
         try {
             ResultSet rsMtk = DBUtil.getInstance().dbExecuteQuery(selectStmt);
             ObservableList<DailyEat> mtkList = getDailyEatList(rsMtk);
