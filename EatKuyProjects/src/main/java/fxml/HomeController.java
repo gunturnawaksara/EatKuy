@@ -156,11 +156,12 @@ public class HomeController implements Initializable {
         stage.setScene(new Scene(root));
     }
     
-    public void GetUserLogin(String uName){
+    public void GetUserLogin(String uName) throws ClassNotFoundException, SQLException{
         // TODO Auto-generated method stub
         this.sessionUsername = uName;
         this.username.setText(uName);
         getDisableChanger();
+        
     }
     
     public void getDisableChanger(){
@@ -428,7 +429,7 @@ public class HomeController implements Initializable {
     }
 
     @FXML
-    private void grafik_btn(ActionEvent event) throws IOException, IOException {
+    private void grafik_btn(ActionEvent event) throws IOException, IOException, SQLException, ClassNotFoundException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Grafik.fxml"));
         Parent Main = (Parent) loader.load();
         GrafikController grafik = (GrafikController)loader.getController();

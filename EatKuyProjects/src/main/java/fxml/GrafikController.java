@@ -39,11 +39,9 @@ public class GrafikController implements Initializable {
     private DBUtil db;
     
     @FXML
-    private LineChart<?, ?> grafikID;
-    @FXML
-    private NumberAxis y;
-    @FXML
-    private CategoryAxis x;
+    private LineChart<String, Number> grafikID;
+    
+    XYChart.Series<String,Number> dataKalori;
 
     /**
      * Initializes the controller class.
@@ -52,13 +50,6 @@ public class GrafikController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         db = new DBUtil();
-        try {
-            hitungGrafik();
-        } catch (SQLException ex) {
-            Logger.getLogger(GrafikController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(GrafikController.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }    
 
     @FXML
@@ -68,6 +59,7 @@ public class GrafikController implements Initializable {
             HomeController home = (HomeController)loader.getController();
             home.GetUserLogin(this.sessionUsername);
             home.GetKaloriUser();
+            home.hitungPogressKalori(sessionUsername);
             Scene scene = new Scene(Main);
             Stage Primarystage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             Primarystage.setResizable(false);
@@ -75,21 +67,22 @@ public class GrafikController implements Initializable {
             Primarystage.show();
     }
     
-    public void GetUserLogin(String uName) {
+    public void GetUserLogin(String uName) throws SQLException, ClassNotFoundException {
         // TODO Auto-generated method stub
         this.sessionUsername = uName;
+        hitungGrafik();
     }
     
     public void hitungGrafik() throws SQLException, ClassNotFoundException{
-        //masih belum bisa
-        
-        XYChart.Series series = new XYChart.Series();
-        String query="select Tanggal,Kalori from MakananHarian where Username = '"+sessionUsername+"'";
+        dataKalori=new XYChart.Series();
+        dataKalori.setName("Kalori");
+        String query="SELECT Tanggal,Kalori from MakananHarian WHERE Username='"+sessionUsername+"'";
         ResultSet rs=db.dbExecuteQuery(query);
-        while(rs.next())
-        series.getData().add(new XYChart.Data<>(rs.getDate(1), rs.getInt(2)));
-        grafikID.getData().addAll(series);
+        while(rs.next()){
+            dataKalori.getData().add(new XYChart.Data(rs.getString("Tanggal"),rs.getInt("Kalori")));
         }
+        grafikID.getData().add(dataKalori);
        
+    }
 }
 

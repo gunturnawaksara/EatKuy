@@ -54,7 +54,7 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="kalori" layoutX="579.0" layoutY="114.0" text="Kalori" textFill="WHITE">
+                        <Label fx:id="kalori" layoutX="579.0" layoutY="114.0" text="2" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
