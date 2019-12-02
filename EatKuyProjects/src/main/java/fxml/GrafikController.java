@@ -76,13 +76,28 @@ public class GrafikController implements Initializable {
     public void hitungGrafik() throws SQLException, ClassNotFoundException{
         dataKalori=new XYChart.Series();
         dataKalori.setName("Kalori");
-        String query="SELECT Tanggal,Kalori from MakananHarian WHERE Username='"+sessionUsername+"'";
-        ResultSet rs=db.dbExecuteQuery(query);
-        while(rs.next()){
-            dataKalori.getData().add(new XYChart.Data(rs.getString("Tanggal"),rs.getInt("Kalori")));
+        int kaloriHariItu = 0;
+        String tanggal;
+        //System.out.println(sessionUsername);
+        String query="SELECT * from MakananHarian ASC WHERE Username='"+sessionUsername+"' ORDER BY Tanggal";
+        ResultSet rs = db.dbExecuteQuery(query);
+        if(rs.next()){
+            tanggal = rs.getString("Tanggal");
+            //System.out.println(tanggal);
+            while(rs.next()){
+                if(rs.getString("Tanggal").equals(tanggal)){
+                    kaloriHariItu = kaloriHariItu + Integer.parseInt(rs.getString("Kalori"));
+                    System.out.println(tanggal);
+                }else{
+                    System.out.println(kaloriHariItu);
+                    dataKalori.getData().add(new XYChart.Data(tanggal,kaloriHariItu));
+                    tanggal = rs.getString("Tanggal");
+                    kaloriHariItu = 0;
+                }
+            }
+            dataKalori.getData().add(new XYChart.Data(tanggal,kaloriHariItu));
+            grafikID.getData().add(dataKalori);
         }
-        grafikID.getData().add(dataKalori);
-       
     }
 }
 
