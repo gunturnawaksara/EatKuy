@@ -77,6 +77,7 @@ public class LoginController implements Initializable {
                     HomeController home = (HomeController)loader.getController();
                     home.GetUserLogin(username);
                     home.GetKaloriUser();
+                    home.hitungPogressKalori();
                     Scene scene = new Scene(Main);
                     Stage Primarystage = (Stage) ((Node)event.getSource()).getScene().getWindow();
                     Primarystage.setResizable(false);

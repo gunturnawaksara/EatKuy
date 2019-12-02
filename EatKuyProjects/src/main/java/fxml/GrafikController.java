@@ -59,7 +59,7 @@ public class GrafikController implements Initializable {
             HomeController home = (HomeController)loader.getController();
             home.GetUserLogin(this.sessionUsername);
             home.GetKaloriUser();
-            home.hitungPogressKalori(sessionUsername);
+            home.hitungPogressKalori();
             Scene scene = new Scene(Main);
             Stage Primarystage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             Primarystage.setResizable(false);

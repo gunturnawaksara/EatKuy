@@ -161,7 +161,9 @@ public class HomeController implements Initializable {
         this.sessionUsername = uName;
         this.username.setText(uName);
         getDisableChanger();
-        
+        tanggalHariIni();
+        loadDB1(col_idCatat, col_namaMakananCatat, col_kaloriCatat, col_sesiCatat, catatMakanan, String.valueOf(LocalDate.now()));
+        loadDB2(col_idMakanan, col_namaMakanan, col_KaloriMakanan, makananTabel);
     }
     
     public void getDisableChanger(){
@@ -289,13 +291,13 @@ public class HomeController implements Initializable {
         sesiCatat.setCellValueFactory(new PropertyValueFactory("SesiMakan"));
         ObservableList<DailyEat> data;
         try {    
-            data = DailyEatDAO.searchDailyEats(date);
+            System.out.println(sessionUsername);
+            data = DailyEatDAO.searchDailyEats(date, sessionUsername);
             tableTab.setItems(data);
-            hitungPogressKalori(tanggal);
+            hitungPogressKalori();
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(MakananManajemenController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
         
     }
       
@@ -321,16 +323,13 @@ public class HomeController implements Initializable {
         comboJK.setItems(JK);
         comboAktivitas.setItems(aktivitas);
         comboSesi.setItems(sesi);
-        tanggalHariIni();
-        loadDB1(col_idCatat, col_namaMakananCatat, col_kaloriCatat, col_sesiCatat, catatMakanan, String.valueOf(LocalDate.now()));
-        loadDB2(col_idMakanan, col_namaMakanan, col_KaloriMakanan, makananTabel);
     } 
 
     @FXML
     private void filterMakanan(ActionEvent event) {
         ObservableList<DailyEat> data;
         try {
-            data = DailyEatDAO.searchDailyEats(tanggal);
+            data = DailyEatDAO.searchDailyEats(tanggal, sessionUsername);
             final FilteredList<DailyEat> filteredList = new FilteredList<>(data);
             searchField.textProperty().addListener(new ChangeListener<String>() {
                 @Override
@@ -396,6 +395,12 @@ public class HomeController implements Initializable {
             }catch(Exception e){
                 System.out.print(e);
             }
+        }else{
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("ADD FOOD FAILED");
+            alert.setHeaderText("FAILED !");
+            alert.setContentText("Sesi Makanan Tidak boleh kosong");
+            alert.showAndWait();
         }
     }
     
@@ -406,16 +411,15 @@ public class HomeController implements Initializable {
     }
 
     @FXML
-    private void getNewDate(ActionEvent event) {
+    private void getNewDate(ActionEvent event) throws ClassNotFoundException, SQLException {
         tanggal = String.valueOf(tanggalHistory.getValue());
         loadDB1(col_idCatat, col_namaMakananCatat, col_kaloriCatat, col_sesiCatat, catatMakanan, tanggal);
-        
     }
     
-    public void hitungPogressKalori(String kalori) throws ClassNotFoundException, SQLException{
+    public void hitungPogressKalori() throws ClassNotFoundException, SQLException{
         GetKaloriUser();
         try {
-            String selectStmt = "SELECT * FROM MakananHarian WHERE Tanggal = '"+tanggal+"'";
+            String selectStmt = "SELECT * FROM MakananHarian WHERE Tanggal = '"+tanggal+"' AND Username = '"+sessionUsername+"'";
             ResultSet rsMtk = DBUtil.getInstance().dbExecuteQuery(selectStmt);
             while(rsMtk.next()){
                 int jmlhKalori = Integer.parseInt(this.kalori.getText());
@@ -439,6 +443,70 @@ public class HomeController implements Initializable {
         Primarystage.setResizable(false);
         Primarystage.setScene(scene);
         Primarystage.show();
+    }
+
+    @FXML
+    private void seacrhByFoodName(ActionEvent event) {
+        ObservableList<Makanan> data;
+        try {
+            data = MakananDAO.searchMakanans();
+            final FilteredList<Makanan> filteredList = new FilteredList<>(data);
+            makananTxt.textProperty().addListener(new ChangeListener<String>() {
+                @Override
+                public void changed(ObservableValue<? extends String> observable, String oldValue, final String newValue) {
+                    filteredList.setPredicate(new Predicate<Makanan>() {
+                        @Override
+                        public boolean test(Makanan t) {
+                            if(newValue == null || newValue.isEmpty()){
+                                return true;
+                            }
+                            String lowerCaseFilter = newValue.toLowerCase();
+                            if(t.getNama_makanan().toLowerCase().indexOf(lowerCaseFilter) != -1){
+                                return true;
+                            }
+                            return false;
+                        }
+                    });
+                }
+            });
+            SortedList<Makanan> sortedData = new SortedList<>(filteredList);
+            sortedData.comparatorProperty().bind(makananTabel.comparatorProperty());
+            makananTabel.setItems(sortedData);
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(MakananManajemenController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void seacrhByKalori(ActionEvent event) {
+        ObservableList<Makanan> data;
+        try {
+            data = MakananDAO.searchMakanans();
+            final FilteredList<Makanan> filteredList = new FilteredList<>(data);
+            kaloriTxt.textProperty().addListener(new ChangeListener<String>() {
+                @Override
+                public void changed(ObservableValue<? extends String> observable, String oldValue, final String newValue) {
+                    filteredList.setPredicate(new Predicate<Makanan>() {
+                        @Override
+                        public boolean test(Makanan t) {
+                            if(newValue == null || newValue.isEmpty()){
+                                return true;
+                            }
+                            String lowerCaseFilter = newValue.toLowerCase();
+                            if(t.getKalori().toLowerCase().indexOf(lowerCaseFilter) != -1){
+                                return true;
+                            }
+                            return false;
+                        }
+                    });
+                }
+            });
+            SortedList<Makanan> sortedData = new SortedList<>(filteredList);
+            sortedData.comparatorProperty().bind(makananTabel.comparatorProperty());
+            makananTabel.setItems(sortedData);
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(MakananManajemenController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }
