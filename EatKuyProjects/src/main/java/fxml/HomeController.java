@@ -381,7 +381,7 @@ public class HomeController implements Initializable {
         String namaM = makananTxt.getText();
         String kaloriM = kaloriTxt.getText();
         String sesi = comboSesi.getValue();
-        if(sesi != null){
+        if(sesi != null && Integer.parseInt(this.kalori.getText()) >= Integer.parseInt(kaloriM)){
             try{
                 String query = "INSERT INTO MakananHarian(NamaMakanan, Kalori, SesiMakan, Tanggal, Username) VALUES('"+namaM+"','"+kaloriM+"','"+sesi+"','"+tanggal+"','"+sessionUsername+"')";
                 db.dbExecuteUpdate(query);
@@ -399,7 +399,7 @@ public class HomeController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("ADD FOOD FAILED");
             alert.setHeaderText("FAILED !");
-            alert.setContentText("Sesi Makanan Tidak boleh kosong");
+            alert.setContentText("GAGAL MENAMBAH MAKANAN");
             alert.showAndWait();
         }
     }
